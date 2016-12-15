@@ -1,0 +1,13 @@
+\subsection{Classification}\label{chp3-subsec6}
+In Sect.~\ref{sec:chp2-sec6}, we discussed different single learner and ensemble approaches. 
+Among the aforementioned methods, we chose linear (RBF), kernel \ac{svm} and \ac{lda} as single learners, and \ac{gb}, \ac{rf}, and weighted combination as ensembles.
+These classifiers are compared with each other in different experiments.
+The \ac{rf} classifier is trained in all the experiments up to its maximum length without pruning.
+In the initial experiments, the number of \ac{rf} trees is set to 500 while in the later ones the \ac{rf} is trained with 100 trees.
+The \ac{gb} classifier is used with an exponential loss function (See Eq.~\ref{eq:exploss}), shrinkage (regularization) parameter of 0.01, and sub-sampling fraction of 0.7. 
+The sub-sampling fraction indicates that in each iteration, only 70\% of the training samples are randomly considered.
+The optimum regularization and soft margin parameter of the \ac{svm} classifier is set through a grid-search over the validation set. 
+
+Depending on the experiments, different cross-validation approaches (\ac{loocv} or \ac{kcv}) are used as well.
+These approaches are explained in the following section along with their corresponding experiments.
+

@@ -1,0 +1,161 @@
+\section{Related Work}
+\label{sec:chp3-sec2}
+This section presents a summary of the algorithms for dermoscopic lesion classification proposed over the past decade.
+Graphically, this summary is described in Table~\ref{tab:dermoscopy_Feature} and Fig.~\ref{fig:dermoscopy_Sens_PerformanceComparison}.
+
+In 2001, Merler~et al.\,\cite{merler2001tuning} proposed a cost-sensitive boosting approach for the classification of melanoma (M) against benign (B) lesions, where they report \ac{se} and \ac{sp} of 97\% and 54\%, respectively.
+They used a dataset called ``MEDS'', which contained 152 lesions, including 42 melanoma.
+
+In another study, Kreutz~et al.\,\cite{kreutz2001automated} presented a classification framework of M~vs.~B lesions, in a dataset of 423 dermoscopic lesions.
+In this study, the authors proposed a segmentation approach based on color clustering and a region growing technique. 
+Using \acf{mlp} and features such as color statistics, shape and Gabor features, they reported \ac{se} and \ac{sp} of 98.7$\%$ and 76.5$\%$, respectively.
+
+In the same year, Dreiseitl~et al.\,\cite{dreiseitl2001comparison} reported a comparison of different classifiers (kernel \ac{svm}, k-\ac{nn}, \ac{ann}, and \acf{dt}) with a dataset of 1619 lesions, among which 105 lesions were melanoma.
+This comparison of M~vs.~B+D (Dysplastic) lesion classification methods reported that the best \ac{se} (92.05$\%$ ) and \ac{sp} (94.97$\%$) was achieved with the kernel \ac{svm}.
+
+Ganster~et al.\,\cite{ganster2001automated} proposed an automated melanoma recognition framework using a very large dataset of 5363 lesions, including 96 melanoma.
+The authors proposed segmenting lesions based on a fusion method of several thresholding stages.
+Using a k-\ac{nn} classifier and a multiclass classification, the results for \ac{se} and \ac{sp} were 87$\%$ and 92$\%$, respectively.
+
+Rubegni~et al.\,\cite{rubegni2002automated} also proposed an automated diagnosis framework for pigmented lesions, where they used \ac{ann} with shape and color statistics to differentiate M~vs.~B lesions.
+Classifying a dataset of 588 lesions, including 217 melanomas, the authors reported \ac{se} and \ac{sp} of 99$\%$ and 92.6$\%$, respectively.
+
+Later, Sboner~et al.\,\cite{sboner2003multiple} proposed an ensemble approach for classification of M~vs.~B lesions.
+Their algorithm on a dataset of 152 lesions, containing 42 melanomas, achieved \ac{se} and \ac{sp} of 81$\%$ and 74$\%$, respectively.
+
+Burroni~et al.\,\cite{burroni2005dysplastic} proposed an algorithm for differentiation of M~vs.~D lesions.
+In their method, the authors segmented 174 lesions using a Laplacian filter and a zero-crossing algorithm. 
+Using the extracted shape, color statistics, and \ac{glcm} features and the stepwise discriminant analysis as the classifier~\cite{burroni2005dysplastic}, they obtained \ac{se} and \ac{sp} of 71$\%$ and 75$\%$, respectively. 
+
+%\input{Chapter3/Table1.tex}
+
+Similar features were used later in \cite{celebi2007methodological}.
+In their framework, the authors proposed segmenting lesions using a region growing and merging algorithm with a color similarity constraint.
+Their experiments for classification of M~vs.~B+D lesions using kernel \ac{svm}, with a dataset of 564 lesions containing 88 melanomas, achieved \ac{se} and \ac{sp} of 92.34$\%$ and 93.33$\%$, respectively.
+
+Iyatomi~et al.\,\cite{iyatomi2008improved} proposed a \ac{cad} system for recognition of M~vs.~B+D lesions.
+
+The authors segmented lesions using a region growing algorithm and classified some shape, color and texture (\ac{glcm}) features, which resemble the ``ABCD'' characteristics, with an \ac{ann} classifier.
+They reported that with a large dataset of 1258 lesions including 198 melanomas their algorithm achieved \ac{se} and \ac{sp} of 85.9$\%$ and 86$\%$, respectively.
+
+Situ~et al.\,\cite{situ2008malignant} proposed representing image features using the \ac{bow} approach.
+Classifying wavelet and Gabor texture features using the \ac{bow} representation and an \ac{svm} classifier, the authors reported \ac{se} and \ac{sp} of 88.8$\%$ and 69.26$\%$, respectively.
+This study was dedicated to the differentiation of M~vs.~B+D lesions with a dataset of 100 lesions, containing 30 melanomas.
+In a later study~\cite{situ2010modeling}, the authors proposed a different segmentation method based on the graph cut algorithm, and, using the same classification framework, they extracted color, \ac{sift}, and wavelet features instead.
+As a result, with the same dataset, they achieved \ac{se} of 83$\%$ and \ac{sp} of 80.93$\%$. 
+
+Another computerized framework was proposed by Capdehourat~et al.\,\cite{capdehourat2009pigmented} for the classification of M~vs.~B+D lesions with a dataset of 433 lesions, among which 80 lesions were melanomas.
+The authors used the Dullrazor\textsuperscript{\textregistered}~\cite{Lee1997} algorithm for hair removal and proposed segmenting lesions using color thresholding based on Otsu's approach.
+Using color statistics and texture features from \ac{glcm} and Gabor filters, and the \ac{adb} classifier, they achieved \ac{se} and \ac{sp} of 95$\%$ and 91.25$\%$, respectively.
+They also proposed using the \ac{smote} balancing algorithm to deal with imbalanced data distributions.
+Using the same pre-processing and classification framework on a larger dataset (544 lesions containing 111 melanomas), they later achieved \ac{se} and \ac{sp} of 90$\%$ and 77$\%$, respectively~\cite{capdehourat2011toward}. 
+
+A combination of \ac{svm} and \ac{bow} representation was also used in \cite{zortea2010automatic} to differentiate M~vs.~B lesions in a dataset of 164 lesions (including 80 melanomas).
+Using the \ac{bow} representation of \ac{lbp} features, the authors eliminated the segmentation stage and achieved \ac{se} and \ac{sp} of 73$\%$ and 73$\%$, respectively.
+Later, using a larger dataset (206 lesions containing 37 melanomas), the authors proposed a framework for classification of M~vs.~B+D based on shape, color and texture features mimicking the ``ABCD'' characteristics~\cite{zortea2014performance}.
+In this work, using feature selection techniques and the \acf{qda} classifier, their best results reached \ac{se} of 86$\%$ and \ac{sp} of 52$\%$. 
+
+The \acl{svm} classifier was also used in \cite{gilmore2010support} for automatic recognition of M~vs.~D lesions.
+In this work, the authors proposed extracting color statistics and shape features from the entire image without considering the segmentation step.
+They later used a \ac{pca} to reduce the feature dimensions and achieved \ac{se} and \ac{sp} of 89$\%$ and 64$\%$.
+
+In other work, Garnavi~et al.\,\cite{garnavi2012computer} proposed a \ac{cad} system for classification of M~vs.~B lesions.
+In this study, the author compared manual and adaptive thresholding approaches for the segmentation of lesions.
+As for feature extraction, they combined wavelet package features with shape statistics.
+Their paper also provided a comparison between \ac{svm}, \ac{rf}, \ac{lmt}, and hidden \ac{nb} classifiers, where the best \ac{acc} of 88.30$\%$ was achieved with the \ac{rf} classifier.
+
+Abbas~et al.\,\cite{abbas2012computer} proposed another \ac{cad} system for the classification of M~vs.~B+D lesions.
+In this framework, the authors proposed their own hair removal~\cite{Abbas2011a} and lesion segmentation~\cite{Abbas2012} algorithms.
+Using the \ac{svm} classifier and \ac{lbp}, wavelet, and color statistics as features, with a relatively small dataset of 120 lesions (containing 20 melanomas) they reported \ac{se} and \ac{sp} of 91.46$\%$ and 94.14$\%$, respectively.
+Using the same framework, they later reported their results with a different dataset of 120 lesions, which contained 60 melanomas~\cite{abbas2013melanoma}.
+With this dataset, the \ac{se} and \ac{sp} were at 88.2$\%$ and 91.3$\%$, respectively.
+
+Barata~et al.\,\cite{barata2013two,barata2013role} and Ruela~et al.\,\cite{ruela2013role,ruela2013color} recently presented their research on different subsets of the PH$^{2}$ dataset~\cite{mendoncca2013ph}.
+In this work, the authors compared the role of shape and color descriptors~\cite{ruela2013role,ruela2013color} for the detection of M~vs.~B+D lesions using the \ac{adb} classifier.
+In \cite{barata2013two,barata2013towards}, they proposed using the \ac{bow} representation of color and gradient features.
+Their results comparing the \ac{adb}, kernel \ac{svm}, and k-\ac{nn} classifiers indicated that the combination of the \ac{bow} representation and k-\ac{nn} classifier achieved the best performance with \ac{se} and \ac{sp} of 100$\%$ and 75$\%$, respectively.
+
+Recent studies on automated melanoma recognition were presented in \cite{schaefer2014ensemble,Celebi2015}.
+Schaefer~et al.~\cite{schaefer2014ensemble} proposed a M~vs.~B+D classification framework, using a dataset of 564 lesions, among which 88 lesions were melanoma.
+The authors chose the \ac{smote} sampling to avoid the imbalance problem and used ensemble approaches to perform the classification.
+Using shape, color and \ac{glcm} features, they achieved \ac{se} and \ac{sp} of 93.76$\%$ and 93.84$\%$, respectively.
+Shimizu~et al.~\cite{Celebi2015} tackled a multiclass classification problem between melanoma, basal cell carcinoma, seborrheic keratosis, and dysplactic nevus.
+They used an ensemble approach for classifying each group with a dataset of 964 lesions with 109 melanomas.
+In their study, using color and \ac{glcm} features \ac{se} of 90.48$\%$ for melanoma lesions was achieved.
+\input{Chapter3/Figure1.tex}
+
+All the studies described above are summarized in Fig.~\ref{fig:dermoscopy_Sens_PerformanceComparison} and Table~\ref{tab:dermoscopy_Feature}.
+%and Table.~\ref{tab:dermoscopy_Classifiers}.
+Figure.~\ref{fig:dermoscopy_Sens_PerformanceComparison} categorizes the methods in terms of the dataset size, classification scope (M~vs.~B, M~vs.~B~+~D, and M~vs.~D) and results achieved (\ac{se} and \ac{sp}).
+In this figure, a categorization of different datasets is presented together with the ratio of melanoma samples over the total size of the dataset.
+The datasets with less than 100 lesions are categorized as group~1, group~2 contains datasets with more than 100 and less than 200 lesions; datasets with more than 200 and less than 500 lesions are in group~3, while groups~4 and 5 contain datasets from 500 up to 1000 and over 1000 lesions, respectively.
+%belong to group~3 and dataset with over 500 lesions and less than 1000 lesions are categorized as group~4 and finally any dataset over 1000 lesion is categorized as group~5.
+Table~\ref{tab:dermoscopy_Feature} categorizes the research studies in terms of their choice of features.
+In this table, the references that chose a \ac{bow} representation of the extracted features are highlighted in \textbf{bold}.
+%In this table, the references which opted for the \ac{bow} representation of the extracted features are highlighted in \textbf{bold}.
+\input{Chapter3/Table1.tex}
+%Table~\ref{tab:dermoscopy_classifiers} categorized the 
+
+Based on our study of the state-of-the-art lesion classification methods, we made several important findings listed in the following: 
+\textbf{
+\begin{enumerate}[i]
+\item Color, shape, and often \ac{glcm} features are used more extensively compared to others.
+Although these features are applied to represent characteristics similar to the ``ABCD'' rule, the lack of attention to other well-known pattern recognition features is evident.
+%Features such as color, shape, and often \ac{glcm} are used extensively compared to others. 
+%Although, these features are used to represent similar characteristics to ``ABCD'' rule, the lack of using well-known pattern recognition features is evident.
+\item Different machine learning techniques are used to perform the classification. However, the application of ensemble classifiers was limited to only few studies.
+\item The majority of the datasets employed are imbalanced, in some cases to a great degree~\cite{ganster2001automated}.
+However, balancing techniques are rarely used to reduce the bias of the classifier.
+%Normally the used datasets are imbalanced and in some cases highly imbalanced~\cite{ganster2001automated}.
+%However balancing techniques are rarely used to reduce the bias of the classifier.
+\item As it is highlighted in Fig.~\ref{fig:dermoscopy_Sens_PerformanceComparison}, few methods were proposed for the classification of M~.vs~D lesions.
+Classification of M against D lesions is more challenging due to the characteristic similarities between these types of lesions.
+This is a challenging task for both dermatologists and automated algorithms in comparison with differentiation between M~.vs~B lesions, which is more straight forward for dermatologists.
+\item Finally, although some methods achieved very good results, it is impossible to offer a fair comparison of the above frameworks because their performance is reported using different datasets.
+Consequently, it is not possible to draw definitive conclusions about their performance in classification of melanoma lesions.
+%for the performance of machine learning techniques in classification of melanoma lesions.
+\end{enumerate}}
+Keeping these conclusions in mind, we propose our \ac{cad} system for the classification of melanoma lesions, which is discussed in great detail in the rest of this chapter.
+
+
+
+%%%%%%%%%% Dermoscopy 
+%\cite{Celebi2015}, SE 90.48, multiclass, 105/964, Segmentation Color thresholding, color, GLCM
+%\cite{schaefer2014ensemble}, SE 93.76, SP 93.84, 88/564, balancing, Segmentation JSEG, ensemble NN, shape, color, GLCM 
+%\cite{mete2014optimal}, SVM, 43/90, acc 92.2, shape, color based on ABCD
+%\cite{zortea2014performance}, LDA, QDA, SE 86, SP 52, D = 37/206,segmentation = machine learning, color, shape, texture LBP.
+%\cite{abbas2013melanoma},SVM,  SE 88.2, SP 91.3, color features, segmentation SETA, hair removal = derivative of gaussian, morphological function, fast marching, SFFS, 60/120
+%\cite{barata2013two} SE 96 SP 80 , 25/176 , Knn, AdB SVM  global Color, Gradient 
+%\cite{barata2013two} SE 100 SP 75 , 25/176 , Knn, AdB SVM local , BOF, color, Gradient
+%\cite{ruela2013color} SE (96), SP(83), 24/169, AdB, Color
+%\cite{ruela2013role} SE (92), SP (78), 24/169, AdB, 
+%\cite{barata2013role}  SE 98 SP 86, 25/167, BOW 
+%\cite{abbas2012computer} SE 91.64  SP 94.14, 20/180, SVM
+%\cite{capdehourat2011toward} , SE 90 SP  77 , 111/544, SVM  AdB
+
+%\cite{garnavi2010classification} Acc  88.24 , 96/205 , RF SVM LMT 
+%\cite{tasoulis2010skin} Clustering , 69/3631 , DePDDA 
+%\cite{situ2010modeling} SE 83 SP 80.93 , 30/100 , SVM
+%\cite{zortea2010automatic}  SE 73 , SP 73 , 80/164 , SVM 
+%\cite{gilmore2010support} SE 89.0 SP 64.0 , 101/109 , SVM 
+
+%\cite{capdehourat2009pigmented} SE 95 SP 91.25, 80/433 , AdB, SVM 
+%\cite{situ2008malignant} SE 88.8 SP 69.26, 30/100 , SVM  NB
+%\cite{surowka2008supervised}  SE 89.2 SP 90 , 19/39 , ANN and SVM 
+%\cite{iyatomi2008improved} SE 85.9  SP 86.0 , 198/1258 , ANN 
+%\cite{chiem2007novel} , Acc 95.5 , NA / 100, SVM 
+%\cite{celebi2007methodological} SE 92.34 SP  93.33 , 88/564 , SVM RBF 
+%\cite{burroni2005dysplastic} SE 71 SP 75, 38/174 , stepwise discriminant analysis 
+%\cite{sboner2003multiple} SE 81.0 SP 74.0, 42 / 152, LDA, KNN, DT  combination of three classifiers 
+%\cite{rubegni2002automated} SE 99 SP 72.5 , 217/588, ANN 
+
+%\cite{merler2001tuning} SE 97.0  SP 54.0, 42/152 , AdB
+%\cite{kreutz2001automated}  SE 98.7 , SP 76.5, NA/423, ANN 
+%\cite{dreiseitl2001comparison} SE 92.05 , SP 94.97 , 105/1619, SVM RBF 
+%\cite{ganster2001automated} SE 87 SP 92, 96/5363, KNN 
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../thesis"
+%%% End: 

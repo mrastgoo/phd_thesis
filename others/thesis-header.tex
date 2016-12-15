@@ -1,0 +1,41 @@
+\documentclass[twoside,a4,12p,oepnright]{report} %,draft,openright]
+\makeatletter
+	\setlength{\@fptop}{0pt}
+\makeatother
+%\documentclass[twoside,11pt,openright]
+%% Latex documents that need direct input
+\input{latex/filesystem/package.tex}        % contains the latex packages
+\input{latex/filesystem/fileSetup.tex}      % contains package and variables init.
+\input{acronym_definition.tex}      % contains the acronims
+
+
+%omitting any of these makes the thesis compile without the omitted
+%chapter - good for editing single chapters.
+%\includeonly{header,introduction,problem,stateart,methodology,results,conclusion,appendix}
+
+\begin{document}
+\newpage
+
+%Puts page numbering of preamble in roman and of main body of thesis in
+%arabic. Also defines how chapters and sections are made
+%\pagenumbering{arabic}
+%\setcounter{page}{1} \pagestyle{fancy}
+%\renewcommand{\chaptermark}[1]{\markboth{\chaptername}}
+%%\ \thechapter:\,\ #1}{}}
+%\renewcommand{\sectionmark}[1]{\markright{\thesection\,\ #1}}
+
+%DEFINES TITLE PAGE, and contains abstract, acknowledgements, etc.
+%sets up headers for lefthand and righthand pages. To alter, edit
+%these lines and the chaptermark/sectionmark lines above
+\addtolength{\headheight}{3pt} \fancyhead{}
+\fancyhead[LE]{\sl\leftmark} \fancyhead[LO,RE]{\rm\thepage}
+\fancyhead[RO]{\sl\rightmark} \fancyfoot[C,L,E]{}
+
+\include{header-coverpage}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "thesis"
+%%% End:

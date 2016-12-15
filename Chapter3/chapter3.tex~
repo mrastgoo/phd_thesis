@@ -1,0 +1,16 @@
+\chapter{Dermoscopy Images}
+\label{chp:chapter3}
+
+\input{Chapter3/Introduction.tex}
+\input{Chapter3/RelatedWorks.tex}
+\input{Chapter3/Materials.tex}
+\input{Chapter3/Methods.tex}
+\input{Chapter3/Experiments.tex}
+%\input{Chapter3/Results.tex}
+\input{Chapter3/Conclusion.tex}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../thesis"
+%%% End: 

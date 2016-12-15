@@ -1,0 +1,123 @@
+%\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+%    text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+
+\tikzstyle{block} = [rectangle, draw, fill= blue!30,  
+   text width=7em, text centered, rounded corners, minimum height=4em , minimum width = 7em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{block2} = [rectangle, draw, fill=white!20,
+    text width=7em, text centered, rounded corners, minimum height=4em, minimum width = 7em]
+\tikzstyle{block3} = [rectangle, draw, fill=blue!30,
+    text width=7em, text centered, rounded corners, minimum height=3em , minimum width = 7em]
+\def\blockdist{1}
+\def\edgedist{1.5}
+\begin{figure}[H] 
+\begin{center}   
+\begin{tikzpicture}[node distance = 1cm,scale=0.7, every node/.style={scale=0.7}]
+    % Place nodes
+    % -- input images 
+    \node [block2] (input) {Dermoscopy images};
+    \path (input.north|- input.east)+(0.1,+1.1\blockdist) node (g) {};
+    % -- preprocessing block
+    \node [block, right of= g , node distance = 3.9cm](HR){Hair Removal};
+    \node [block, below of = HR, node distance = 2.2cm](Seg){Segmentation};
+     
+	\begin{pgfonlayer}{background}
+	\path (HR.west |- HR.north)+(-0.4,+1.2+\blockdist) node (a) {};
+    \path (Seg.east |- Seg.south)+(+0.4,-2.0) node (b) {};          
+    \path[fill=blue!10,rounded corners, draw=blue!30, dashed] (a) rectangle (b);
+	\end{pgfonlayer}
+	\path (HR.west |- HR.north) +(+1.4,0.8+\blockdist) node (pp) {\textbf{Pre-processing}};
+	
+    	% -- mapping block
+    	\node[block, right of =HR, node distance = 4 cm](ml){Local};
+    	\node[block, below of =ml, node distance = 2.2cm](mg){Global};
+    \path(ml.north|-ml.east) +(0.1,+1.1\blockdist) node(p){};
+        
+	\begin{pgfonlayer}{background}
+	\path (ml.west |- ml.north)+(-0.4,+1.2+\blockdist) node (a) {};
+    \path (mg.east |- mg.south)+(+0.4,-2.0) node (b) {};          
+    \path[fill=blue!10,rounded corners, draw=blue!30, dashed] (a) rectangle (b);
+	\end{pgfonlayer}
+	\path (ml.west |- ml.north) +(+1.4,0.8+\blockdist) node (mapping) {\textbf{Mapping}};
+	
+    % -- feature extraction block
+	\node[block, right of = p, node distance = 3.9cm ](FE1){Texture};      
+    \node[block, below of = FE1, node distance = 2.2cm ](FE3){Shape};
+    \node[block, below of = FE3, node distance = 2.2cm ](FE2){Color};
+    
+    \begin{pgfonlayer}{background}
+	\path (FE1.west |- FE1.north)+(-0.4,+0.1+\blockdist) node (a) {};
+    \path (FE2.east |- FE2.south)+(+0.4,-0.95) node (b) {};          
+    \path[fill=blue!10,rounded corners, draw=blue!30, dashed] (a) rectangle (b);
+	\end{pgfonlayer}
+	\path (FE1.west |- FE1.north) +(1.4,-0.2+\blockdist) node (FEB1) {\textbf{Feature}};
+	\path (FE1.west |- FE1.north) +(+1.4,-0.6+\blockdist) node (FEB2) {\textbf{extraction}};
+    
+    % -- feature representation
+    \path(FE1.north|-FE1.east) +(0.1,-1.1\blockdist) node(v){};
+    \node[block, right of = v, node distance = 3.9cm](lr){Low}; 
+    \node[block, below of = lr, node distance = 2.2cm](hr){High};
+    
+    \begin{pgfonlayer}{background}
+	\path (lr.west |- lr.north)+(-0.4,+1.2+\blockdist) node (a) {};
+    \path (hr.east |- hr.south)+(+0.4,-2.0) node (b) {};           
+    \path[fill=blue!10,rounded corners, draw=blue!30, dashed] (a) rectangle (b);
+	\end{pgfonlayer}
+	\path (lr.west |- lr.north) +(1.4,0.9+\blockdist) node (FEB1) {\textbf{Feature}};
+	\path (lr.west |- lr.north) +(+1.4,0.5+\blockdist) node (FEB2) {\textbf{representation}};
+	
+    % -- Balancing data block 
+    %\path(dr.south|-dr.east)+(0.1,-1.1\blockdist) node(q){};
+    \node[block, below of = hr, node distance = 7.1cm](Us){Under sampling};
+    \node[block, below of = Us, node distance = 2.2cm](Os){Over sampling};
+    
+    	\begin{pgfonlayer}{background}
+	\path (Us.west |- Us.north)+(-0.4,+1.2+\blockdist) node (a) {};
+    \path (Os.east |- Os.south)+(+0.4,-2.0) node (b) {};              
+    \path[fill=blue!10,rounded corners, draw=blue!30, dashed] (a) rectangle (b);
+	\end{pgfonlayer}
+	\path (Us.west |- Us.north) +(+1.4,0.8+\blockdist) node (balance) {\textbf{Balancing}};
+	
+	
+    % -- classification block
+    \node[block, below of = FE2, node distance = 6cm](SL){Single Learner};
+    \node[block, below of = SL, node distance = 2.2cm](EL){Ensemble};
+    
+    \begin{pgfonlayer}{background}
+	\path (SL.west |- SL.north)+(-0.4,+1.2+\blockdist) node (a) {};
+    \path (EL.east |- EL.south)+(+0.4,-2.0) node (b) {};          
+    \path[fill=blue!10,rounded corners, draw=blue!30, dashed] (a) rectangle (b);
+	\end{pgfonlayer}
+	\path (SL.west |- SL.north) +(+1.4,0.8+\blockdist) node (clsfy) {\textbf{Classification}};
+    
+	% --- The arrows 
+	
+	\path(FE3.north|- FE3.east)+(2.4, 0.0) node (f){}; 
+	\path(f)+(-0.8,0) node (n) {};
+	
+	\path (hr.east |- hr.south)+(-1.4,-2.0) node (j) {};           
+    \path (Us.west |- Us.north)+(+1.3,+1.2+\blockdist) node (k){}; 
+
+	\path(f)+(-4.8,0) node(o){};
+	\path(o)+(0.8,0)  node(r){};
+
+	\path(o)+(-4.0,0) node(s){};
+	\path(s)+(0.8,0)  node(t){};		
+
+	\path(n)+(0,-9.0)  node (l) {};  
+  	\path(f)+(0,-9.0)  node (m) {};  
+
+	\path(s)+(-3.3,0) node(u){};
+	
+    \path [line] (input) -- (u);
+    \path [line] (n) -- (f);
+	\path [line] (j) -- (k);
+	\path [line] (m) -- (l);
+    \path [line] (o) -- (r);
+    \path [line] (s) -- (t);
+
+\end{tikzpicture}
+\end{center}
+\caption[The proposed automated framework]{Outline of the proposed algorithm for automatic recognition of melanoma.}
+\label{fig:dermoscopyFramework}
+\end{figure}

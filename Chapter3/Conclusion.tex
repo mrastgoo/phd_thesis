@@ -1,0 +1,86 @@
+\section{Conclusion}
+\label{sec:chp3-sec7}
+In this chapter, we presented our automated recognition framework for the classification of melanoma lesions in dermoscopy images.
+The proposed framework consists of six main steps: image preprocessing, image mapping, feature extraction, feature representation, data balancing, and classification.
+For each of these steps, we made the following contributions:
+\begin{itemize}
+	\item Proposed a hair removal algorithm based on morphological operations and exemplar-based inpainting.
+	\item Developed a segmentation method based on a fusion of \ac{pdf}-based, level-set, and \ac{fcm} algorithms.
+	\item Considered different texture and color descriptors beyond the clinical characteristics of the ``ABCD'' rule.
+	\item Compared global and local feature extraction methods (mapping). The latter was implemented using a sliding window and dividing each sample into small patches.
+	\item Applied the \ac{bow} and \ac{scf} techniques to reduce the complexity and dimensionality of the locally mapped features.
+	\item Addressed the class imbalance problem by adapting the \acl{dos} approach to pigmented skin lesions and comparing it with the state-of-the-art over/under-sampling techniques in the feature space.
+	\item Compared the performance of different learners and ensembles, such as \ac{svm}, \ac{gb}, \ac{rf} and a weighted combination.
+\end{itemize}
+%A hair removal algorithm based on morphological operations and exemplar-based inpainting was proposed to detect hairs and repair missing parts of the image.
+%We also presented a segmentation method based on a fusion of \ac{pdf}-based, level-set, and \ac{fcm} algorithms.
+%We considered different texture and color descriptors beyond the clinical characteristics of the ``ABCD'' rule.
+%It was proposed to extract the selected features per element or elements within each sample (global and local mapping, respectively).
+%The later is achieved through sliding window and dividing each sample to small patches.
+%In order to reduce the complexity and dimensionality of locally mapped features, we proposed to use \ac{bow} or \ac{scf} techniques.
+%We also consider how to deal with a common problem of class imbalance.
+%In this regard, first we proposed a \acl{dos} approach, suited for pigmented lesions.
+%Later we compared our \ac{dos} approach with the state of the art over-under sampling techniques in feature space.
+%Finally we compared the performance of different learners and ensembles, such as \ac{svm}, \ac{gb}, \ac{rf} and weighted combination. 
+
+The proposed framework was tested with respect to its individual steps in 5 different experiments.
+Experiments~\#1 and \#2 were performed with the Vienna dataset, while the rest were carried out with the PH$^{2}$ dataset.
+The results obtained highlighted the superiority of the texture features such as Gabor filters, \ac{clbp}, \ac{hog}, and \ac{sift} as compared to the state-of-the-art \ac{glcm} method.
+They also showed that the combination of color and texture features leads to a better performance.
+As to the global and local mapping results, we believe it to be highly dependant on the dataset, because in some cases, global feature extraction performs equal or superior to local extraction.
+%Testing the framework on two different datasets showed that the discriminative power of the color features are dataset driven and are subject to illumination, device and environment conditions.
+%In general terms maintaining discriminative and consistent color features with respect to different datasets or even in one dataset is not straightforward and additional color calibration is required.
+
+The importance of a balanced training, as well as the advantage of balance strategies in the feature space, was demonstrated in different experiments.
+In particular, it was shown that the \ac{us} methods are more suited for melanoma recognition than \ac{os}.
+In terms of classifiers, the benefit and capability of an \ac{rf} ensemble was shown throughout different experiments.
+In general, random forests is a less parameterized classifier, computationally less expensive, requiring minimum user interactions and obtaining the highest results. 
+Finally, in Experiment~\#5, we tested the performance of \acl{scf}.
+This experiment showed that by using the simplest features (R, G, and B intensities), and without prior segmentation, it is possible to achieve acceptable results.
+The highest performance was achieved on the PH$^{2}$ dataset using \ac{sift} features, a sparsity level of 2, and 800 atoms.
+
+
+Our proposed framework is offline and requires learning stage.
+However, depending on the configuration setup, the time required varies.
+For instance, high-level representations using dictionary learning such as \ac{bow} or \ac{scf} require more time than low-level representation and, among the classifiers, the \ac{svm} requires more training time, since a grid-search method is used to optimize its parameters.
+
+In line with our objective, the degree of robustness and generality of the proposed framework with respect to different datasets has been questioned.
+Although no test has been performed to confirm this aspect, we expect the use of ensembles such as \ac{adb} and \ac{rf}, along with balancing techniques and pruning approaches~\cite{rastgoo2012pruning} will be the solution to this problem.
+\subsection{Future Work}
+As an avenue for future research, we would like to explore several aspects of our framework in more detail, including:
+\begin{enumerate}[i]
+\item An evaluation of the hair removal algorithm using annotated data. 
+\item Extension and further studies of the segmentation algorithm.
+\item A comparison of sparse learned dictionaries with the \acl{bow} model.
+\item A more detailed examination of balancing strategies.
+\item A comparison of the tools developed with a larger dermoscopy dataset.
+\item An evaluation of the degree of robustness and generality of the proposed framework while dealing with data streams over time.
+\item Use of the recent techniques such as deep-learning for the classification.
+\end{enumerate}
+
+%1 ) Features such as color, shape, and often GLCM are used extensively compare to others.
+%Although, this features are used to represent similar characteristics to “ABCD” rule, the
+%lack of using well-known pattern recognition features is evident.
+%2) Different machine learning techniques are used to perform classification. However the choice
+%of ensemble was limited to few studies
+%3) Normally the used datasets are imbalanced and in some cases highly imbalanced [75]. How-
+%ever balancing techniques are rarely used to reduce the bias of the classifier.
+%4) As it is highlighted in Fig. 3.1, few methods were proposed for classification of M .vs D
+%lesions. Classification of M against D lesions is more challenging due to the characteristic
+%similarities between the lesions. This is a challenging task for both dermatologists and
+%automated algorithms in compare to differentiation of M .vs B lesions, which is more straight
+%forward for the dermatologists.
+%5) Finally, although some methods achieved very good results, it is impossible to offer a fair
+%comparison among the aforementioned methods, since their performance are reported using
+%different datasets. Subsequently it is not possible to draw a conclusion for the performance
+%of machine learning techniques in classification of melanoma lesions.
+%
+%Keeping these conclusions in mind, we proposed our CAD system for classification of melanoma
+%lesions, which we discuss in great details in the following of the chapter.
+%
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../thesis"
+%%% End: 

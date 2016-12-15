@@ -1,0 +1,50 @@
+%  The following command loads a graphics package to include images
+%  in the document. It may be necessary to specify a DVI driver option,
+%  e.g., [dvips], but that may be inappropriate for some LaTeX
+%  installations.
+\usepackage[]{graphicx}
+
+% In order to include files without having a clear page using \include*,
+% the newclude package is required
+\usepackage{newclude}
+
+% Required for acronyms
+% use \acresetall to reset the acroyms counter
+% macros=True, allows for calling \myTriger rather than \ac{myTriger}
+\usepackage[single=true, macros=true, xspace=true]{acro}
+
+% In SPIE template, biblatex can NOT be used to manage the referencing
+%
+%\usepackage[style=spiebib, backend=biber]{biblatex}
+
+% Clever cross referencing. Using cleverref, instead of writting
+% figure~\ref{...} or equation~\ref{...}, only \cref{...} is required.
+% The package interprates the references and introduces the figure, fig.,
+% equation, eq., etc keywords. \Cref forces first letter capital.
+% >> WARNING: This package needs to be loaded after hyperref, math packages,
+%             etc. if used.
+%             Cleveref is recomended to load late
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% To create random text use lipsum
+\usepackage{lipsum}
+\usepackage{siunitx}
+\DeclareSIUnit\px{px}
+\usepackage{epsf,graphicx,subfig}
+\usepackage{epsfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{array,multirow}
+\usepackage{colortbl,bigdelim}
+\usepackage{arydshln}
+\usepackage{tikz,xifthen}
+\usetikzlibrary{shadows,arrows,calc,positioning,backgrounds,snakes,decorations.text,decorations.markings,shapes,patterns,fit,chains,decorations.pathreplacing}
+\usepackage{url}
+%\urldef{\mailsa}\path|{alfred.hofmann, ursula.barth, ingrid.haas, frank.holzwarth,|
+%\urldef{\mailsb}\path|anna.kramer, leonie.kunz, christine.reiss, nicole.sator,|
+%\urldef{\mailsc}\path|erika.siebert-cole, peter.strasser, lncs}@springer.com|    
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}

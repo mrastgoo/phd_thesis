@@ -1,0 +1,131 @@
+\clearemptydoublepage
+\acresetall
+
+\chapter{Conclusion}
+\label{chp:chapter6}
+Skin cancer is a worldwide major health problems.
+According to the \acf{who}, over 2 to 3 million non-melanoma cancer and 132,000 melanoma cancer cases occurs annually around world.
+Among, the different types of skin cancer, a melanoma is the deadliest.
+This cancer is incurable in its advanced stages with less than 20\% survival rate of 5-10 years~\cite{CancerFactsFigures2014}.
+However, if discovered in its early stages, it can be treated easier than any other cancer.
+Subsequently, to facilitate an early diagnosis, numerous studies and research have been carried out by dermatologists and scientists.
+
+The clinical prognosis of early stage melanoma is commonly based on a set of rules and guidelines such as ``ABCDE''~\cite{abbasi2004early} or the Glasgow 7-point checklist~\cite{abbasi2004early}.
+These criteria are meant for a human reader to visually inspect an image of a skin lesion and characterize the lesion based on visual cues.
+However, due to its nature, this is challenging and prone to errors.
+Consequently, double reading and \ac{cad} systems are proposed to assist dermatologists and clinicians.
+Numerous \ac{cad} systems have been proposed by the computer science community in the past decade.
+These algorithms take advantage of image processing and machine learning techniques to mimic the main criteria of a clinical diagnosis and provide a diagnosis that can assist dermatologists.
+The algorithms developed are mostly based on dermoscopy modality, one of the major skin screening techniques.
+Dermoscopy takes advantage of cross-polarized properties to remove specular reflections and capture information from the epidermis and papillary dermis. 
+
+Due to the importance of an early diagnosis of melanoma, the objective of this research was set to develop a \ac{cad} system for the classification of melanoma lesions.
+However, instead of using the well-known dermoscopy modality, going beyond cross-polarized characteristics and taking advantage of a full or partial polarimetry system was considered.
+Accordingly, we reviewed the literature on the computer science applications related to melanoma diagnosis.
+These studies confirmed our previous expectations: (i) extensive use of dermoscopic images as the source of information, (ii) use of classical approaches for feature extraction which mimic the characteristics of ``ABCD'' rule.
+These findings greatly motivated us more to pursue our original objectives:
+\begin{itemize}
+\item Develop a general \acl{cad} system for melanoma lesions based on dermosopy and polarimetry
+\item Analyze the full potential of polarimetry for skin imaging and the automated classification of melanoma lesions.
+\end{itemize}
+
+In the following, first a summary of this thesis is presented, then our main contributions and limitations are discussed and finally, future avenues of research are presented.
+
+\section{Summary of the thesis}\label{sec:chp6-sec1}
+This thesis starts with an introduction to the structure of human skin, a definition of pigmented skin lesions and, in particular, melanoma lesions.
+After describing melanoma cancer and the clinical ways of diagnosis, the well-used skin imaging methods are discussed which leads us to our main motivations as described above.
+%(i) using polarimetry system instead of only dermoscopy and evaluating the potential of polarimeter images and (ii) developing an automated classification framework concerning both modality dermoscopy and polarimetry.
+
+In this regard, to find a feasible way of developing a polarimeter system, we studied the polarization properties and the literature reviews related to polarimetry imaging for biological tissues.
+Chapter~2 represents our findings and a review of the state of the art in this field.
+Although the main goal of this thesis is to find new imaging techniques for skin cancer through the use of polarimetry system, in order to develop an automated classification framework, a study of previous studies and steps of \ac{cad} systems was necessary.
+It was also important to develop a framework which can perform well on dermoscopy images. 
+Subsequently, in Chapter~3 the basics of machine learning and image processing tools necessary for developing an automated recognition were represented.
+Based on the conclusions drawn from the state of the art related to \ac{cad} systems for detection of melanoma, our new automated framework for dermoscopy modality was proposed in Chapter~4.
+The proposed framework considers different aspects of machine learning and automated classification such as: 
+\begin{itemize}
+\item Pre-processing that, due to the nature of the problem, includes both hair-removal and segmentation.
+\item Two mapping strategies (global and local).
+\item Different feature extraction techniques (well-known texture features along with shape and color features common to the problem of skin lesions).
+\item Low representation of the features and high representation via well-known techniques such as \ac{bow} and \ac{scf}. 
+\item Different feature and data space balancing techniques to overcome the imbalance problem.
+The imbalance problem appears quite frequently in real world applications such as medical imaging (samples of malignant cases are fewer than benign cases).
+\item The variety of classifiers such as the \ac{svm}, \ac{gb}, and \ac{rf}. 
+\end{itemize}
+The above aspects were considered to provide a general framework that is data independent and can be easily adapted for different datasets.
+These aspects were tested with 5 different experiments, using two datasets.
+Considering the problem of melanoma classification and, based on the results obtained from the five experiments, some general conclusions are drawn such as: 
+\begin{itemize}
+\item Texture features are as important as the traditional color and shape features.
+\item It is crucial to use balance training and, for the specific case of skin lesions, under-sampling techniques are proven to be more effective.
+\item A \acl{rf} classifier is a capable tool and its efficiency was proven through a variety of experiments.
+\item High representations of the features via well-known techniques such as \ac{bow} and \ac{scf} are effective, however, they are more costly considering time and complexity. 
+\end{itemize}
+
+Considering our findings from previous chapters, Chapter~5 presents our developed polarimetric dermoscope and our adapted automatic classification framework based on polarimetric images.
+We propose a first polarimetric dermoscope with the ability to acquire the three color images required to measure the first three Stokes parameters.
+This device was tested in the Hospital Clinic of Barcelona over the past three years.
+Using the acquired images with the proposed device, an automated classification framework was proposed to consider polarized features besides dermoscopy (spatial) features. 
+The proposed \ac{cad} system was tested over four different experiments using our collected dataset.
+The experiment results conclude the potential of polarized features and drawbacks of the first prototype (see Sect.\,\ref{sec:chp5-sec7}).
+
+
+%We also present our automated classification framework based on polarimetric images, which was tested through four different experiments using our own dataset. 
+
+\section{Contributions}\label{sec:chp6-sec2}
+The following are the major contributions of this thesis: 
+\begin{itemize}
+\item An automated classification framework of melanoma lesions using dermoscopic images.
+The framework considers various aspects of the \ac{cad} system and proposes different techniques for each step including, hair removal, segmentation, global and local mapping, feature extraction, feature representation, balancing and finally, classification.
+Towards the development of this framework an extensive study of different feature extraction approaches, balancing methods and classifiers were made.
+\item The first partial polarimetric dermoscope able to acquire three polarized images with automated polarizer rotations ($I_{\ang{90}}$, $I_{\ang{45}}$ and $I_{\ang{0}}$) and an automated classification framework of melanoma classification using polarimetric images.
+This framework considers polarized features such as the \ac{dolp}, Pol$_{~int}$ and some Stokes parameters as well as the classical dermoscopic features as the source of information for the differentiation of melanoma lesions.
+%\item Review of the polarization properties and state of the art related to polarimetric systems developed for biological tissues.%
+%\item Review of the developed \ac{cad} systems for classification of melanoma lesions.
+\end{itemize}
+
+Some aspects of the aforementioned contributions are published in \cite{rastgoo2015automatic,rastgoo2015ensemble,rastgoo2016classification,rastgoo2016tackling}, while others are still in progress~\cite{rastgoopol2,rastgoocadpol}.
+
+\section{Limitations}\label{sec:chp6-sec3}
+This section lists the major limitations observed through this thesis.
+\begin{itemize}
+\item Data collections and collaboration with the hospital.\\ 
+Collecting medical data is challenging and time consuming for both the researcher and clinicians and unfortunately three years of doctoral research might not be enough to build a reasonable collection of data.
+Due to the difficulties and drawbacks of the software and devices developed, data acquisition is a difficult and time consuming task for the clinicians.
+Moreover, generally due to internal policies of hospitals, it is not possible for the researcher to attend the acquisition process. 
+
+\item Manual focus and holding of the polarimetric dermoscope.\\
+ The current system requires manual focus before each acquisition and the necessity of holding the dermoscope with hand on the skin during the acquisition. 
+This requirements often makes the acquired set out of focus and not aligned.
+\item Low magnification of the polarimetric dermoscope and the existence of air bubbles in some cases of $I_{\ang{0}}$ and $I_{\ang{45}}$.
+Although a magnifier is used to the acquire images, in comparison to traditional dermoscopes, a stronger magnifier is required, as mentioned previously, the use of water or gel will remove possible air bubbles and reflections in these images. 
+%\item Air bubbles in $I_{\ang{90}}$ and $I_{\ang{0}}$.\\
+%In the first try images were acquired without the use of water of ultra-sound gel on the skin prior to acquisition.
+\end{itemize} 
+ 
+\section{Future work}\label{sec:chp-sec4}
+Future work regarding each developed frameworks was previously discussed (see Sect.\,\ref{sec:chp5-sec7} \& Sect.\,\ref{sec:chp3-sec7}).
+However, regarding all the objectives, some feasible avenues, with respect to the two categories of hardware and software can be considered.
+
+In terms of the developed software and \ac{cad} system besides performing more tests and anlysis using larger datasets, the latest approach of machine learning techniques such as deep learning can be employed~\cite{premaladha2016novel,codella2015deep}.
+There is also room for improvement in different aspects of the software developed such as hair removal, registration, balancing and etc.
+Last but not least the developed software can be improved to be applicable in real time.
+
+In terms of hardware or the developed polarimetric dermoscope, besides considering improvement of the focus and camera magnification, water and gel can be applied to the skin prior to acquisition to minimize artifacts in $I_{\ang{0}}$ and $I_{\ang{45}}$.
+Most importantly, continued testing and collaboration with hospitals is required in order to improve the device and overcome drawbacks.
+%
+%\begin{itemize}
+%\item Continue validation and testing of the polarimeter dermoscope.
+%\item Acquisition of polarized images while considering the use of gel or water on the skin. 
+%\item Improvement of the camera focus
+%\item Improvement of the camera magnification
+%\item Analyzing the developed framework using different datasets. 
+%\item Developing the latest machine learning techniques such as deep learning algorithm, with the use of larger datasets. 
+%\item Improving different aspects of the framework such as hair removal, registration and balancing stage.
+%\item Developing the framework for real time application. 
+%\end{itemize}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../thesis"
+%%% End: 

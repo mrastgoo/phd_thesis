@@ -1,0 +1,40 @@
+%% Table2
+\begin{table}
+	\footnotesize
+	\caption[Extracted Features in our proposed framework]{The feature set used in this research.}
+	\begin{center}
+    \small
+	\begin{threeparttable}
+	\begin{tabular}{p{0.9\textwidth} >{\centering\arraybackslash}m{0.1\textwidth}}
+	\hline \\ [-1.5ex]
+	 \textbf{Feature type} & \textbf{Index} \\
+	\hline \\ [-1.5ex]
+	 \multicolumn{2}{l}{\textit{Shape}} \\
+     \quad Thinness ratio & \multirow{4}{*}{$S$} \\
+	 \quad Border asymmetry & \\
+	 \quad Distance variance of border points to the center \cite{tasoulis2010skin} & \\
+     \quad Statistics of gradient operator along the lesion border \cite{tasoulis2010skin} & \\ \\    
+    \multicolumn{2}{l}{\textit{Color}} \\
+     \quad Color variance and responses along RGB, HSI and CIELAB & \multirow{2}{*}{$C_{1}$}\\
+     \quad Color histogram in RGB (\textit{b = 42} )\tnote{1} & \\
+     \quad Opponent color space angle and hue histogram (\textit{b = 42}) & $C_{2}$\\ 
+     \quad Color intensities & $C_{3}$\\ \\
+    \multicolumn{2}{l}{\textit{Texture}} \\
+	\quad Completed Local Binary Pattern\tnote{2}& $T_{1}$\\
+	\quad Gray-Level Co-occurrence Matrix ($\theta$ = \{$0$, $\pi/4$, $\pi/2$, $3\pi/4$\}, \textit{D = 9 pxls}, \textit{G = 32})\tnote{3} & $T_{2}$ \\
+    \quad Gabor Filter (s = 4 , $\theta$= \{$\pi/6$, $\pi/3$, $\pi/2$, $2\pi/3$, $5\pi/6$, $\pi$\}) & $T_{3}$ \\
+    \quad Histogram of Oriented Gradients & $T_{4}$\\
+    \quad SIFT & $T_{5}$\\ \\ [-1.5ex]
+    \hline
+  \end{tabular}
+  \scriptsize{
+  \begin{tablenotes}
+  \item[1] \textit{b} stands for number of bins.
+  \item[2] 24 neighbourhood, rotation invariant, uniform and normalized histogram.
+  \item[3] \textit{D} stands for distance in pixels and \textit{G} is the quantized number of grey levels.
+  \end{tablenotes}
+  }
+  \end{threeparttable}
+\end{center}
+\label{Tab:Table2}
+\end{table}

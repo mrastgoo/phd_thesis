@@ -1,0 +1,44 @@
+
+%\tikzstyle{block} = [rectangle, draw, fill= blue!20,
+%   text width=7em, text centered, rounded corners, minimum height=4em , minimum width = 7em]
+%\tikzstyle{line} = [draw, -latex']
+%\tikzstyle{block2} = [rectangle, draw, fill=gray!20,
+%    text width=7em, text centered, rounded corners, minimum height=4em, minimum width = 7em]
+%\tikzstyle{block3} = [rectangle, draw, fill=blue!40,
+%    text width=7em, text centered, rounded corners, minimum height=3em , minimum width = 7em]
+%\def\blockdist{1}
+%\def\edgedist{1.5}
+    \tikzstyle{block} = [rectangle, draw, fill=blue!30,text = black,
+    text width=6em, text centered, rounded corners, minimum height=4em , minimum width = 7em]
+    \tikzstyle{line}=[draw, -latex']
+	\tikzstyle{block2} = [rectangle, draw, fill=white!20,
+    text width=6em, text centered, rounded corners, minimum height=4em, minimum width = 7em]
+    \tikzstyle{block3} = [rectangle, draw, fill=blue!30, text = black,
+    text width=7em, text centered, rounded corners, minimum height=4em , minimum width = 7em]
+\def\blockdist{1}
+\def\edgedist{1.5}
+\begin{figure}
+\centering   
+\begin{tikzpicture}[node distance = 1cm,scale=0.8, every node/.style={scale=0.8}]
+    % Place nodes
+	\node[block2] (input) {Input Data}; 
+	\node[block, right of= input , node distance = 3cm](pp){Pre-processing};
+	\node[block, right of = pp, node distance = 3 cm](fe){Feature extraction}; 
+	\node[block, right of = fe, node distance = 3 cm](fr){Feature representation}; 
+	\node[block, right of = fr, node distance = 3 cm](db){Data balancing}; 
+	\node[block, right of = db, node distance = 3 cm](clas){Classification}; 
+	
+	% --- The arrows 
+	
+	%\path(pp)+(-0.8,0) node (n) {};
+	\path [line] (input) -- (pp);
+    \path [line] (pp) -- (fe);
+    \path [line] (fe) -- (fr);
+    \path [line] (fr) -- (db);
+    \path [line] (db) -- (clas);
+   
+
+\end{tikzpicture}
+\caption[General classification framework]{General classification framework.}
+\label{fig:GCF}
+\end{figure}

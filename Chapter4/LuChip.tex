@@ -1,0 +1,121 @@
+\subsection{The Lu-Chipman decomposition}
+The proposed method of Lu-Chipman \cite{lu1996interpretation} allows a Mueller matrix to be decomposed into the product of three matrices of diattenuation, depolarization and retardant (See Eq.\ref{Eq:LuchimpanDec}).
+In this representation, $M_{\Delta}$ describes the depolarizing effects of the medium, $M_{R}$ shows the effects of linear birefringence and $M_{D}$ includes the effect of linear and circular diattenuation. 
+
+ 	\begin{equation}\label{Eq:LuchimpanDec}
+	\small
+	M\Leftarrow M_{\Delta}.M_{R}.M_{D}~.\\
+	\end{equation}
+	
+	
+	\begin{align}
+	M_{\Delta} = 
+	\begin{bmatrix}
+	1 &  \overrightarrow{0}\\ \overrightarrow{P_{\Delta}}  & m_{\Delta}
+	\end{bmatrix} \qquad
+	M_{R} = 
+	\begin{bmatrix}
+	1 & \overrightarrow{0}\\ 0 & m_{R}
+	\end{bmatrix} \qquad \
+	M_{D} = 
+	\begin{bmatrix}
+	1 & \overrightarrow{D}^{T}\\ \overrightarrow{D} &  m_{D} \
+	\end{bmatrix}~.
+	\end{align}
+\noindent Each of these matrices can be calculated and further used to extract individual medium properties such as the \textit{diattenuation} factor $D$, \textit{depolarization} $\Delta$, \textit{linear retardance} $\delta$, and a circular retardance $\psi$. Calculation of these parameters are explained step by step in the following. 
+
+Starting with diattenuation, the $3 \times 3$ sub-matrix $m_{D}$ is defined by: 
+
+	\begin{equation}\label{eq:Diatt}
+	\small
+     m_{D}  = \sqrt{1-D^{2}}I  + \frac{1 - \sqrt{1-D^{2}}}{D^{2}} \overrightarrow{D} \overrightarrow{D}^{T}~,
+	\end{equation}
+\noindent where $I$ is the $3 \times 3$ unity matrix, $\overrightarrow{D}$ is the diattenuation vector and $D$ is the diattenuation value $D = \vert \overrightarrow{D} \vert$. 
+\begin{align}\label{eq:diattenuationvec}
+\overrightarrow{D} & = \frac{1}{m_{11}} [m_{12}\quad m_{13} \quad m_{14}]^{T}~,\\
+D & = \frac{1}{m_{11}} \sqrt{m_{12}^{2} + m_{13}^{2} + m_{14}^{2}}~.
+\end{align}
+Using the diattenuation matrix, the depolarization matrix can be computed.
+	\begin{equation}\label{eq:reformLCD}
+	\small
+	M_{\Delta}M_{R} = M' = M M_{D}^{-1} =
+	\begin{bmatrix}
+	1 & \overrightarrow{0}\\
+	\overrightarrow{P_{\Delta}} & m'
+	\end{bmatrix}~,
+	\end{equation}
+\noindent In this matrix, $\overrightarrow{P}_{\Delta}$ is based on  the polarizance vector $\overrightarrow{P}$ and the sub-matrix $m$ of the Mueller matrix $M$, (See Eq.\ref{eq:polarizance}) 	
+	\begin{subequations}\label{eq:polarizance}
+	\small
+	\begin{align}	
+	\overrightarrow{P} = \frac{1}{m_{11}}[m_{21} \quad m_{31} \quad m_{41} ]^{T}~,\\
+	\overrightarrow{P_{\Delta}} = \frac{(\overrightarrow{P} - m \overrightarrow{D})}{1-D^{2}}~,
+	\end{align}
+	\end{subequations}
+	
+\noindent $m' = m_{\Delta}m_{R}$.
+Since $m_{\Delta}$ is a symmetric matrix, its eigenvalues define its depolarization properties, $m_{\Delta}^{T} = m_{\Delta}$ and $m_{\Delta}^{2} = m'(m')^{T}$. Thus $m_{\Delta}$ can be represented in terms of eigenvalues of $m'(m')^{T}$.
+\begin{align*}
+\small 
+m_{\Delta} & = \pm[m'(m')^{T} + (\sqrt{\lambda_{1}\lambda_{2}} + \sqrt{\lambda_{2}\lambda_{3}} + \sqrt{\lambda_{3}\lambda_{1}})I]^{-1} \\
+& \times [(\sqrt{\lambda_{1}} +\sqrt{\lambda_{2}} + \sqrt{\lambda_{3}})m'(m')^{T} + \sqrt{\lambda_{1}\lambda_{2}\lambda_{3}} I]~.
+\end{align*}
+
+\noindent Once the depolarization matrix $m_{\Delta}$ is obtained, the sub-matrix of retardance is processed by $m_{R} = m_{\Delta}^{-1} m'$.
+Following the sub-matrices obtained, the depolarization power and total retardance is calculated by: 
+\begin{align}
+\Delta & = 1 - \frac{\vert tr(m_{\Delta}) \vert}{3}~,\\
+R  & = \cos^{-1} \left[ \frac{tr(M_{R})}{2} - 1\right]~.
+\end{align}
+
+%The last factor is retardant matrix $M_{R}$. which can be reformed as follows (See Eq.\ref{eq:MR}). In this representation $m_{R}$ is the sub-matrix of $M_{R}$ and is computed using polarizance and diattenuation factors and sub-matrix of $M$ as it is presented in Eq.\ref{eq:subMR}
+%	\begin{equation}\label{eq:MR}
+%	\small
+%	M_{R} = \begin{bmatrix}
+%	1 && \overrightarrow{0}^{T}\\
+%	\overrightarrow{0} && m_{R}
+%	\end{bmatrix}	
+%	\end{equation}		
+%	
+%	\begin{equation}\label{eq:subMR}
+%	\small
+%	m_{R} = \frac{1}{\sqrt{(1-d^{2})}}[m - \frac{1-\sqrt{1-d^{2}}}{d^{2}}(\overrightarrow{P}.\overrightarrow{d}^{T})]
+%	\end{equation}
+%	
+%The combined effects of linear and circular retardance is computed by Eq.\ref{eq:TR}. 
+%	\begin{equation}\label{eq:TR}
+%	\small
+%	R = \cos^{-1}\lbrace{\frac{Tr(M_{R})}{2}-1 \rbrace}
+%	\end{equation}
+
+Using this method, the individual parameters of the medium can be computed.
+Table~\ref{Tab:ParMed} summarizes these parameters, conditioned to having retardance, depolarization and diattenuation Mueller matrices.
+In this table, $M(i,j)$ represents the element in the $i^{th}$ row and the $j^{th}$ column of the matrix. 
+
+	\begin{table}
+	\small
+	\begin{center}
+	\caption{Medium Characteristics}
+	\begin{tabular}{|c|c|c|}
+	\hline
+	Parameters & Notations & Equation \\
+	\hline 
+	& & \\
+	 Linear retardance & $\delta$ & $ \cos^{-1}(\sqrt{[M_{R}(2,2)+ M_{R}(3,3)]^{2} +[M_{R}(3,2)+ M_{R}(2,3)]^{2}}-1)$\\
+	 & & \\
+	Optical rotation & $\psi$ & $\tan^{-1}[(M_{R}(3,2)-M_{R}(2,3))(M_{R}(2,2)-M_{R}(3,3))^{-1}]$\\
+	& & \\
+	Diattenuation & $D$ & $M_{D}(1,1)^{-1}\sqrt{M_{D}(1,2)^{2}+M_{D}(1,3)^{2}+M_{D}(1,4)^{2}}$\\
+	& & \\
+	Depolarization & $\Delta$ & $1 - \frac{\vert Tr (M_{\Delta}-1)\vert}{3}$\\
+	& & \\
+	\hline   
+  	\end{tabular}
+  	\label{Tab:ParMed}
+  	\end{center}
+	\end{table}
+
+%Since matrix multiplication is generally non commutative, one should concerns about the multiplication order of Lu-Chipman matrices and the effects displacement. The influence of these orders were investigated by \cite{ghosh2010influence}. Their results indicated that for the turbid media with weak diattenuation, the extracted polarization parameters are independent of the selected multiplication orders. These results were confirmed for biological tissues due to their weak diattenuation effects. Therefore it was concluded that individual tissue polarimetry effects can be successfully quantified despite their simultaneous occurrence, even in the presence of numerous complexities due to multiple scattering \cite{ghosh2010influence}.
+
+
+

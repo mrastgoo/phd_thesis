@@ -1,0 +1,55 @@
+%Table3 
+\begin{landscape}
+\begin{table}
+\caption[The outline of the experiments]{Outline and summary of the performed experiments.
+The abbreviations ``tra." and ``tes." indicate percentages of the data for training and testing, respectively.
+In this table, the group of suspicious lesions (not melanoma), which were sent to histopathology, is indicated by $S$, and $\sim$ indicates that the common configuration applies.}
+
+\begin{center}
+\resizebox{1\linewidth}{!}{
+\begin{tabular}{l  c	 c  c c  c  c  c  c   c  }
+\toprule
+\\
+&  Dataset Size &  Task & Pre-processing & Features & Mapping & Representation & Balancing & Classification & Evaluation \\
+& & & & & & & & &  tra.,tes.\\
+\cmidrule(l){2-10}
+\\
+\multirow{3}{*}{Common:} & \multirow{3}{*}{} & \multirow{3}{*}{} & Registration &  Polarized & \multirow{3}{*}{Global} & Low: & \multirow{3}{*}{} & \multirow{3}{*}{\acs{rf}} & \multirow{3}{*}{\acs{se}, \acs{sp}}\\
+& & & Hair removal & Spatial & & Histogram & & & \\
+& & & Segmentation & & & Moments & & & \\
+\midrule
+\\
+\textbf{Experiment\#1:}  \\
+%%\hdashline \noalign{\vskip 3pt}
+\multirow{2}{5cm}{Goal: Evaluation of polarized and spatial features} & 40 &  M~vs~B & $\sim$ & $\sim$ & $\sim$ & $\sim$ & - & $\sim$ & \acs{loocv} \\
+& & & & & & & & & \\
+\\
+\midrule
+\\
+\textbf{Experiment\#2:}  \\
+%\hdashline \noalign{\vskip 3pt}
+\multirow{3}{5cm}{Goal: Evaluation of polarized and spatial features} & 40 & M~vs~S+B & $\sim$ & $\sim$ & $\sim$ & $\sim$ & - & $\sim$ & \acs{loocv} \\
+& & & & & & & & & \\
+\\
+\midrule
+\\
+\textbf{Experiment\#3:}  \\
+%\hdashline \noalign{\vskip 3pt}
+\multirow{3}{5cm}{Goal: Evaluate the effects of balancing strategies} & 164 & M~vs~B & $\sim$ & $\sim$ & $\sim$ & $\sim$ & - & $\sim$ & 10-fold \\
+& & & & & &  & &  & 75$\%$,25$\%$\\
+& & & & & & & & & \\
+\\
+\midrule
+\textbf{Experiment\#4:} \\
+%\hdashline \noalign{\vskip 3pt}
+\multirow{3}{5cm}{Goal: Evaluate the effects of balancing strategies} & 176 & M~vs~S+B & $\sim$ & $\sim$ & $\sim$ & $\sim$ & - & $\sim$ & 10-fold \\
+& & & & & &  & &  & 75$\%$,25$\%$\\
+& & & & & & & & & \\
+\\
+\midrule
+
+\end{tabular}}
+\end{center}
+\label{tab:table3}
+\end{table}
+\end{landscape}

@@ -1,0 +1,87 @@
+%\begin{table}	
+%\resizebox{0.9\textwidth}{0.49\textheight}{
+%    \small{
+%\begin{longtable}{|p{0.24\textwidth}|p{0.5\textwidth}}
+	\begin{longtable}{lc}
+	\caption[Extracted features by \ac{glcm} descriptor]{The list of \ac{glcm} statistics ($f_{1}$--$f_{22}$)~\cite{haralick1973textural,clausi2002analysis,soh1999texture} used in our experiments.
+	The first section of the table represents the primary measures derived from the co-occurrence matrix $C_{ij}$ for calculating the features.
+	Here, $\mu_{x}$, $\mu_{y}$, $\sigma_{x}$, and $\sigma_{y}$ are the mean and standard deviation of $C_{ij}$ with respect to $i$ and $j$, respectively.
+	$H_{x}$ and $H_{y}$ are entropy of $C_{x}$ and $C_{y}$}\\
+%\begin{center}	
+	\toprule
+	Co-occurrence matrix & $C_{ij} = P_{ij}/\sum_{i,j=1}^{G} P_{ij}$\\
+	& \\[-0.8ex]	
+	$C_{x}(i)$ & $\sum_{j=1}^{G}C_{ij}$\\
+	& \\[-0.8ex]	
+	$C_{y}(j)$ & $\sum_{i=1}^{G}C_{ij}$\\
+	& \\[-0.8ex]	
+	$C_{x+y}(k)$ & $\sum_{{ij}_{i+j=k}} C_{ij}, k = 2,3 , 2G$ \\
+	& \\[-0.8ex]	
+	$C_{x-y}(k)$ & $\sum_{{ij}_{|i-j|=k}} C_{ij}, k = 0,1 , G-1$ \\	
+	& \\[-0.8ex]	
+	$H_{xy}$ & $-\sum_{ij}C_{ij}\log C_{ij}$ \\	
+	& \\[-0.8ex]	
+	$H_{xy1}$ & $-\sum_{ij}C_{ij}\log(C_{x}(i)C_{y}(j))$\\
+	& \\[-0.8ex]	
+	$H_{xy2}$ & $-\sum_{ij}C_{x}(i)C_{y}(j)\log(C_{x}(i)C_{y}(j))$\\
+	& \\[-0.8ex]	
+	\hdashline	
+	& \\[-0.8ex]		
+	$f_{1}$: Maximum probability & $\max\{C_{ij} , \forall (ij)\}$ \\
+	& \\[-0.8ex]
+	$f_{2}$: Uniformity & $\sum_{ij} C_{ij}^{2}$ \\
+	& \\[-0.8ex]
+	$f_{3}$: Entropy & $\sum_{ij}C_{ij}\log C_{ij}$\\
+	& \\[-0.8ex]
+	$f_{4}$: Dissimilarity & $\sum_{ij} C_{ij}|i-j|$\\
+	& \\[-0.8ex]
+	$f_{5}$: Contrast & $\sum_{ij}C_{ij}|i-j|^{2}$ \\
+	& \\[-1ex]
+	$f_{6}$: Inverse difference & $\sum_{ij}C_{ij}/(1+|i-j|)$ \\
+	&  \\[-1ex]
+	$f_{7}$: Inverse difference moment & $\sum_{ij}C_{ij}/(1+|i-j|^{2})$ \\
+	
+%	\hline
+%	\pagebreak
+%	\hline
+	& \\[-1ex]
+	$f_{8}$: Correlation~1 & $\sum_{ij}(i-\mu_{x})(j-\mu_{y})C_{ij}/(\sigma_{x}\sigma_{y})$\\
+	& \\[-1ex] 	
+	$f_{9}$: Inverse difference normalized & $\sum_{ij}C_{ij}/(1+|i-j|/N)$\\
+	& \\[-1ex]
+	$f_{10}$: Sum of squares & $\sum_{ij} (i-\mu)^{2}C_{ij}$ \\
+	& \\[-1ex]				
+	$f_{11}$: Inverse difference moment normalized & $\sum_{ij}C_{ij}/(1+|i-j|^{2}/N^{2})$\\
+	& \\[-1ex]
+	$f_{12}$: Sum of average & $\sum_{i=1}^{2N-1}(i+1)C_{x+y}(i)$\\
+	& \\[-1ex]
+	$f_{13}$: Sum entropy & $S_{e} = -\sum_{i=1}^{2N-1}C_{x+y}(i)\log C_{x+y}(i)$\\
+	& \\[-1ex]
+	$f_{14}$: Sum variance & $\sum_{i=1}^{2N-1}(i+1-S_{e})^{2}C_{x+y}(i)$\\
+	& \\[-1ex]
+	$f_{15}$: Difference variance & $\sum_{i=1}^{2N-1}i^{2}C_{x-y}(i+1)$\\
+	& \\[-1ex]
+	$f_{16}$: Difference entropy & $-\sum_{i=1}^{2N-1} C_{x-y}(i+1)\log C_{x-y}(i)$\\
+	& \\[-1ex]
+	$f_{17}$: Information measure of correlation~1 & $H_{xy}-H_{xy1}/\max(H_{x},H_{y})$ \\
+	& \\[-1ex]
+	$f_{18}$: Information measure of correlation~2 & $\sqrt{1-e^{-2(H_{xy2}-H_{xy})}}$\\
+	& \\[-1ex]
+	$f_{19}$: Auto correlation & $C = \sum_{ij}ijC_{ij}$\\
+	& \\[-1ex]	
+%	\hline
+%	\pagebreak
+%	\hline
+	$f_{20}$: Correlation~2 &  $(AC-\mu_{x}\mu_{y})/\sigma_{x}\sigma_{y}$ \\
+	& \\[-1ex]	
+	$f_{21}$: Cluster shade & $\sum_{ij} (i+j-\mu_{x}-\mu_{y})^{3}C_{ij}$\\
+	& \\[-1ex]	
+	$f_{22}$: Cluster prominence & $\sum_{ij} (i+j-\mu_{x}-\mu_{y})^{4}C_{ij}$\\
+	\bottomrule
+	\label{tab:glcmfeatures}
+  	\end{longtable}
+%}
+%    }
+%	\end{center}
+%\label{Tab:glcmfeatures}
+%\end{table}

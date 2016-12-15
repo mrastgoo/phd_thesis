@@ -1,0 +1,64 @@
+\section{Conclusion}
+\label{sec:chp5-sec7}
+
+In this chapter, we presented the first prototype of our polarimetric dermoscope and the automated melanoma classification framework.
+The polarimetric dermoscope is designed to automatically capture three polarized images, which later are used to define the first three Stokes parameters (I, Q, U) and some polarization characteristics, such as the \acf{dolp}, polarization intensity ($Pol_{~int}$), and \acf{aolp}.
+The three color polarized images are acquired while the polarizer of the \ac{psa} unit is automatically rotated \ang{90}, \ang{45}, and \ang{0} with reference to the horizontal axis of the fixed polarizer in the \ac{psg} unit.
+
+The polarimetric dermoscope developed was tested over the past three years in the Melanoma Unit of the Clinic Hospital of Barcelona, where images of more than 200 lesions were documented and recorded using this device. 
+From the polarimetric images acquired, 197 cases were suitable for use in further studies.
+These images were studied in terms of their potential for both visual screening and information for accurate automated classification.
+
+Concerning the visual screening, it was observed that using the current setup of the dermoscope, only the three Stokes parameters and the \ac{dolp} can be used, whereas the \ac{aolp} was excluded from further studies due to its low intensity values (almost 0).
+The low intensity values of this parameter are caused by the light source direction in the current setup. 
+Studying the remaining parameters revealed no evident visual difference between melanoma and the rest of the lesions.
+It was also observed that in the current batch of images, some air bubbles and artifacts are apparent in $I_{\ang{0}}$ and $I_{\ang{45}}$, which make further analysis and understanding of the colors in the Stokes parameters image less accurate. 
+
+Although no evident visual differences between melanoma and the rest of the lesions were observed in the primary studies, the polrimetric images were used in the next study as a source for automatic recognition.
+In this regard, we proposed an automatic recognition system which takes advantage of polarimetric and spatial features.
+%The proposed system consists of pre-processing (registration, hair removal, segmentation), mapping, feature extraction, feature representation, balancing and finally classification steps.
+After several studies, three polarimetric features extracted from the gray level polarimetric images were considered: the \ac{dolp} ($D$), Pol$_{~int}$ ($P$) and the third Stokes parameter (U).
+These features were extracted from the external, internal or combined segmented regions of each lesion and were then represented using either histograms or moments.
+In total, nineteen individual and combined polarimetric and 8 spatial features were tested in several experiments.
+The spatial features were extracted only from the cross-polarized ($I_{\ang{90}}$) image. 
+
+In order to test the potential of the polarimetric features, we performed 4 experiments: two on the classification of M~vs.~B lesions (experiments~\#1 and \#3) and two on the classification of M~vs.~S+B lesions (experiments~\#2 and \#4). 
+Experiments~\#1 and \#2 were performed using a small subset of 40 lesions, the \ac{loocv} validation, without considering balancing strategies.
+The results of experiment~\#1 showed that polarimetric features outperformed their spatial counterparts, whereas the outcome of the spatial features improved when they were combined with polarimetric features. 
+However, the benefits of polarimetric features were not as evident in experiment~\#2. 
+In this experiment, except for several polarimetric and combined features, the rest of the measurements were below expectation.
+The poor results are possibly due to the lack of training data and a correlated feature space between the two classes.
+
+
+Subsequently, in the next experiment, we tested the balancing strategies while larger subsets of data were used.
+The study of different over and under-sampling balancing techniques revealed that only a few \ac{us} techniques were responsive to the defined problem: \ac{rus}, \ac{nm3} and \ac{cus}. 
+These algorithms were tested in experiments~\#3 and~\#4.
+The results of these experiments showed an improvement in \ac{se} by a minimum of 5\%. 
+It was also concluded that some polarimetric features, such as Pol$_{~int}$ ($P$), in combination with balancing strategies can achieve comparable results when used for the classification of M~vs.~S+B lesions.
+In general, the \ac{dolp} ($D$) features achieved better results in experiments~\#1 and~\#2 without balancing techniques, while the \ac{us} techniques showed the potential of Pol$_{~int}$ ($P$) features in the third and fourth experiments.
+
+Observing the results from all the experiments and comparing them with those reported in the previous chapter, one might question the values of the \ac{se} and \ac{sp} achieved.
+It should be noted that the same color and texture features (spatial features) were used on the cross-polarized images and their results were lower than those of the polarimetric features.
+This low performance is likely due to a lower magnification in the cross-polarized images.
+Higher magnification of these images will lead to a better performance in both polarimetric and spatial features.
+
+The research and material presented in this chapter were based on our first study of polarimetry images and a prototype of our developed dermoscope.
+Our observations and studies of the first try opens new avenues and possible improvements that are explained in the following section. 
+
+\subsection{Future work}
+In future research, we would like to explore several aspects including: 
+\begin{itemize}
+\item Acquiring a series of images with the prior application of an ultra-sound gel or water to the skin surface.
+Using gel or water on the skin will ensure that images $I_{\ang{0}}$ and $I_{\ang{45}}$ are air bubble free, and will allow a better color understanding in the polarimetric images.
+\item Adapting the current dermoscope for acquiring more polarized images.
+Using more images to estimate the Stokes and polarimetric parameters will reduce measurement errors.
+\item Automating the acquisition and focus of the camera to eliminate the need of hand holding and manual focus.
+If implemented, there will be no need for image registration, and it will positively affect measurement accuracy.
+\item Use of \ac{dofp} polarimeter sensor instead of rotating the polarizer coupled with the camera.
+The \ac{dolp} polarimeters are imaging sensors constructed by joining polarization filters and imaging elements to create a new array of polarized sensitive pixels~\cite{powell2013calibrationpolarimeters}.
+Using such a system eliminates the need of registration and electrical rotation of the polarizers at the cost of lower resolution.
+\item Increasing the magnification power of the dermoscope to improve the differentiation potential of the polarimetric and spatial features. 
+\item Evaluating the automated classification framework with the polarized images of color channels rather than in gray scale.
+\end{itemize}
+
+

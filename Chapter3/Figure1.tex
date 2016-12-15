@@ -1,0 +1,135 @@
+%\clearpage
+\definecolor{autoGuided}{rgb}{ 0.3765    0.7294    0.9412}
+\newcommand{\autoGuidedColor}{(light-Blue)}
+\definecolor{fullyAuto}{rgb}{ 0.0941    0.3843    0.6627}
+\newcommand{\fullyAutoColor}{(dark-blue)}
+\definecolor{semiAuto}{rgb}{ 0.0784    0.5059    0.1686}
+\newcommand{\semiAutoColor}{(light-green)}
+\definecolor{fullyGuided}{rgb}{ 0.4275    0.6902    0.3176}
+\newcommand{\fullyGuidedColor}{(dark-green)}
+\begin{figure}
+\centering
+%\subfloat[]{       
+{
+\begin{tikzpicture} [scale=.99,every node/.style={scale=0.9}]  %[scale=.68]
+
+\def\labels{
+{\color{dgreen}\cite{sboner2003multiple}}, 
+{\color{dgreen}\cite{merler2001tuning}}, 
+{\color{dgreen}\cite{kreutz2001automated}},  
+{\color{dgreen}\cite{rubegni2002automated}}, 
+{\color{dgreen}\cite{situ2010modeling}}, 
+{\color{dgreen}\cite{zortea2010automatic}},
+{\color{dgreen}\cite{zortea2014performance}}, 
+{\color{dgreen}\cite{burroni2005dysplastic}}, 
+{\color{dgreen}\cite{gilmore2010support}}, 
+{\color{dgreen}\cite{abbas2013melanoma}}, 
+{\color{dgreen}\cite{barata2013two}}, 
+{\color{dgreen}\cite{barata2013two}}, 
+{\color{dgreen}\cite{ruela2013color}},
+{\color{dgreen}\cite{ruela2013role}},
+{\color{dgreen}\cite{barata2013role}},
+{\color{dgreen}\cite{schaefer2014ensemble}}, 
+{\color{dgreen}\cite{ganster2001automated}},
+{\color{dgreen}\cite{celebi2007methodological}}, 
+{\color{dgreen}\cite{situ2008malignant}}, 
+{\color{dgreen}\cite{iyatomi2008improved}}, 
+{\color{dgreen}\cite{capdehourat2009pigmented}}, 
+{\color{dgreen}\cite{capdehourat2011toward}}, 
+{\color{dgreen}\cite{abbas2012computer}}, 
+{\color{dgreen}\cite{dreiseitl2001comparison}},
+{\color{dgreen}\cite{faal2013improving}}
+ }
+
+
+%\cite{Celebi2015}, SE 90.48, multiclass, 105/964, Segmentation Color thresholding, color, GLCM %90.48, %82.51 but its four class classification,
+
+\def\reward{81,97,98.7,99,83,73,86,71,89,88.2,96,100,96,92,98,93.76,87,92.34,88.8,85.9,95,90,91.64,92.05,83.53}
+\def\spec{74,54,76.5,72.5,80.93,73,52,75,64,91.3,80,75,83,78,86,93.84,92,93.33,69.26,86,91.25,77,94.14,94.97,67.73}
+\def\dbSize{42/152,42/152,na/423,217/588,30/100,80/164,37/206,38/174,101/199,60/120,25/176,25/176,24/169,24/169,25/167,88/564,96/5363,88/564,30/100,198/1258,80/433,111/544,20/180,105/1619,44/436}
+\def\dbClass{2,2,3,4,1,2,2,2,2,2,2,2,2,2,2,4,5,4,1,5,3,4,2,5,3}
+	
+\def\cZoom{4.5} 
+\def\percentageLabelAngle{10}
+\def\nbeams{25}
+\pgfmathsetmacro\beamAngle{(360/\nbeams)}
+\pgfmathsetmacro\halfAngle{(180/\nbeams)}
+
+\pgfmathsetmacro\globalRotation{\halfAngle}
+
+\foreach \n  [count=\ni] in \labels
+{
+\pgfmathsetmacro\cAngle{{(\ni*(360/\nbeams))+\globalRotation}}
+\draw	(\cAngle:{\cZoom*1.00})  node[fill=white] {\n};
+\draw [thin] (0,0) -- (\cAngle:{\cZoom*0.9}) ;
+
+}
+
+% draw the % rings 
+\foreach \x in {12.5,25, ...,100} 
+\draw [thin,color=gray!50] (0,0) circle [radius={\cZoom*\x/110}];
+
+\foreach \x in {50,75,100}
+{ 
+     \draw [thin,color=black!50] (0,0) circle [radius={\cZoom/110*\x}];
+     \foreach \a in {0, 180} \draw ({\percentageLabelAngle+\a}:{\cZoom*0.01*\x}) node  [inner sep=0pt,outer sep=0pt,fill=white,font=\fontsize{3}{3.5}\selectfont]{$\x\%$};
+}
+
+
+% draw the path of the percentages
+\def\aux{{\reward}}
+
+\pgfmathsetmacro\origin{\aux[\nbeams-1]} 
+\draw [blue, thick] (\globalRotation:{\cZoom*\origin/110}) \foreach \n  [count=\ni] in \reward { -- ({(\ni*(360/\nbeams))+\globalRotation}:{\cZoom*\n/110}) } ;
+
+
+\def\auxx{{\spec}}
+\pgfmathsetmacro\origin{\auxx[\nbeams-1]} 
+\draw [black, thick] (\globalRotation:{\cZoom*\origin/110}) \foreach \n  [count=\ni] in \spec { -- ({(\ni*(360/\nbeams))+\globalRotation}:{\cZoom*\n/110}) };
+
+% label all the percentags
+\foreach \n [count=\ni] in \dbSize 
+{
+	\pgfmathsetmacro\cAngle{{(\ni*(360/\nbeams))+\globalRotation}}
+	\pgfmathsetmacro\nreward{\aux[\ni-1]}
+	\pgfmathsetmacro\nspec{\auxx[\ni-1]}
+	\draw (\cAngle:{\cZoom*1.36}) node[align=center] {{\color{blue}\nreward $\%$ } \\{ \color{black}\nspec $\%$} \\{\color{red}\n}};
+} ;
+
+
+% draw the database rose
+\def\dbScale{\9}
+\foreach \n [count=\ni] in \dbClass
+\filldraw[fill=red!20!white, draw=red!50!black]
+(0,0) -- ({\ni*(360/\nbeams)-\halfAngle+\globalRotation}:{\cZoom*\n/9}) arc ({\ni*(360/\nbeams)-\halfAngle+\globalRotation}:{\ni*(360/\nbeams)+\halfAngle+\globalRotation}:{\cZoom*\n/9}) -- cycle;
+\foreach \x in {1,2,3,4,5}
+\draw [thin,color=red!50!black,dashed] (0,0) circle [radius={\cZoom*\x/9}];
+   	
+%%% draw the domain of each class 
+  \def\puta{	7/0/{M vs. B},	
+  			2/7/{M vs. D},
+  			16/9/{M vs. D+B}}
+\foreach \numElm/\contadorQueNoSeCalcular/\name [count=\ni] in \puta
+ {
+
+ 	\pgfmathsetmacro\initialAngle{(\contadorQueNoSeCalcular*\beamAngle)+\halfAngle+\globalRotation}
+ 	\pgfmathsetmacro\finalAngle  {((\numElm+\contadorQueNoSeCalcular)*\beamAngle)+\halfAngle+\globalRotation}
+	\pgfmathsetmacro\l  {\cZoom*1.5+.3pt}
+	\draw (\initialAngle:{\cZoom*1.6}) -- (\initialAngle:{\cZoom*1.1});
+	\draw [ |<->|,>=latex] (\initialAngle:\l) arc (\initialAngle:\finalAngle:\l) ;    									 
+	\pgfmathsetmacro\r  {\cZoom*1.5+.45pt}
+    	{\draw [decoration={text along path,  text={\name},text align={center}},decorate] (\finalAngle:\r) arc (\finalAngle:\initialAngle:\r);}
+  
+  
+  
+  }  
+\end{tikzpicture}
+}
+
+\caption[Summary of the literature]{\small{Summary of the classification performances of the methods reviewed from the dermoscopic imaging literature.
+The main results of the authors (references are presented in {\color{dgreen} green}) are illustrated in {\color{blue}blue} and black as sensitivity and specificity, respectively, while the size of the dataset is represented in {\color{red}red} (cf., number of melanoma lesions over the total number of lesions).
+A comparison of the size of the datasets is also presented in the middle of the graph, which contains five groups.
+We categorized datasets with less than 100 lesions as group~1, datasets with more than 100 and less than 200 lesions as group~2, dataset with less than 500 lesions as group~3, any datasets with over 500 lesions and less than 1000 lesions as group~4 and finally datasets with over 1000 lesions as group~5.
+In this graph, $M$ vs. $D$ and $M$ vs. $B$ indicate that the dataset contains only malignant/dysplastic or melanoma/benign lesions, respectively, while $M$ vs. $D+B$ indicates that melanoma lesions were classified against benign and dysplastic lesions.}} 
+\label{fig:dermoscopy_Sens_PerformanceComparison}
+\end{figure}

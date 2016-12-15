@@ -1,0 +1,61 @@
+\section{Optical Properties of Medium}\label{sec:chp4-sec4}
+
+Beside the nature of the light and polarized states of incident light, we are interested to check the polarized properties of the optical elements and the subjected materials as well. A medium can have different optical properties such as, depolarization, birefringence (retardants) and diattenuation which are explained in the following. 
+	\begin{itemize}
+	\item \textbf{Depolarization}\\
+	If an initial state of the light is 100$\%$ polarized and polarization degree of the existing state is less than unity, the system posses the depolarization property. Depolarization is usually encountered due to multiple scattering of photons although randomly oriented uniaxial birefringence can also create the depolarized state. The general form of a pure depolarization Mueller matrix is shown in Eq.\ref{Eq:DepolarizationMul}. Here $1-\vert a \vert$ and $1-\vert b \vert$ are depolarization factors for linear polarization states and $1-\vert c \vert$ represents depolarization factor for circular polarization. The net depolarization factor is shown in Eq. \ref{Eq:netDepolarizationfac}
+	\begin{equation}\label{Eq:DepolarizationMul}
+	\small
+		M_{\Delta} = \begin{bmatrix}
+	1 & & 0 & & 0 & & 0\\0 && a && 0 && 0\\ 0 && 0 && b && 0\\ 0 && 0 && 0 && c
+	\end{bmatrix} , \hspace{1 cm} \vert a \vert, \vert b \vert, \vert c \vert \leq 1
+	\end{equation}
+	\begin{equation}\label{Eq:netDepolarizationfac}
+	\small
+		\Delta  = 1 - \frac{\vert a \vert + \vert b \vert + \vert c \vert }{3} = 1 - \frac{\vert tr (M_{\Delta}-1)\vert}{3} , \hspace{0.5 cm} 0\leq \Delta \leq 1
+		\end{equation}		
+	\item \textbf{Retardants}\\	
+	Retardance is the phase shift between orthogonal components of polarized light and it occurs due to differences in refractive indices of different polarized states. 
+	
+	Birefringence is a linear retardants which occurs due to phase difference between orthogonal linear polarization states (between vertical and horizontal or between $45^{\circ}$ and $-45^{\circ}$ ). Mueller matrix of linear retardance ($\delta$) while its fast axis is rotated by angle $\theta$ with respect to the horizontal axis is shown in Eq.\ref{Eq:Birefringence}
+	\begin{equation}\label{Eq:Birefringence}
+	\small
+	M_{R_{B}}=\begin{bmatrix}
+	1 &&  0 &&  0  && 0\\
+	0 && \cos^{2}2\theta +\sin^{2}2\theta\cos\delta && \sin 2\theta\cos 2\theta(1-\cos\delta) &&  -\sin 2\theta \sin \delta\\ 
+	0 &&\sin 2\theta\cos 2\theta(1-\cos\delta) && \sin^{2}2\theta +\cos^{2}2\theta\cos\delta && \cos 2\theta \sin \delta\\
+	 0 && \sin 2\theta \sin \delta && -\cos 2\theta \sin \delta && \cos\delta
+	\end{bmatrix}
+	\end{equation}	
+
+	Beside linear retardance, there is circular retardance $\psi$ (optical rotation) as well, which arises due to phase difference between right circularly polarized (RCP) and left circularly polarized (LCP) states. The Mueller matrix for a circular retardance is shown in Eq.\ref{Eq:CircularRet}.
+	\begin{equation}\label{Eq:CircularRet}
+	\small
+	M_{R_{C}}=\begin{bmatrix}
+	1 &&  0 &&  0  && 0\\
+	0 && \cos 2\psi && -\sin 2\psi &&  0\\ 
+	0 && \sin 2\psi && \cos 2\psi && 0\\
+	 0 && 0 && 0 && 1
+	\end{bmatrix}
+	\end{equation}
+	
+	\item \textbf{Diattenuation}\\
+	Diattenuation $d$ of an optical elements corresponds to differential attenuation (absorption and scattering) of orthogonal polarizations for both linear and circular polarizations states. Accordingly linear diattenuation is defined as differential attenuation of two orthogonal linear polarization states and circular diattenuation is defined as differential attenuation of RCP and LCP. Mueller matrix of linear diattenuator is defined in Eq.\ref{Eq:LinearDiattenuation}. Two intensity transmittance (reflectance) parameters are used for orthogonal states ($q$, $r$). $\theta$ is the orientation angle of principal axis. 
+	
+	\begin{equation}\label{Eq:LinearDiattenuation}
+	\small
+	M_{D}=\begin{bmatrix}
+	q+r &&  (q-r)\cos 2\theta &&  (q-r)\sin 2\theta && 0\\
+	(q-r)\cos 2\theta && (q+r)\cos^{2}2\theta + 2\sqrt{(qr)}\sin^{2}2\theta && (q+r-2\sqrt{(qr)})\sin 2\theta\cos 2\theta & & 0\\ 
+	(q-r)\sin 2\theta && (q+r-2\sqrt{(qr)})\sin 2\theta\cos 2\theta && (q+r)\cos^{2}2\theta + 2\sqrt{(qr)}\sin^{2}2\theta && 0\\
+	 0 && 0 && 0 && 2\sqrt{(qr)}
+	\end{bmatrix}
+	\end{equation}		
+	\end{itemize}
+
+
+The mentioned optical properties of the tissue can be calculated using inverse polarimetry analysis based on Mueller matrix decomposition. The Lu-Chipman decomposition method \cite{lu1996interpretation} is a well known inverse polarimetry analysis which is explained in the following section.
+
+\input{Chapter4/Meuller.tex}
+\input{Chapter4/LuChip.tex}
+

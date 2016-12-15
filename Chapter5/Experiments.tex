@@ -1,0 +1,159 @@
+\section{Experiments and Results}
+\label{sec:chp5-sec6}
+In order to evaluate the framework developed, we performed four experiments.
+Similar to Chapter~\ref{chp:chapter3}, the description of the experiments, their results, discussion and a brief conclusion are presented in the following subsections.
+Due to the dataset imbalance problem and the small number of melanoma in comparison with non-melanoma samples (benign, dysplastic and other lesions), the first two experiments were performed using a balanced subset of the data and the \acf{loocv} evaluation.
+For the other two experiments, we used balancing strategies with 10 different larger subsets.
+Table~\ref{tab:table3} summarizes the configuration of each experiment.
+
+As indicated in the table, the choice of pre-processing, mapping, feature extraction, representation, and classification strategies is the same for all the experiments.
+All the images were first registered and body hair, if present, was removed.
+Then the lesions were segmented, producing the external and internal lesion regions.
+According to the global mapping approach, the spatial features were extracted from the combined (external and internal) region, while the polarimetric features were extracted either from the internal, external or combined areas.
+The polarimetric features were represented using histograms and moments.
+%All the extracted features are normalized.
+Individual spatial and polarimetric features, as well as their combinations, were tested in all the experiments following the three main steps.
+First, the polarimetric (step~1) and spatial features (step~2) were compared in their own groups.
+Then, the best of the polarimetric features were combined with the best spatial features and their performance evaluated (step~3). 
+The classification task was performed using the \ac{rf} classifier in all the experiments.
+The \acl{rf} classifier was trained with 100 unpruned tress.
+
+\input{Chapter5/Table3.tex}
+\input{Chapter5/Table4.tex}
+%------------------------
+\subsection{Experiment~\#1\\
+\small{Melanoma~vs.~Benign lesions. \ac{loocv} validation on a subset of the data.}}
+Experiment~\#1 was performed to evaluate the potential of polarimetric and spatial features for the classification of M~vs.~B lesions.
+In this experiment, the portion of the dataset with dysplastic lesions, basal cell carcinoma and keratosis images was excluded.
+Due to the small number of melanoma samples (22), 10 subsets of 40 samples were considered.
+Each subset contained 20 melanoma and 20 benign lesions, randomly selected from the original set of 22 melanoma and 149 benign lesion images, respectively.
+Since a dataset of this size is relatively small, we used the \ac{loocv} for validation.
+
+Table~\ref{tab:table4} illustrates the results obtained in this experiment, indicated in terms of \ac{se} and \ac{sp}. 
+The first part of the table shows the evaluation of polarimetric features (step~1), while the classification performance when using spatial features (step~2) is shown in the second part.
+The best performing features are highlighted in gray.
+In step~3, the five leading polarimetric feature sets are used in conjunction with all the spatial features, and their results are shown in the 3rd part of the Table~\ref{tab:table4}.
+
+
+\subsubsection{Discussion}
+%As indicated, the first part of Table~\ref{tab:table3} shows the obtained results from evaluation of polarized features. 
+Our proposed device, unlike previously proposed partial polarimeter devices~\cite{Jacques12175282,Anastasiadou2008,tchvialeva2013polarization}, acquires three images ($I_{\ang{0}}, I_{\ang{90}}, I_{\ang{45}}$).
+Thus it provides extra information ($U$) and completed measurements in terms of \ac{dolp} and \ac{aolp}.
+Subsequently, nineteen individual polarized feature and five combinations based on the information provided are used in step~1.
+%Nineteen individual features and five combinations were used in step~1. 
+The moments and histogram features of internal, external and combined regions of the \ac{dolp} ($D_{H}$, $D_{H_{I}}$, $D_{H_{E}}$, $D_{M}$, $D_{M_{I}}$, $D_{M_{E}}$), Pol$_{~int}$ ($P_{H}$, $P_{H_{I}}$, $P_{H_{E}}$, $D_{M}$, $P_{M_{I}}$, $P_{M_{E}}$), and the third Stokes parameter ($U_{H}$, $U_{H_{I}}$, $U_{H_{E}}$, $U_{M}$, $U_{M_{I}}$, $U_{M_{E}}$), plus its gradient magnitude $U_{Gmag}$, were used as individual features.
+The combined feature sets included all the polarimetric features extracted from the internal ($\{D,P,U\}_{I}$), external ($\{D,P,U\}_{E}$) and combined (Pol$_{a}$) regions, represented as histograms ($\{D,P,U\}_{H}$) and moments ($\{D,P,U\}_{M}$).
+
+As illustrated in the first part of Table~\ref{tab:table3} (shaded in gray), five feature sets, including the \ac{dolp} extracted as histograms from the entire lesion ($D_{H}$) and the internal region ($D_{H_{I}}$), the combination of features extracted from external ($\{D,P,U\}_{E}$), internal ($\{D,P,U\}_{I}$) and combined (Pol$_{a}$) regions, outperformed the others. 
+Nevertheless, they achieved \ac{se} and \ac{sp} of 66.5\% and 70\%, respectively, which is better than average but cannot be considered a good result.
+
+In step~2, the performance of spatial features was evaluated.
+As indicated in the second part of Table~\ref{tab:table3}, \ac{glcm} ($T_{2}$) and color statistics ($C_{1}$) outperformed the others showing above average results, while the rest of the features performed poorly.
+The results of step~3 of the experiment (3rd section of Table~\ref{tab:table3}) indicate that the combination of spatial and polarimetric features improve the classification performance.
+This is evident for all the spatial features, except $T_{2}$, which demonstrated almost the same performance with and without polarimetric features.
+Among all the combinations, the union of $T_{4}$ and $\{D,P,U\}_{I}$ achieved the best performance with \ac{se} and \ac{sp} of 68\% and 71.5\%, respectively.
+Overall, the results indicated that the combination of $\{D,P,U\}_{I}$, $\{D,P,U\}_{E}$, and Pol$_{a}$ with spatial features yielded better results.
+\input{Chapter5/Table5.tex}
+\subsubsection{Conclusion}
+This experiment was performed to evaluate the potential of polarimetric features for the differentiation of M~vs.~B lesions.
+Although the average \ac{se} and \ac{sp} of the best performing features are below 70\% and 75\%, respectively, the results and comparisons indicated that polarimetric features outperform spatial features and improve the performance of traditional dermoscopy features, while combined with them.
+
+
+%--------------------------------
+\subsection{Experiment~\#2\\
+\small{Melanoma~vs.~Suspicious and Benign lesions. \ac{loocv} validation on a subset of the data.}}
+Experiment~\#2 was performed to evaluate polarimetric features for the differentiation of M~vs.~S+B lesions.
+Due to the similar characteristics of melanoma and suspicious lesions, this case is more challenging than the previous experiment.
+All the lesions excluded from the dataset in the previous experiment are considered suspicious because they were sent for biopsy by dermatologists.
+Similar to the previous experiment, 10 subsets of 40 samples (20 melanoma, 10 benign and 10 suspicious lesions) were selected.
+The lesions were randomly selected from the original dataset.
+%In this experiment as well, first the polarized features and spatial features were tested and then the combination of the best polarized features with spatial features were considered.
+Table~\ref{tab:table5} shows the results obtained in the three steps of the experiment (see the three respective parts of the table). 
+
+
+\subsubsection{Disussion}
+As expected, due to the challenging similarities in the samples' appearance, the classification performance decreased in comparison with the previous experiment.
+Among the polarimetric features, the \ac{dolp} histogram features extracted from the internal area ($D_{H_{I}}$) and entire lesions ($D_{H}$) achieved the highest performances (highlighted in gray color in Table~\ref{tab:table5}).
+As shown in the second part of Table~\ref{tab:table5}, the spatial features performed poorly.
+However, their performance increased after they were combined with the best of the polarimetric features.
+The combination of $T_{1}$ and $D_{H_{I}}$ achieved the highest \ac{se} and \ac{sp} of 64\% and 64\%, respectively.
+
+\subsubsection{Conclusion}
+This experiment was performed to evaluate the potential of polarized features for classification of M~vs.~S+B lesions.
+The results showed that few polarized features outperform the spatial features.
+However, the results with an average \ac{se} and \ac{sp} of 64\% and 64\% are not satisfactory.
+In general, in comparison to the previous experiment, it is apparent that polarized features are more discriminative for differentiation of melanoma and benign lesions, rather than for melanoma and suspicious lesions. 
+
+%---------------------------------
+\subsection{Experiment~\#3\\
+\small{Melanoma~vs.~Benign lesions. A comparison of balancing techniques.}}
+Experiment~\#3 was performed with the same objective as experiment~\#1.
+However, instead of using a small portion of the dataset, we used more samples and tackled the imbalance problem using balancing techniques.
+The \acl{os} and \ac{us} techniques, as well as their combination in the feature space, were tested on a subset of 164 lesions, similar to the experiment~\#4 in Sect.\,\ref{subsec:chp3-exp4}.
+Thus 10 different subsets containing 20 melanoma and 144 benign lesions were randomly selected from the original dataset.
+This was done in order to create a 10-fold validation, where, for each fold, 75\% of the data was kept for training and the rest was used for testing.
+It should be noted that this 10-fold validation is different from the \ac{kcv} in that it creates a more generalized dataset. 
+
+Different balancing techniques, including \ac{ros}, \ac{smote}, \ac{rus}, \ac{tl}, \ac{cus}, \ac{nm1}, \ac{nm2}, \ac{nm3}, \ac{ncr}, \ac{smote}+\ac{enn}, and \ac{smote}+\ac{tl}, were tested.
+However, from which only the \ac{us} techniques such as \ac{rus}, \ac{cus}, and \ac{nm3} responded to the problem.
+Similar to the previous experiments, we first investigated the effects of balancing strategies on the polarimetric and spatial features (steps~1 and 2), and then combined the best strategies in step~3.
+Table~\ref{tab:table6} shows the results from steps~1 and 2, while Table~\ref{tab:table7} illustrates the outcome of step~3.
+\input{Chapter5/Table6.tex}
+\input{Chapter5/Table7.tex}
+
+\subsubsection{Discussion}
+The evaluation of the polarimetric/spatial features and balancing strategies (see Table~\ref{tab:table6}) shows that \ac{rus} and \ac{nm3} are more effective and have fewer cases of overfitting in comparison with \ac{cus}. 
+In step~1, the best performance was achieved by $P_{H}$ and \ac{nm3} with \ac{se} and \ac{sp} of 74\% and 65\%, respectively. 
+Significant results among all the polarimetric features are highlighted in gray in the table.
+Among these features, $D_{H_{I}}$, $P_{H}$, $P_{M}$, $\{D,P,U\}_{M}$, $\{D,P,U\}_{E}$, and all the combinations (Pol$_{a}$) were selected to be tested in step~3.
+It must be noted that, apart from $D_{H_{I}}$, the rest of these features were not selected in experiment~\#1.
+
+The performance analysis of spatial features revealed that \ac{glcm} ($T_{2}$) outperformed the others by showing slightly better results than average, similar to experiment~\#1. 
+This was followed by the combination of color features ($C_{1}$, $C_{2}$).
+
+As indicated in Table~\ref{tab:table7}, the combination of polarimetric and spatial features with balancing techniques leads to better results.
+Once again, \ac{rus} and \ac{nm3} demonstrated minimum overfitting at the cost of a lower \ac{se}. 
+In this experiment, the combination of $T_{1}$ and $T_{2}$ with the $\{D,P,U\}_{E}$ achieved the highest \ac{se} and \ac{sp}, 82\% and 61.1\%, and 80\% and 61.9\%, respectively.
+In general, the union of $\{D,P,U\}_{E}$ and spatial features was better with an average \ac{se} of 76.6\% and \ac{sp} of 60.5\%.
+The union of $P_{H}$ and spatial features showed the second best result.
+
+\subsubsection{Conclusion}
+The outcome of this experiment in comparison to experiment~\#1 clearly shows the benefits of balancing strategies.
+The average \ac{se} and \ac{sp} of the best performing features are above 75\% and 60\%, respectively.
+In other words, balancing strategies helped to improve the \ac{se} without overfitting the classifier. 
+
+
+%----------------------------------------------
+\subsection{Experiment~\#4\\
+\small{Melanoma~vs.~Suspicious and Benign lesions. A comparison of balancing techniques.}}
+This experiment is a revision of experiment~\#2, where, instead of small portions of the dataset and \ac{loocv} validation, we applied balancing strategies in conjunction with a 10-fold validation on a larger data subset.
+Thus, a subset of 176 lesions containing 20 melanoma, 12 suspicious and 144 benign lesions was randomly selected from the original dataset.
+Similar to the previous experiment, in each fold, 75\% of the data was used for training while the rest was kept for testing.
+
+After testing different balancing strategies, the same methods as in the previous experiment were considered: \ac{rus}, \ac{cus} and \ac{nm3}.
+The results of using these techniques in steps~1 and 2 of this experiment are shown in Table~\ref{tab:table8}.
+\input{Chapter5/Table8.tex}
+The combinations of the best performing polarimetric and spatial features were then tested in step~3.
+The results obtained in this step are shown in Table~\ref{tab:table9}.
+\input{Chapter5/Table9.tex}
+
+\subsubsection{Discussion}
+The performance analysis of the polarimetric features (see the first part of Table~\ref{tab:table7}) shows that the features extracted from Pol$_{~int}$ ($P$) in conjunction with \ac{nm3} and \ac{rus} achieve better results. 
+The best performance was achieved by $P_{H_{E}}$ with \ac{se} and \ac{sp} of 72\% and 60.7\% followed by $P_{M_{E}}$ with \ac{se} and \ac{sp} of 70\% and 65.1\%, respectively.
+The $D_{M_{I}}$, $P_{H}$, $P_{H_{E}}$, $P_{M_{E}}$, and $\{D,P,U\}_{H}$ features, highlighted in the table, as well as Pol$_{a}$, were considered to be used in combinations in step~3.
+
+Among spatial features, $T_{2}$ once again outperformed the other features with all three balancing strategies.
+This feature achieved the highest performance with \ac{se} of 78\% and \ac{sp} of 61\%.
+
+The combinations of polarimetric and spatial features are given in Table~\ref{tab:table9}.
+Their comparison shows that the union of $\{D,P,U\}_{H}$ and spatial features yields a better classification than any other combination.
+Overall, the best performances in this step were achieved with the \ac{se} and \ac{sp} above 70\% and 60\%, respectively, which demonstrates a clear improvement in \acl{se} in comparison with experiment~\#2.
+
+As for the balancing techniques, \ac{rus} and \ac{nm3} resulted in less overfitting than \ac{cus}.
+However, the best performance was achieved with the union of $T_{3}$ and $P_{M_{E}}$ when the \ac{cus} technique was used (\ac{se} and \ac{sp} of 74\% and 71\%, respectively).
+
+\subsubsection{Conclusion}
+In this experiment, we studied the effect of the \ac{us} balancing strategies and polarimetric features on the classification of M~.vs~S+B lesions.
+The results, contrary to those obtained in experiment~\#2, were more satisfactory and comparable with the results of experiment~\#3.
+Similar to our previous experiments, the combination of polarimetric and spatial features led to a better classification performance.
+

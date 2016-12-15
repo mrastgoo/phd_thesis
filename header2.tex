@@ -1,0 +1,292 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This is a sample header for a sample dissertation. Fill in the name,
+% and the other information. LaTeX will work out the table of
+% content, the list of figures and of tables for you.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagenumbering{gobble} 
+
+\newpage
+\thispagestyle{empty}
+
+% ******* Title page  One *******
+% *******************************
+\vspace{3cm}
+\begin{center}
+\includegraphics[width=0.5\textwidth]{Figures/logo/udglogo2.png}\
+\includegraphics[width= 0.4\textwidth]{Figures/logo/logoub.png}
+\end{center}
+\vspace{0.5cm}
+\begin{center}
+PhD Thesis
+\end{center}
+\vspace{1cm}
+\begin{center}
+\LARGE{\LARGE{\textbf{An approach to melanoma classification exploiting polarization information
+%Classification of melanoma lesions using cross-polarized and Stokes polarimetry
+}}}
+\end{center}
+\vspace{1.5cm}
+\begin{center}
+{\large{\textbf{Mojdeh Rastgoo}}}
+\end{center}
+\vspace{1.5cm}
+\begin{center}
+\textbf{2016}
+\end{center}
+
+%\clearpage 
+%\newpage
+%\thispagestyle{empty}
+\cleardoublepage
+
+\newpage
+\thispagestyle{empty}
+
+% ******* Title page Two *******
+% ******************************
+\vspace{3cm}
+\begin{center}
+\includegraphics[width=0.5\textwidth]{Figures/logo/udglogo2.png}\
+\includegraphics[width= 0.4\textwidth]{Figures/logo/logoub.png}
+\end{center}
+\vspace{0.3cm}
+\begin{center}
+PhD Thesis
+\end{center}
+\vspace{0.7cm}
+\begin{center}
+\LARGE{\LARGE{\textbf{An approach to melanoma classification exploiting polarization information
+%Classification of melanoma lesions using non-conventional screening techniques
+}}}
+\end{center}
+\vspace{0.5cm}
+\begin{center}
+{\large{\textbf{Mojdeh Rastgoo}}}
+\end{center}
+\vspace{0.5cm}
+\begin{center}
+\textbf{2016}
+\end{center}
+\vspace{0.5cm}
+\begin{center}
+DOCTORAL PROGRAM IN TECHNOLOGY 
+\end{center}
+\vspace{0.5cm}
+\begin{center}
+Supervised by: Dr.~Rafael~Garc\'{\i}a, Dr.~Franck~Marzani, and Dr.~Olivier~Morel
+\end{center}
+\vspace{0.5cm}
+\begin{center}
+Work submitted to the universitat de Girona and Universit\'e de Bourgogne in partial fulfillment of the requirements for the degree of Doctor of Philosophy
+\end{center}
+
+\cleardoublepage
+
+
+%******** Dedication Page ********
+%*********************************
+
+\newpage
+\thispagestyle{empty}
+
+\begin{flushright}
+\begin{tabular}{l}
+\textit{Dedicated to Mojgan, Majid, Vahid, Moujan, and Guillaume}
+\end{tabular}
+\end{flushright}
+
+\cleardoublepage
+
+%************************************
+\pagenumbering{roman}
+\setcounter{page}{5} \pagestyle{plain}
+
+\newpage
+\thispagestyle{empty}
+% Publication 
+\chapter*{Publications}
+%\addcontentsline{toc}{chapter}{\protect\numberline{Publication\hspace{-96pt}}}
+\textbf{Journal:}\\
+\noindent \textbf{M. Rastgoo, O. Morel, F. Marzani and R. Garcia}, ``Automatic Differentiation of Melanoma from Dysplastic Nevi'', \emph{Computerized Medical Imaging and Graphics}, vol.43, pp 44-52, 2015\\\\
+
+\noindent \textbf{International Conferences:}\\
+\noindent\textbf{M. Rastgoo, G. Lemaitre, J. Massich, O.Morel, F. Marzani, R. Garcia and F. Meriaudeau}, ``Tackling the Problem of Data Imbalancing for Melanoma Classification'', \emph{$3^{rd}$ International Conference on BIOIMAGING 2016.} Rome: Italy (February 2016)\\
+
+\noindent\textbf{M. Rastgoo, G. Lemaitre, O.Morel, J. Massich, F. Marzani, R. Garcia and D. Sidibe}, ``Classification of melanoma lesions using sparse coded features and radnom forests'', \emph{SPIE Medical Imaging 2016.} San Diego: USA (February 2016)\\
+
+\noindent\textbf{M. Rastgoo, O. Morel, F. Marzani and R. Garcia}, ``Ensemble Approach for Differentiation of Malignant Melanoma'', \emph{International Conference on Quality Control and Artificial Vision (QCAV) 2015.} Le Creusot: France (June 2015)\\
+
+\cleardoublepage
+
+%**********************************
+\addcontentsline{toc}{chapter}{List of Abbreviations}
+\printacronyms[name = Abbreviations]
+
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+\cleardoublepage
+%\listoffigures
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+\cleardoublepage
+
+%************************************
+
+\newpage
+\thispagestyle{empty}
+\chapter*{Acknowledgments}	
+\singlespacing
+I am absolutely grateful to my supervisors, Rafael Garc\'ia, Franck Marzani and Olivier Morel.	
+Without their supports, guidelines, insights and encouragements, this work would not be simply possible. 
+
+I would also like to thank Fabrice M\'eriaudeau for his constant support.
+Thanks to D\'esir\'e Sidib\'e as well for sharing his brilliant ideas. 
+Thanks to Pablo Iglesias and Beatriz Alejo Galindo for being patient and providing me with the medical insight and data; also to Dr. Josep Malvehy and Susana Puig for sharing their time and valuable clinical insights for the improvement of this project.
+A particular thanks to Steven Jacques for sharing his valuable knowledge and most importantly being inspiring.
+
+I would like to thank my friends; Habib, Sarah, Amanda, Sonia, Sharad, Shihav, David, Abir, Mohamed, Cansen, Qinglin, Richa, Armine, Priyanka, Joan -for having his unique way of thinking- and Konstantin whom patiently and perfectly corrected the final manuscript and provided me with his thoughtful ideas. 
+Thank you all for the shared happy moments and your help and support during this time.
+
+Also I would like to thank my colleagues, Nuno, Tudor, L\'aszl\'o, Josep, Ricard P., Ricard C. and Konstantin for all the interesting lab meetings and their help for the final preparation of the thesis; to Joseta, Mireia and Montse, for being always there and helping me with endless amount of paperwork and questions.
+
+My gratitude, as well, to the anonymous reviewers and the members of the defense panel for evaluating my work.
+I would also like to acknowledge AGAUR FI-DGR 2012 grant, provided by the Autonomous Government of Catalunia which is the sole reason for existence of this thesis.
+It is an honored to be among its holders. 
+
+Foremost, I would like to thank my family that has always being there for me, despite the long distance between us.
+Their love, support and motivation gave me the strength to finish the thesis.
+My most loving thanks to my parents, Mojgan and Majid, brother Vahid, sister Moujan, both grandmothers: Maman Alam and Maman joon, aunt Mahboubeh, aunt Manijeh, cousin Sudeh, cousin Somayeh and cousin Maryam.
+And all the family.
+
+I would like to thank Ginette, Patrice, Cedric, Vero, Julian and Sarah for being my family here.
+
+
+Last but not least, I want to thank my husband and best colleague Guillaume for his love and support and being my best friend. 
+  
+
+ 
+
+%\addcontentsline{toc}{chapter}{\protect\numberline{Acknowledgments\hspace{-96pt}}}
+\cleardoublepage
+\doublespacing
+
+%************************************
+
+\tableofcontents
+\cleardoublepage
+
+%\vspace{1.2cm}
+%\begin{center}
+%
+%\vspace{0.9cm}
+%{\large A Thesis Submitted for the Degree of Doctor of Philosophy in computer vision and robotics (Universitat de Girona) and Le2i laboratory (Univerist\'e de Bourgogne)\\\vspace{0.3cm} $\cdot$ 2015
+%$\cdot$}
+%\end{center}
+%\singlespacing
+
+\singlespacing
+%ABSTRACT
+%\begin{abstract}
+\begin{center}\textbf{Abstract}\\\end{center}
+Malignant melanoma is the deadliest of skin cancers and causes the majority of deaths in comparison to other skin-related malignancies.
+Yet it is the most treatable type of cancer, thanks to its early diagnosis.
+Subsequently, early diagnosis is crucial for patient survival rate and numerous \ac{cad} systems have been proposed by the research community to assist dermatologists in early diagnosis.
+These systems are based on the most common skin imaging modality, cross-polarized dermoscopy.
+Cross-polarized dermoscopes (PD) allow for the visualization of the subsurface anatomic structure of the epidermis and papillary dermis and eliminate the specular reflection of the surface.
+Although this modality has been used extensively, the full potential of polarized measurements has not been realized in the field of skin imaging.
+
+This research first extensively analyzes different aspects of the automated classification of \ac{psls} and proposes a \ac{cad} system for automatic recognition of melanoma lesions based on the PD images.
+The proposed \ac{cad} system is evaluated over extensive experiments on two dermoscopic datasets.
+Later for further investigation of polarized imaging, a novel partial Stokes polarimeter system is proposed.
+This system is able to acquire polarized images of in-vivo \ac{psls} and capture the epidermis and superficial dermal layers, where skin lesions are often originated.
+The polarized and dermoscopy properties of the acquired images are then analyzed to propose a new \ac{cad} system based on image polarimetry.
+The initial tests with the first prototype of Stokes polarimeter revealed the potential and benefits of such systems for providing additional information beyond RGB images acquired with PD devices.
+In order to acquire a wider clinical dataset and identify the drawbacks of the first prototype, this device is currently being used in the Melanoma Unit at the Clinic Hospital of Barcelona.
+\clearpage
+
+%\end{abstract}
+
+%%% Catalan Abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{center}\textbf{Resum}\\\end{center}
+El melanoma maligne \'es el m\'es mortal dels c\`ancers de pell i provoca la majoria de les morts en comparaci\'o amb altres tumors malignes relacionats amb la pell.
+No obstant aix\`o, \'es el tipus m\'es tractable de c\`ancer, gr\`acies al seu diagn\`ostic preco\c{c}.
+Per tant, el diagn\`ostic preco\c{c} \'es crucial per a la superviv\'encia dels pacients.
+Nombrosos sistemes de diagn\`ostic assistit per ordinador (CAD, de l'angl\'es Computer Aided Diagnosis) han estat proposats per la comunitat investigadora per ajudar als dermat\`olegs en el diagn\'ostic preco\c{c}.
+Aquests sistemes es basen en la modalitat m\'es emprada d'adquisici\'o d'imatges de pell, la dermatosc\`opia de polaritzaci\'o creuada (PD, de l'angl\`es Polarized Dermatoscopy).
+La dermatosc\`opia de polaritzaci\'o creuada permet la visualitzaci\'o de l'estructura anat\`omica del subs\`ol de l'epidermis i la dermis papil.lar, eliminant les reflexions especulars de la superf\'icie. Tot i que aquesta modalitat ha estat utilitzada \`ampliament, no tot el potencial de les mesures polaritzades ha estat aprofitat en el camp de la imatge de pell.
+
+Aquest treball de recerca analitza \`ampliament, en primer lloc, diversos aspectes de la classificaci\'o automatitzada de les lesions cut\`anies pigmentades (PSLs, de l'angl\`es Pigmented Skin Lesions) i proposa un sistema CAD per al reconeixement autom\`atic de lesions de melanoma en base a les imatges de PD.
+El sistema CAD proposat es va avaluar en el transcurs d'extensos experiments en dos conjunts de dades dermatosc\`opiques. Posteriorment, en una investigaci\'o m\'es extensa pel que fa a la formaci\'o d'imatges polaritzades, es proposa un nou sistema de partial Stokes polarimeter.
+Aquest sistema \'es capa\c{c} d'adquirir imatges polaritzades dels PSLs en viu, capturant l'epidermis i les capes d\'ermiques superficials, on sovint s'originen les lesions de la pell.
+Les propietats de polaritzaci\`o i dermoscopia de la imatge s\'on analitzades a continuaci\'o, proposant un nou sistema CAD basat en la imatge de polarimetria.
+Les proves inicials, amb el primer prototip d'Stokes polarimeter, han revelat el potencial i els beneficis de tals sistemes per proporcionar informaci\'o addicional m\'es enll\`a de les imatges RGB adquirides amb dispositius PD.
+Per tal d'adquirir un conjunt de dades cl\'iniques m\'es ampli i identificar els inconvenients del primer prototip, aquest dispositiu s'est\`a utilitzant actualment a la Unitat de Melanoma de l'Hospital Cl\'inic de Barcelona.
+\clearpage
+
+%%% Spanish Abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}\textbf{Resumen}\\\end{center}
+El melanoma maligno es el m\'as mortal de los c\'anceres de piel y provoca la mayor\'ia de las muertes en comparaci\'on con otros tumores malignos relacionados con la piel.
+Sin embargo, es el tipo m\'as tratable de c\'ancer, gracias a su diagn\'ostico precoz.
+Por lo tanto, el diagn\'ostico precoz es crucial para la supervivencia de los pacientes.
+Numerosos sistemas de diagn\'ostico asistido por ordenador (CAD, del ingl\'es Computer Aided Diagnosis) han sido propuestos por la comunidad investigadora para ayudar a los dermat\'ologos en el diagn\'ostico precoz.
+Estos sistemas se basan en la modalidad m\'as empleada de adquisici\'on de im\'agenes de piel, la dermatoscopia de polarizaci\'on cruzada (PD, del ingl\'es Polarized Dermatoscopy).
+La dermatoscopia de polarizaci\'on cruzada permite la visualizaci\'on de la estructura anat\'omica del subsuelo de la epidermis y la dermis papilar, eliminando las reflexiones especulares de la superficie.
+Aunque esta modalidad ha sido utilizada ampliamente, no todo el potencial de las medidas polarizadas ha sido aprovechado en el campo de la imagen de piel.
+
+Este trabajo de investigaci\'on analiza ampliamente, en primer lugar, varios aspectos de la clasificaci\'on automatizada de las lesiones cut\'aneas pigmentadas (PSLs, del ingl\'es Pigmented Skin Lesiones) y propone un sistema CAD para el reconocimiento autom\'atico de lesiones de melanoma en base a las im\'agenes de PD.
+El sistema CAD propuesto se evalu\'o en el transcurso de extensos experimentos en dos conjuntos de datos dermatosc\'opicos. Posteriormente, en una investigaci\'on m\'as extensa en cuanto a la formaci\'on de im\'agenes polarizadas, se propone un nuevo sistema de partial Stokes polarimeter.
+Este sistema es capaz de adquirir im\'agenes polarizadas de los PSLs en vivo, capturando la epidermis y las capas d\'ermicas superficiales, donde a menudo se originan las lesiones de la piel.
+Las propiedades de polarizaci\'on y dermoscopia de la imagen son analizadas a continuaci\'on, proponiendo un nuevo sistema CAD basado en la imagen de polarimetr\'ia. Las pruebas iniciales, con el primer prototipo de Stokes polarimeter, han revelado el potencial y los beneficios de tales sistemas para proporcionar informaci\'on adicional m\'as all\'a de las im\'agenes RGB adquiridas con dispositivos PD.
+Para adquirir un conjunto de datos cl\'inicos m\'as amplio e identificar los inconvenientes del primer prototipo, este dispositivo se est\'a utilizando actualmente en la Unidad de Melanoma del Hospital Cl\'inic de Barcelona.
+\clearpage
+%%% French Abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center} \textbf{R\'esum\'e}\\ \end{center}
+Le m\'elanome malin est le plus mortel des cancers de la peau.
+Il cause la majorit\'e des d\'ec\`es au regard des autres pathologies malignes de la peau.
+Toutefois, ce type de cancer se soigne d\'es lors qu'un diagnostic est pos\'e pr\'ecocement.
+Ainsi, le taux de survie est fortement corr\'el\'e \`a un diagnostic pr\'ecoce ; de nombreux syst\`emes d'aide au diagnostic (CAD) ont \'et\'e propos\'es par la communaut\'e pour assister les dermatologues dans leur diagnostic.
+La modalit\'e d'imagerie de la peau la plus classiquement utilis\'ee est la dermatoscopie avec polarisation crois\'ee.
+Les dermatoscopes avec polarisation crois\'ee (PD) permettent la visualisation de la structure anatomique inf\'erieure de l'\'epiderme, le derme papillaire et \'eliminent la r\'eflexion sp\'eculaire de surface.
+Bien que cette modalit\'e ait \'et\'e utilis\'ee tr\`es fr\'equemment, le fort potentiel des mesures de polarisation n'a pas \'et\'e \'etudi\'e dans le domaine de l'imagerie de la peau.
+
+Dans un premier temps, notre recherche a port\'e sur une analyse pouss\'ee des diff\'erents aspects de la classification automatique des l\'esions pigmentaires (PSLs) ce qui nous permet de proposer un syst\`eme CAD pour la reconnaissance automatique des l\'esions de type m\'elanome \`a partir d'images de modalit\'e PD.
+Ce syst\`eme CAD est \'evalu\'e \`a partir de nombreuses exp\'erimentations effectu\'ees sur deux bases de donn\'ees d'images.
+Dans un deuxi\`eme temps, afin d'\'etudier l'imagerie de polarisation, un nouveau syst\`eme de polarim\'etrie partiel de type Stokes est propos\'e.
+Ce syst\`eme est capable d'acqu\'erir des images polaris\'ees de PSLs in-vivo de l'\'epiderme et des couches superficielles du derme, fr\'equemment \'a l'origine des l\'esions de la peau.
+Les propri\'et\'es de polarisation et de dermatoscopie des images acquises sont ensuite analys\'ees afin de proposer un nouveau syst\`eme CAD bas\'e sur l'imagerie de polarisation.
+Les tests pr\'eliminaires avec ce premier polarim\'etre de Stokes montrent le potentiel et les b\'en\'efices possibles afin de produire des informations complémentaires \`a celles issues des images couleur RGB classiquement obtenues avec la modalit\'e PD. Ce prototype est actuellement en cours d'utilisation au Melanoma Unit de la Clinic Hospital de Barcelone (Espagne) afin de constituer une base d'images plus cons\'equente et ainsi identifier les d\'esavantages d'un tel syst\`eme.
+\cleardoublepage
+
+\doublespacing
+
+\pagestyle{empty}
+
+\pagestyle{fancy}
+
+
+
+%%%
+%%%\clearpage
+%%%\newpage
+%%%\tableofcontents
+%%%\cleardoublepage
+%%%% \phantomsection
+%%%\addcontentsline{toc}{chapter}{\listfigurename}
+%%%\listoffigures
+%%%\cleardoublepage
+%%%%\listoffigures
+%%%\addcontentsline{toc}{chapter}{\listtablename}
+%%%\listoftables
+%%%\cleardoublepage
+%\pagebreak
+
+
+%\chapter*{Acknowledgments}
+%		
+%\addcontentsline{toc}{chapter}
+%         {\protect\numberline{Acknowledgments\hspace{-96pt}}}
+%
+%\pagestyle{fancy}
+
+
+

@@ -1,0 +1,105 @@
+%% Table 7
+\begin{table}[t]
+	\caption[Results of Experiment~\#2 - \ac{dos}-balance-training case]{The classification results after applying the \ac{dos} balancing method to the Vienna M~vs.~D subset.
+	The data were classified using \ac{rf} and RBF-\ac{svm}.
+	The results are indicated in terms of \acf{se} and \acf{sp} percentages.}
+	\label{tab:globalmapExp2}
+	\medskip
+		
+	\footnotesize{
+%\resizebox{0.8\textwidth}{!}{
+	\begin{center}
+	\begin{tabularx}{0.73\textwidth}{@{}l	lllr	 ll	lllr	 @{}}
+	\toprule
+	Features & \multicolumn{4}{l}{\ac{rf}} & & & \multicolumn{4}{l}{\ac{svm}} \\
+	\cmidrule{2-5} \cmidrule{8-11} 
+	& \ac{se} & & & \ac{sp} & & &  \ac{se} & & & \ac{sp} \\
+	\cmidrule{2-11}
+	Individual Features\\
+	\multicolumn{11}{l}{}\\[-1ex]
+ $T_1$ & 72.00	& & & 77.97 & & &  69.00 & & & 68.63\\
+ $T_2$ & 73.50	& & & 87.19 & & &  70.50	 & & & 89.32\\
+ $T_3$ & \cellcolor[gray]{0.8}74.17	&\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}82.96	& & &  65.83	 & & & 74.65\\
+ $T_4$ & \cellcolor[gray]{0.8}74.67	&\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}90.54    & & &  \cellcolor[gray]{0.8}78.00 &\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}78.78\\
+ $C_1$ & \cellcolor[gray]{0.8}80.33	&\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}92.20	& & &  61.67	 & & & 74.40\\
+ $C_2$ & \cellcolor[gray]{0.8}80.17	&\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}92.05	& & &  73.50	 & & & 76.60\\
+  $S$  & 72.67	& & & 81.25	& & &  62.50	 & & & 69.10\\	
+	\multicolumn{11}{l}{}\\
+	Combined Features\\
+	\multicolumn{11}{l}{}\\[-1ex]
+$C_1,C_2	$					& \cellcolor[gray]{0.8}81.17 &\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}92.49 & & & 67.17 & & & 81.42\\
+$C_1,C_2,S$					& 80.83	& & & 92.74	& & & 67.17 & & & 78.00\\
+$T_1,T_2$ 					& 76.50	& & & 87.73	& & & 72.17 & & & 85.43\\
+$T_1,T_3$					& 75.50	& & & 84.40	& & & 73.17	& & & 74.74\\
+$T_1,T_4$					& 79.17	& & & 89.22	& & & 63.00	& & & 73.86\\
+$T_1,T_2,T_3,T_4$			& 79.83	& & & 91.30	& & & 68.00	& & & 82.03\\
+$T_1,T_2,C_1,C_2$			& \cellcolor[gray]{0.8}82.00	& \cellcolor[gray]{0.8}& \cellcolor[gray]{0.8}& \cellcolor[gray]{0.8}94.23	& & & 73.50	& & & 82.76\\
+$T_1,T_3,C_1,C_2$			& \cellcolor[gray]{0.8}81.33	&\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}94.47	& & & 67.00	& & & 80.81\\
+$T_1,T_3,T_4$				& 79.50	& & & 90.22	& & & 64.83	& & & 78.63\\
+$T_1,C_1,C_2$				& \cellcolor[gray]{0.8}82.00 &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}& \cellcolor[gray]{0.8}94.13 & & & 66.50	& & & 80.88\\
+$T_3,C_1,C_2$				& 80.17	& & & 93.35	& & & 68.50	& & & 79.83\\
+$T_4,C_1,C_2$				& 80.83	& & & 93.33	& & & 67.83	& & & 81.96\\
+$T_1,T_2,C_1,C_2,S$			& \cellcolor[gray]{0.8}82.33 &\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}94.47	& & & 66.50	& & & 81.05\\
+$T_1,T_2,T_3,T_4,C_1,C_2$	& \cellcolor[gray]{0.8}80.83	&\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}95.11	& & & 69.67	& & & 84.82\\
+$T_1,T_2,T_3,C_1,C_2,S$		& \cellcolor[gray]{0.8}81.67	&\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}& \cellcolor[gray]{0.8}94.74	& & & 70.83	& & & 82.08\\
+$T_1,T_2,T_3,T_4,C_1,C_2,S$  & 80.67	& & & 95.01	& & & 67.83	& & & 84.25\\	
+ 	\multicolumn{11}{l}{}\\
+ 	\bottomrule
+  \end{tabularx}  
+  \end{center}
+	}
+	
+\end{table}
+	
+
+
+
+	
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

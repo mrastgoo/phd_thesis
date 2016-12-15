@@ -1,0 +1,18 @@
+\subsection{Feature representation}\label{chp3-subsec4}
+Different approaches for feature representation were discussed extensively in Sect.~\ref{sec:chp2-sec4}.
+As mentioned before, the main goal of this step is to represent the extracted features in the most efficient and effective manner.
+In our framework, we categorized the feature representation methods employed into two main groups: (i) low-level and (ii) high-level feature representation.
+\begin{description}
+\item[Low-level representation] refers to the cases in which the features are represented in their original space, or in terms of some statistics derived from the original feature space, such as moments, histograms, or simply a concatenation of features from the local structures.
+
+\item[High-level representation]. According to the mapping strategy chosen, low-level representation can lead to a high-dimensional feature space.
+High-level representation simplifies this space into a more discriminant lower space.
+Among the methods mentioned in Sect.~\ref{sec:chp2-sec4}, \ac{pca}, \ac{bow}, and \ac{scf} can be used for this purpose.
+%We also used \ac{pca} and \ac{lda} approaches to reduce the dimensionality of the globally mapped features. 
+
+\end{description}
+Although the optimal number of \ac{pca} dimensions can be found by considering the minimum dimensions of the eigenvectors, which account for 95$\%$ of the sum of all the eigenvalues, in some experiments where \ac{pca} was employed, we chose to find this number via an exhaustive search through the feature dimensions.
+In this manner, all the possible numbers of dimensions (from 1 to the original size) are tried and the optimal number is found when the best classification accuracy is achieved.
+In a similar way, we found the optimal number of clusters for the \ac{bow} approach.
+%The number of clusters is varying in a range (e.g., ~15 to 700) and the $k$, which leads to the highest performance of the classifier, is chosen as the final number of clusters.
+As for the \ac{scf} approach, three sparsity levels $\lambda = \{2,4,8\}$ and different numbers of atoms $K=\{100,200, ..., 1000\}$ were considered. 

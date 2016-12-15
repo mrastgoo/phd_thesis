@@ -1,0 +1,353 @@
+\input{Chapter3/Table-experiments.tex}
+\section{Experiments and Results}
+\label{sec:chp3-sec5}
+
+In this section, we present our tests and experiments with their corresponding results. 
+Each subsection describes an experiment with its results, discussion and a brief conclusion. 
+As noted before, we started our research using the Vienna dataset and later switched to the PH$^{2}$ dataset. 
+Thus, initial experiments were performed on the Vienna dataset while the rest were based on PH$^{2}$. 
+The experiments listed in the following subsections illustrate our progress in this research and our final framework, perfectly.
+
+\subsection{Experiment~\#1\\
+\small{Melanoma~vs.~Dysplastic Nevi. Balanced Subsets of the Vienna Dataset}}
+
+Experiment~\#1 was performed on a subset of the Vienna dataset, in which we proposed a classification framework for differentiating M~vs~D lesions.
+This is a challenging task that has not been addressed sufficiently by the research community.
+
+This experiment evaluated the performance of color and texture features, local and global mapping, \ac{bow} high-level representation as well as different classifiers for the melanoma~vs.~dysplastic lesion classification problem. 
+Prior to the feature extraction, the lesions were segmented using the pdf-based method only. 
+Then, the individual features described in Sect.~\ref{chp3-subsec3} (except $C_{3}$) and their combinations were extracted using local and global mapping. 
+Globally mapped features were extracted from the bounding box around the segmented lesions, while the locally mapped features were extracted from the patches within a grid. 
+A grid was centered on each segmented lesion and only the patches in which the proportion of the lesion was greater than one third of the patch size (20~\si{px}~$\times$~20~\si{px}) were selected for feature extraction.
+\input{Chapter3/Table4.tex}
+The extracted features were then presented in low- and high-level forms.
+\ac{pca} was used to reduce the dimensions of the globally mapped features, while \ac{bow} was used to simplify the dimensionality of the locally mapped features to a more discriminatve space.
+The optimum dimensionality of the \ac{pca} was selected via an dichotomic search over the feature dimensions (i.e.~ranging from quarter to three quarter of the original feature dimension).
+Similarly, the optimum number of ``visual words'' for the \ac{bow} approach was found emprically for each feature set and classification approach.
+Depending on the classifier and feature set, this number varied from a small (e.g. 15) to a large (e.g. 700) number of ``visual words''. 
+This was expected because classifiers such as \ac{rf} can handle higher feature dimensions contrary to classifiers such as \ac{svm} that perorm better on low-dimensional features.
+The extracted features were then classified using three classifiers: \ac{rf}, \ac{gb}, and RBF-\ac{svm}.
+ 
+In this experiment, we did not explore the balancing strategies, however, in order to have a balanced dataset, we randomly selected 10 subsets from the Vienna dataset.
+Each subset was composed of a total of 180 lesions, including 90 melanoma and 90 dysplastic lesions.
+While the melanoma images were the same in all the subsets, the dysplastic moles were randomly selected from the 950 nevi in the dataset. 
+For each subset, 70\% of the data were used for training, 15\% for the validation, and 15\% for testing.
+
+The validation set was only used for the \ac{svm} classifier to optimize its parameters, $C$ and $\lambda$, via a grid-search. 
+The validation set was ignored for \ac{rf} and \ac{gb} because \ac{rf} uses bootstraps to create its tree and \ac{gb} randomly selects a subset of the training data for each split, so both methods automatically generalize the data and do not need an additional validation set.
+
+Nineteen feature sets (individual as well as combinations) were mapped globally and tested using the three classifiers. The corresponding results are shown in Table~\ref{tab:globalmapResExp1}. 
+In this table, the top section represents the classification results with all the features, while the bottom part represents the results of the combined texture features ($\{T_1,T_2,T_3,T_4\}$) over 10 sets.
+Table~\ref{tab:localmapExp1} shows the classification results with eighteen feature sets, excluding shape and including \ac{sift} features, mapped locally and represented using the \ac{bow} approach.
+
+\input{Chapter3/Table5.tex}
+
+\subsubsection{Discussion}
+
+In the automated classification of malignant lesions such as melanoma, correct classification of cancer cases has high importance.
+For this reason, high sensitivity is considered as the priority measure. 
+In Table~\ref{tab:globalmapResExp1}, the individual features are sorted with reference to their performance.
+According to the results listed, \ac{rf} yields high sensitivities for most cases (12 out of 19), outperforming \ac{gb} and \ac{svm}. 
+The highest \ac{se} is achieved for the combination of the texture features ($T_{1}$, $T_{2}$, $T_{3}$, $T_{4}$) using the \ac{rf} classifier (98.46$\%$).
+In this case, the classifier reached a specificity of 70$\%$, which is a very good result considering the difficulties of distinguishing melanoma from dysplastic nevi.
+
+The classification results of this feature set over 10 randomly selected subsets are shown in the bottom part of Table~\ref{tab:globalmapResExp1}. 
+These measurements highlight how datasets can affect the classification results and how complicated it is to have a fair method comparison. 
+The comparison of individual global features shows that \ac{hog} ($T_4$) outperforms all the other features. 
+It is followed by opponent color angle and hue histogram ($C_2$), color statistics and RGB histogram ($C_1$) and Gabor filter ($T_3$) features.
+Taking into account the machine learning concepts, one can argue that \ac{svm} provides the best results considering that the difference between \ac{se} and \ac{sp} is rather small. However, as stated above, in the case of cancer classification, it is more important not to miss any cancer case than to classify non-cancer cases.
+
+Observing the results given in Table~\ref{tab:globalmapResExp1}, it is obvious that texture features in general outperform color features. 
+The results achieved by the combination of color features ($C_{1}, C_{2}$) are highlighted using an italic font and the combination of texture features ($T_{1},T_{2},T_{3},T_{4}$) are underlined. 
+It can be seen that the three classifiers perform better and achieve higher \ac{se} and \ac{sp} with texture features as opposed to color descriptors. 
+This could be explained by the difference in illumination and image acquisition procedures. 
+The images in the dataset were obtained under different conditions without color calibration, so their color information is not accurately represented by the feature descriptors. 
+This issue and the problems of faithful color reproduction by different devices were addressed in~\cite{Quintana2011,iyatomi2011automated,gomez2008independent,schaefer2011colour,6866131}.
+
+Table~\ref{tab:localmapExp1} shows the results obtained with the BoW representation of locally mapped features.
+Here, as in Table~\ref{tab:globalmapResExp1}, the individual features are listed with reference to their performance.
+These results illustrate that \ac{clbp} ($T_{1}$) has a better performance in comparison with the other individual features (\ac{se} and \ac{sp} of 83.33$\%$ and 60.51$\%$, respectively) considering the average of the three classifiers. 
+This result is followed by \ac{hog} ($T_{4}$), Gabor filter ($T_{3}$) and opponent color angle and hue histogram ($C_{2}$). 
+The worst performance is demonstrated by all three classifiers with the \ac{glcm} ($T_{2}$) descriptor. 
+%All three classifiers performed least concerning this feature set.
+The two highest individual performances were achieved using the $T_{1}$ and $C_{2}$ descriptors with the \ac{svm} and \ac{rf} classifiers, respectively. 
+These descriptors resulted in the sensitivity of 88.46$\%$ and 81.54$\%$, respectively, although the \ac{sp} of \ac{svm} with $T_{1}$ is very low (see Table~\ref{tab:localmapExp1}).
+
+It can also be observed that the combination of locally mapped features did not affect the \ac{se} as much as the the \ac{sp}.
+The best results were obtained using the combination of two texture features, \ac{clbp} and Gabor filter ($T_{1}, T_{3}$).
+With this feature set, the \ac{rf} classifier achieved the \ac{se} of 84.62$\%$ and \ac{sp} of 56.92$\%$. 
+The combination of $T_{1}$, $C_{1}$ and $C_{2}$ demonstrated the second highest \ac{se} of 83.08$\%$ with the \ac{sp} of 64.62$\%$.
+Finally, the \ac{sift} features showed a stable performance with the three classifiers, with \ac{se} and \ac{sp} around 73$\%$. 
+However, it falls behind the other feature sets with respect to the \ac{se}.
+
+Overall, the globally mapped features result in a much better classification outcome than the \ac{bow} representation of locally mapped features.
+Moreover, the \ac{rf} classifier proved its potential by having the best results in 12 out of the 19 and in 14 out of the 18 experiments for the first and second feature tests, respectively.
+
+\subsubsection{Conclusion}
+In this experiment, our automated framework for classification of melanoma against dysplastic nevi was tested.
+%The framework consists of automatic segmentation, feature extraction, feature representation and classification stage.
+%Our proposed segmentation algorithm were able to segment 95.43\% of the lesions, while the rest of the images were excluded due to artefacts such as hairs or unbalanced illumination.
+%Further using the segmented lesions, we propose to extract several well-known texture, shape and color features using local or global mapping.
+%In the first approach the features were detected from the whole lesion, while in the former approach Bag of Feature method was used and a dictionary of ``visual-words'' from the locally detected features was created. Finally in classification stage we propose three classifiers, such as SVM, RF and GB to evaluate the extracted features from both approaches. Our proposed framework was able to achieve high sensitivities (above 90\%) in most of the cases, which is a very good result, concerning the importance of sensitivity in cancer-detection problems. 
+It evaluated the performance of locally and globally mapped features, and it was observed that the latter perform better.
+This is likely due to the quality of the images as the dataset was created back in 2001 with an older dermoscope and under varying illumination conditions.
+The results demonstrate the potential of texture features for melanoma detection and highlight the efficiency of the descriptors that have not been widely used in this field.
+%The obtained results of this work on global-features proved the potential of the texture features for detection of melanoma and it highlighted the potential of new feature descriptors in this field such as \ac{hog} rather than \ac{glcm}, which was widely used in the past for detection of melanoma.
+
+In particular, the \ac{hog} feature and the opponent color space outperformed the other descriptors as individual feature sets.
+%It also highlighted the impact of opponent color space besides the color descriptors which was previously used.
+%These two descriptors outperform the others as an individual feature sets.
+The combination of all the texture features had a significantly better performance in comparison with color and shape features as well.
+In general, texture descriptors result in a better classification performance as opposed to color features.
+This is due to the fact that color is not an indicative and consistent descriptor throughout the whole dataset because of varying image acquisition conditions and the lack of color calibration.
+Finally, the assessment of the classifiers in this study confirms the potential of \ac{rf} in comparison with \ac{gb} and \ac{svm}.
+
+%--------------------------------------------------------------------------------------------------------------------------------------------
+\subsection{Experiment~\#2\\
+\small{Melanoma~vs.~Dysplastic Nevi, Imbalance subset of Vienna Dataset}}
+This experiment considered classification of melanoma against dysplastic lesions using a larger subset of Vienna dataset.
+This subset contains 98 melanoma and 993 dysplastic lesions.
+
+This experiment was mainly performed to evaluate the impact of our balancing strategy, \acf{dos}.
+In order to reduce the effects of the class imbalance problem, we chose to synthetically generate some melanoma lesions using the \ac{dos} technique (see Sect.~\ref{chp3-subsec5}).
+As mentioned before, this technique deforms the lesion grid using two approaches of \acf{bd} and \acf{rdgm}. 
+Figure.~\ref{fig:DSOS-example} shows a melanoma lesions after each deformation.
+\begin{figure}[H]
+\centering
+\subfloat[Original melanoma image]{
+\includegraphics[width = 0.27\textwidth]{Chapter3/Figures/D540.jpg}}
+\subfloat[\ac{rdgm}]{ 
+\includegraphics[width = 0.27\textwidth]{Chapter3/Figures/D540-deform1.jpg}}
+\subfloat[\ac{bd}]{
+\includegraphics[width = 0.27\textwidth]{Chapter3/Figures/D540-deform2.jpg}}
+\caption[Data space over sampling example]{Example of a melanoma lesion from Vienna dataset and its deformed generated samples. (a) \ac{rdgm}, (b) \ac{bd}.}
+\label{fig:DSOS-example}
+\end{figure}
+
+Using this approach, based on 98 original melanoma lesions, 196 synthetic images were created.
+From a total of 294 melanoma lesions (98$\times$3), 60$\%$ were kept for training, 20$\%$ for testing and another 20$\%$ for validation.
+Therefore, to ensure balance training, the training set contained 174 melanoma lesions (58 original melanoma samples randomly selected from 98 lesions and their deformed images) and 174 dysplastic lesions randomly selected from 993 dysplastic nevi.
+Besides 60 melanoma lesions (20 original samples and their 40 deformed samples), both the validation and test sets contained half of the remaining dysplastic lesions.
+Table~\ref{tab:Exp2TTVlist} tabulates the number of melanoma and dysplastic lesions in each set.
+\input{Chapter3/Table6.tex}
+Similar to our previous experiment, 10 different subsets were selected, while in each subset, the lesions were randomly selected for each of training, testing, and validation sets.
+The validation set was only used with the \ac{svm} classifier.
+
+In this experiment, only global mapping is used and the features are extracted from a window bounded to lesion boundaries.
+All the lesions were segmented using a fusion approach rather than only a \ac{pdf}-based.
+Individual and combinations of extracted features were further classified using \ac{rf} and RBF-\ac{svm} classifiers.
+The results obtained are listed in Table.~\ref{tab:globalmapExp2}.
+The best performance concerning individual and combined features are highlighted in bold.
+\input{Chapter3/Table7.tex}
+To be able to compare and evaluate the effects of having more melanoma samples in the balance training set, two different cases without using any balancing strategy, beside our inital proposed case with balancing strategy are considered:
+(i) case~1: \ac{dos}-balance training, (ii) case~2: balance-training, and (iii) case~3: imbalance-training.
+The second case considered balance training only using the original data.
+Accordingly, in this case, our training set included 58 melanoma and 58 dysplastic, the test set had 20 melanoma and 468 dysplastic, and the validation set contained 20 melanona and 461 dysplastic.
+Case~3 considered imbalance training, by removing the synthetic samples from each of the training, testing and validation sets.
+For the sake of comparison of the three cases, only the results obtained by the best performing feature sets (i.e. the results highlighted in gray cell colors in Table~\ref{tab:globalmapExp2}) are listed in Table~\ref{tab:threecasecomExp2}.
+\input{Chapter3/Table8.tex}
+The first part of this table shows the results obtained with the \ac{rf} classifier for the three cases and the second part shows the results obtained with the \ac{svm}.
+
+
+\subsubsection{Discussion}
+The results listed in Table~\ref{tab:threecasecomExp2} indicate the benefits of \ac{dos}-balancing and balanced training in general.
+It is clear that imbalanced training, as expected, overfits the majority class. 
+In this case, the performance of the \ac{svm} was poorer, but \ac{rf} was also biased towards the majority class.
+
+In the balanced training case (without the \ac{dos} balancing), the \ac{rf} ensemble achieved a mean \ac{se} and \ac{sp} of 69$\%$ and 67$\%$, respectively. 
+In turn, the \acs{svm} reached an average \ac{se} and \ac{sp} of 61$\%$ and 71$\%$, respectively. 
+These results indicate that the classifiers performed slightly better than average, with many  \acf{fp} samples (approximately more than 100 dysplastic lesions were classified as melanoma in each test). 
+In comparison, in the \ac{dos}-balanced training case, the average \ac{se} and \ac{sp} over all the features, were measured at 79$\%$ and 91$\%$, respectively.
+The results show that besides increasing the \ac{se}, the amount of \ac{fp} predictions was reduced notably (25--37 dysplastic lesions were misclassified). 
+In general, the performance of the \ac{rf} classifier was superior to the \ac{svm} in this experiment.
+
+\subsubsection{Conclusion}
+The tests carried out in this experiment highlight the importance of a balanced training and balancing strategies. 
+Data space over-sampling method granted the possibility of a balanced training using more samples from the dataset without reducing the test set. 
+Increasing the training set by a factor of 3 improved the results remarkably. 
+And it may be expected that balanced training with more samples will lead to even better results.
+
+%----------------------------------------------------------------------------------------------------------------------------------------------------
+\subsection{Experiment~\#3\\
+\small{Melanoma~.vs~ Benign and Dysplastic nevi, Ensemble approach on PH$^{2}$ dataset}}
+This experiment was conducted to evaluate the impact of the ensembles and features selected in the experiments~\#1 and \#2 on the PH$^{2}$~\cite{mendoncca2013ph} dataset.
+This dataset contains 40 melanoma, 80 benign and 80 dysplastic lesions with their respective groundtruth segmentations, so there was no need to apply our segmentation algorithm.
+%The segmentation of all the lesions are provided as well, therefore we did not perform our implemented segmentation approach.
+In this experiment, we used a subset of 193 images, which included 39 melanoma, 78 benign and 76 dysplastic lesions.
+Seven images were excluded due to artifacts.
+
+In Sect.~\ref{sec:chp3-sec2}, we mentioned the research studies that employed this dataset~\cite{barata2013two,barata2013towards,ruela2013role,ruela2013color}.
+Among these, Barata~et al.\,\cite{barata2013two} was highlighted as the main benchmark for future comparison.
+In this work, the authors used locally and globally mapped color and gradient features. 
+The locally mapped features were represented by the \ac{bow} approach and were classified by means of \ac{adb}, the \ac{svm} and k-\ac{nn}.
+The benchmark results reported in~\cite{barata2013two} are listed in Table~\ref{tab:PH2benchmark}.
+Since the \ac{bow} representation was already explored by the authors, and also due to the fact that \ac{bow} did not outperform the \ac{rf} ensemble on global features in Experiment~\#1, we chose to test only the ensemble performance in this experiment.
+\input{Chapter3/Table9.tex}
+
+Here, we used the same individual and combined features as in Experiment~\#1.
+These features were globally mapped from the lesions' segmented areas and were represented in their original feature space.
+\ac{rf} and weighted combination ensembles were used.
+The \ac{rf} ensemble was trained with 100 unpruned trees, while the weighted ensemble was created based on the combination of the \ac{svm}, an \ac{lda}, and \ac{rf}.
+We also employed performance weighting, which makes the weight of each base learner proportional to its sensitivity performance on the validation set. 
+We chose sensitivity instead of accuracy, because in cancer classification, \ac{se} has more importance than \ac{acc}.
+
+The framework in this experiment was evaluated using \ac{loocv} in line with the PH$^{2}$ benchmark~\cite{barata2013two}.
+In order to tackle the class imbalance problem, Barata.~et al\,\cite{barata2013two} suggested replicating melanoma features in the training set using additional Gaussian noise ($N(\mu, \sigma) = N(0, 0.0001)$).
+Our approach, similar to Experiment~\#2, was to use the data space and generate synthetic melanoma images by deforming the originals using the \ac{bd} and \ac{rdgm} methods.
+This technique yielded a nearly balanced dataset with 117 melanoma and 154 benign and dysplastic lesions.
+During the evaluation, if a melanoma sample was included in a test set, its two synthetic images were included as well.
+Besides, there was no need for the validation set for \ac{rf}, but half of the training set was kept for the validation of the weighted combination ensemble.
+%Since \ac{rf} is created based on the bootstraps of the training set, there was no need for the validation set, in the contrary to weighted combination ensemble where half of the training set was kept for the validation set.
+The results of this experiment are presented in Table~\ref{tab:globalmapExp3}.
+
+\input{Chapter3/Table10.tex}
+
+\subsubsection{Discussion}
+The comparison between the current experiment's results and the benchmark reveals the potential of the proposed method. 
+In Table~\ref{tab:globalmapExp3}, the figures showing a better outcome than the benchmark are highlighted in bold. 
+The highest performance of the benchmark, as shown in Table~\ref{tab:PH2benchmark}, was achieved by the \ac{bow} representation of locally mapped color features with \ac{se} and \ac{sp} of 93$\%$ and 84$\%$, respectively.
+The global mapping of the gradient features showed the second best \ac{se} and \ac{sp} of 93$\%$ and 78$\%$, respectively.
+In this experiment, the combination of colors ($C_{1},C_{2}$), \ac{clbp} and opponent color angle ($T_{1},C_{2}$), and the \ac{clbp} and both color features ($T_{1},C_{1},C_{2}$) outperformed the benchmark.
+Among these, ($T_{1},C_{2}$) achieved the best \ac{se} and \ac{sp} of 94.02$\%$ and 92.21$\%$, respectively.
+As for the ensemble performance, \ac{rf} proved better than the weighted combination of \ac{rf}, the \ac{lda} and the \ac{svm}. 
+This could be due to the fact that with a validation set, the base learners of the weighted combination ensemble are trained on half of the training data, which may have weakened its performance.
+
+\subsubsection{Conclusion}
+We proposed an automated classification framework based on a global feature extraction and ensemble learning. 
+The framework was designed for the differentiation of melanoma from benign and dysplastic lesions.
+The evaluation results from the PH$^{2}$ dataset demonstrated that ensembles such as \ac{rf} outperform single learner methods.
+Using the \ac{rf} ensemble on globally mapped color and texture features, our framework achieved the highest \ac{se} and \ac{sp} of 94$\%$ and 92$\%$, respectively.
+In general, the results confirm the role and importance of color features for the detection and discrimination of melanoma lesions.
+However, the significance of texture features omitted in previous research works cannot be denied. 
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------
+\subsection{Experiment~\#4\\
+\small{Melanoma~vs.~Benign and Dysplastic nevi, Study of balancing techniques on $PH^{2}$ dataset}}
+\label{subsec:chp3-exp4}
+This experiment studies the effect of balancing strategies on melanoma classification.
+In order to make future comparisons possible, we chose to work with the PH$^{2}$ dataset. 
+The experiment was conducted on a subset of the original dataset with an imbalance ratio of 1:3, which was chosen deliberately to comply with the requirements of the \ac{dos} method.
+The \ac{dos} method synthetically generates two additional melanoma images by deforming the original sample. 
+Subsequently, the subset was composed of 39 melanoma and 117 benign and dysplastic lesions, which were randomly selected.
+
+Based on the results of Experiment~\#3, we considered two color features (color statistics ($C_{1}$) and the opponent color angle space ($C_{2}$)) and two texture features (\ac{clbp} ($T_{1}$) and  Gabor filters ($T_{3}$)).
+Using these individual features and their combinations, the 9 following feature sets were compared; $\{ C_{1}; C_{2}; C_{1,2}; T_{1}; T_{3}; T_{1,3}; \{T_{1}, C_{1,2}\}; \{T_{2}, C_{1,2}\}; \{T_{1,2}, C_{1,2}\}\}$.
+These features were globally extracted from the segmented part of each sample and were represented in their original space.
+Twelve different balancing techniques, \ac{dos}, \ac{ros}, \ac{smote}, \ac{rus}, \ac{tl}, \ac{cus}, \ac{nm1}, \ac{nm2}, \ac{nm3}, \ac{ncr}, \ac{smote}+\ac{enn}, and \ac{smote}+\ac{tl}, were used to create a balanced training set.
+We used the \ac{rf} classifier with 100 unpruned trees and the original feature dimension of size $M = \{144, 84, 228, 26, 48, 74, 254, 276, 302\}$.
+
+In order to validate the classifier with a stratified sampling, we used a 10-fold cross-validation scheme.
+However, contrary to the common 10-fold cross-validation, at each iteration, eight folds were kept for training and two for testing. 
+%The training set is balance using previously described imbalance techniques (see Sect.~\ref{sec:chp2-sec5}). 
+%The classification performance is reported in terms of the average \ac{se}~(TPR) and \ac{sp}~(TNR) over the 10 cross-validation runs. 
+In order to find the best performance, similar to \cite{barata2013towards}, we used a cost function, which provides a trade-off between the \ac{se} and \ac{sp}.
+It is formulated as follows:
+
+\begin{equation}\label{eq:cost}
+C = \frac{c_{10}(1-\ac{se})+c_{01}(1-\ac{sp})}{c_{10}+c_{01}} \,,
+\end{equation}
+
+\noindent where $c_{10}$ and $c_{01}$ are the costs of incorrectly classifying melanoma and non-melanoma lesions, respectively.
+As it is more important to correctly classify melanoma lesions (i.e., high \ac{se}), $c_{10}$ should be penalized more.
+%Since in cancer classification such as melanoma, correctly identifying the cancer lesions has high importance (i.e., high \ac{se}). 
+%Thus incorrect classification of melanoma is not desired and $c_{10}$ is a greater error and evidently more costly and should be penalized more. 
+In order to achieve a high \ac{se} without significantly reducing the value of \ac{sp}, Barata~et al. proposed setting $c_{10} = 1.5 \times c_{01}$ and $c_{01} = 1$~\cite{barata2013towards}.  
+We considered the same configuration for our cost function. 
+
+The classification results obtained in this experiment are reported in Table~\ref{tab:globalmapExp4}, which can be divided into three main parts that show the results for imbalanced data (IB), balancing in the data space (\ac{dos}) and balancing in the feature space.
+These strategies are separated by double horizontal lines.
+The strategies applied in the feature space are subdivided into either \ac{os}, \ac{us} or a combination of \ac{os} followed by \ac{us} (see horizontal dashed line in Table~\ref{tab:globalmapExp4}).
+In this table, based on the cost function defined above, the best results for each feature set are highlighted in the shaded cells.
+Table~\ref{tab:table11} shows the cost values for each configuration. 
+Strategies with low cost functions are synonymous with a better \ac{se} and \ac{sp} trade-off.
+\afterpage{
+\input{Chapter3/Table11.tex}
+\input{Chapter3/Table12.tex}
+}
+\subsubsection{Discussion}
+The results of this experiment indicate that balancing techniques are essential for improving the classification performance. 
+% Certainly, some techniques are more subjects to the feature representations than others. 
+%However, the improvements in comparison to imbalanced classification is evident. 
+Thus, the \ac{us} techniques and their combination with \ac{os} performed better than the \ac{os} techniques alone. 
+In turn, the \ac{os} techniques applied in the data space outperformed those applied in the feature space.
+Due to the similar characteristics of melanoma and dysplastic lesions, their images are expected to have overlapping feature spaces. 
+Subsequently, the misleading samples could be removed using \ac{us} and thus ensure a better performance.
+%\input{Chapter3/Table11.tex}
+
+Specifically to our purpose, the \ac{nm2} algorithm with the combination of all the features ($T_{1,3}$, $C_{1,2}$) with the lowest cost values, achieved the highest \ac{se} and \ac{sp} of 91.25$\%$ and 81.67$\%$, respectively. 
+Using the same feature combination, \ac{rus} achieved the second lowest cost with a \ac{se} and \ac{sp} of 92.50$\%$ and 78.33$\%$, respectively. 
+The \ac{nm2} algorithm also achieved the third lowest cost with the combination of the Gabor and the color features ($T_{3}$, $C_{1,2}$) resulting in a \ac{se} and \ac{sp} of 92.5$\%$ and 77.50$\%$, respectively.  
+
+%\input{Chapter3/Table12.tex}
+Among the color descriptors, the opponent color angle and hue histogram feature descriptor, $C_{2}$, achieved better results than the widely used color statistics, $C_{1}$. 
+In the texture domain, Gabor descriptor, $T_{3}$, outperformed \ac{clbp} features, $T_{1}$.
+
+\subsubsection{Conclusion}
+In this study, we analyzed the impact of data balancing techniques on the classification of malignant melanoma. 
+We presented an extensive comparison of twelve \ac{os} and \ac{us} techniques in both the feature and data space. 
+The results obtained particularly highlight the advantage of balancing the training set over using the original data, particularly for the methods based on \ac{us} (\ac{nm2}, \ac{ncr}) and a combination of \ac{os} and \ac{us} in the feature space.
+Furthermore, \ac{os} in the data space outperformed the \ac{os} techniques in the feature space.
+Finally, this study showed once again that the combination of color and texture features outperforms any other feature combination. 
+
+
+%---------------------------------------------------------------------------------------------------------------------------------------------------------------
+\subsection{Experiment~\#5\\
+\small{Malignant~vs.~Benign and Dysplastic nevi, Sparse coded features using PH$^{2}$ dataset}}
+In this experiment, we evaluated the effects of sparse-coded features on melanoma classification.
+We proposed a more general framework that does not rely on image preprocessing and lesion segmentation.
+%Using sparse-coded features, in this experiment we proposed a more general framework which does not rely on preprocessing and segmentation of the lesions.
+Subsequently, it consists only of the feature extraction, representation and classification steps.
+Figure~\ref{fig:SparseCodedFramework} shows the proposed framework of this experiment.
+\input{Chapter3/SparseCodingFrameWork.tex}
+Similar to experiments~\#3 and \#4, we used a subset of the PH$^{2}$ dataset, containing 39 melanoma, 78 dysplastic and 76 benign lesions.
+Seven lesions were excluded due to artifacts in the images.
+
+Low-level texture (\ac{sift}) and color (hue and opponent color space angle histogram ($C_{2}$) and R, G, B intensity ($C_{3}$)) features were extracted from the patches in dermoscopic images via local mapping.
+%All these features are extracted from local patches in the dermoscopic images (local mapping).
+The high-level descriptors are then computed using sparse-coded techniques.
+The main goal of sparse modeling is to efficiently represent the images as a linear combination of a few typical patterns, called atoms, selected from the dictionary (see Sect.~\ref{sec:chp2-sec4}).
+Here we intend to use a sparse representation of low-level features for melanoma classification.
+
+Sparse coding consists of three main steps: (i) dictionary learning, (ii) low-level feature projection, and (iii) feature pooling.
+The dictionary ($D$) is learned using K-\ac{svd} which is a generalized version of \textit{k}-means clustering that uses \ac{svd}.
+Once the dictionary is learned, each low-level feature extracted from a patch can be projected using D to form a set of sparse codes.
+This set is further max-pooled to build a final global descriptor to characterize the whole image.
+Finally, the descriptor obtained after max-pooling is used to train an \ac{rf} classifier.
+%\input{Chapter3/Table13.tex}
+
+The high-level descriptors, is then computed using sparse coded techniques.
+The main goal of sparse modeling is to efficiently represent the images as linear combination of a few typical patterns, called atoms, selected from the dictionary (see Sect.~\ref{sec:chp2-sec4}).
+
+In this experiment, we used a patch size of $\SI{10}{px} \times \SI{10}{px}$ to extract the features from all the images. 
+The class imbalance problem, similar to \cite{barata2013two}, was tackled by over-sampling the minority class.
+New samples were generated by randomly repeating original samples of the minority class with additional Gaussian noise $\mathcal{N}(0, 0.0001)$.
+The three low-level features were sparsely encoded considering three sparsity levels $\lambda=\{2,4,8\}$ and a different number of atoms $K = \{100, 200, \cdots, 1000\}$.
+The classification was performed using a \ac{rf} classifier with 1000 unpruned trees using the Gini criterion in a 10-fold cross-validation model.
+However, different from the usual 10-fold cross-validation, 8 folds were kept for training (80$\%$) and 2 for testing (20$\%$) at each iteration.
+The results of this experiment are given in Table.~\ref{tab:globalmaphighrepExp5} in terms of \ac{se} and \ac{sp}.
+
+\input{Chapter3/Table13.tex}
+
+\subsubsection{Discussion}
+The highest classification rates with respect to each feature type and each sparsity level are highlighted in different shades of gray from dark to light. 
+The results show that $C2$ and \ac{sift} sparse-coded features performed better with sparsity levels of 2 and 4, respectively, while $C3$ was better with a sparsity level of 8. 
+
+In general, larger dictionary sizes led to better classification performance, independently of the feature type and the sparsity level.
+More precisely, dictionaries with more than 600 atoms are most suitable. 
+Figure~\ref{fig:besRes} illustrates the 12 best results. 
+Although, the \ac{sift} and $C2$ sparse-coded features achieved a better classification performance in comparison with the $C3$, it must be noted that $C3$ features represented the images in their simplest form and created comparable results. 
+
+\subsubsection{Conclusion}
+In this experiment, we proposed a classification framework for melanoma lesions based on sparse representation of low-level features. 
+This framework does not need the steps of image pre-processing or lesion segmentation and provides a more general algorithm to solve this problem. 
+We proposed using the \ac{sift} as a texture descriptor and the hue and opponent color space histogram as color descriptor ($C_{2}$).
+We also considered representing the images in their simplest form and considered the second color descriptor as R,G and B intensity values ($C_{3}$).
+An extensive comparison based on different dictionary sizes and several sparsity levels was carried out on the $PH^{2}$ dataset. 
+The results highlighted the advantage of the proposed method, where the \ac{rf} classifier and a sparse representation of \ac{sift} features, with a dictionary size of 800 and a sparsity level of 2, achieved the highest performance in terms of \ac{se} and \ac{sp} (100\% and 90.3\%, respectively).
+\input{Chapter3/FigureExp5.tex}		
+	
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../thesis"
+%%% End: 

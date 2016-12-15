@@ -1,0 +1,71 @@
+% Make sure that floats on a page without text appear at the top
+\makeatletter
+	\setlength{\@fptop}{0pt}
+\makeatother
+
+% Declare the counter for table row counting
+\newcounter{tableRow}
+\newcommand{\showcounter}{\stepcounter{tableRow}\arabic{tableRow}}
+%\usepackage{chngcntr}
+%\counterwithout{footnote}{chapter}
+
+%\ifpdf
+%    \pdfinfo { /Title  (CUED PhD and MPhil Thesis Classes)
+%               /Creator (TeX)    
+%               /Producer (pdfTeX)
+%               /Author (Harish Bhanderi harish.bhanderi@cantab.net)
+%               /CreationDate (D:20030101000000)  %format D:YYYYMMDDhhmmss
+%               /ModDate (D:20030815213532)
+%               /Subject (Writing a PhD thesis in LaTeX)
+%               /Keywords (PhD, Thesis)}
+%    \pdfcatalog { /PageMode (/UseOutlifnes)
+%                  /OpenAction (fitbh)  }
+%\fi
+
+%\ifpdf
+%  \author{\href{mailto:harish.bhanderi@cantab.net}{Harish Bhanderi}}
+%  \collegeordept{\href{http://www.eng.cam.ac.uk}{Department of Engineering}}
+%  \university{\href{http://www.cam.ac.uk}{University of Cambridge}}
+% insert below the file name that contains the crest in-place of 'UnivShield'
+%  \crest{\includegraphics[width=30mm]{UnivShield}}
+%\else
+%  \author{Harish Bhanderi}
+%  \collegeordept{Department of Engineering}
+%  \university{University of Cambridge}
+% insert below the file name that contains the crest in-place of 'UnivShield'
+%  \crest{\includegraphics[bb = 0 0 292 336, width=30mm]{UnivShield}}
+%\fi
+%
+% insert below the file name that contains the crest in-place of 'UnivShield'
+% \crest{\IncludeGraphicsW{UnivShield}{40mm}{14 14 73 81}}
+%
+
+\title{Classification of melanoma lesions using non-conventional screening techniques}
+\author{Mojdeh Rastgoo}
+%\collegeordept{\href{http://www.eng.cam.ac.uk}{Department of Engineering}}
+%\university{\href{http://www.cam.ac.uk}{University of Cambridge}}
+\crest{\includegraphics[width=80mm]{Figures/logo/UDG.png}}
+\phd{PhD Thesis}
+\supervised{Supervised by: Dr. Rafael Garc\'{\i}a, Franck Marzani and Oliver Morel}
+
+\degree{DOCTORAL PROGRAM IN TECHNOLOGY}
+\degreedate{2015}
+
+\renewcommand{\submittedtext}{Work submitted to the University of Girona in partial fulfillment of the requirements for the degree of Doctor of Philosophy}
+
+% turn of those nasty overfull and underfull hboxes
+\hbadness=10000
+\hfuzz=50pt
+
+% Put all the style files you want in the directory StyleFiles and usepackage like this:
+\usepackage{latex/filesystem/watermark}
+
+% Comment out the next line to get single spacing
+\onehalfspacing
+
+% CHECK THIS LATER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+%\includeonly{Abstract/abstract, Dedication/dedication, Acknowledgement/acknowledgement}
+%\includeonly{Chapter4/chapter4, Chapter5/chapter5}
+%\includeonly{Abstract/abstract, Chapter5/chapter5, Conclusions/conclusions}
+%\includeonly{Dedication/dedication, Acknowledgement/acknowledgement, Appendix/appendix}
+%\includeonly{Dedication/dedication}

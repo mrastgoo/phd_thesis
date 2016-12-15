@@ -1,0 +1,259 @@
+
+\subsection{Feature Extraction}\label{chp3-subsec3}
+Reviewing the literature, one can observe that some features are used more widely than others, such as color and shape characteristics. 
+This is due to the fact that computerized systems are developed to mimic dermatologists' assessment, by using for instance the discriminative characteristics defined in the clinical ``ABCD'' rule.
+Thus, we also incorporate some common shape and color descriptors along with texture features.
+Shape features ($S$), color statistics and histograms ($C_{1}$), and \ac{glcm} features ($T_{2}$) are chosen because they were used widely in the past.
+However, the rest of the descriptors, such as the Opponent Color Space ($C_{2}$), color intensities ($C_{3}$), \ac{lbp} ($T_{1}$), Gabor Filter ($T_{3}$), \ac{hog} ($T_{4}$), and $SIFT$ ($T_{5}$) are chosen because they are efficient and well established color and texture descriptors and have barely been used for the detection of melanoma.
+These features are summarized in Table~\ref{Tab:Table2} and explained in the following.
+
+%\input{Chapter3/Figure4.tex}	
+%\input{Chapter3/Table3.tex}
+\begin{description}
+\item[Shape ($S$)] features were created with reference to \cite{maglogiannis2009overview}.
+This group of descriptors measures thinness ratio, border asymmetry, distance variance of border points to the center and statistics (minimum, maximum, average and variance) of gradient operator along the lesion border.
+	Thinness ratio measures the circularity of a lesion: $TR = 4\pi Area / Perimeter^2$. 
+	And border asymmetry computes the percent of non-overlapping area after hypothetical folding of the lesion around its greatest diameter. 
+
+\item[Color Variance and Color Histogram ($C_{1}$)] is a feature descriptor which has been used widely in the past for the detection of melanoma.
+This descriptor contains the mean and variance of nine color channels ($R,G,B, H,S,V, L^*,a^*,b^*$) and histograms for $R$, $G$ and $B$ channels.
+Each histogram is constructed with $42$ bins, leading to a final descriptor of size $(9\times2)+(42\times3) = 144$.
+
+\item[Opponent Color Space Angle and Hue Histogram ($C_{2}$)] were first proposed in \cite{van2006coloring} as local color features.
+These descriptors were chosen due to their robustness to photometric (shadow, shading, specularities and changes of the light source) and geometrical (viewpoint, zoom and object orientation) variation.
+These rotation invariant and robust descriptors are derived from $RGB$ channels using the following equations: 
+
+\begin{subequations}
+\begin{align}
+	\begin{pmatrix}
+	\mathcal{O}_{1}\\\mathcal{O}_{2} \\\mathcal{O}_{3}
+	\end{pmatrix} & =
+	\begin{pmatrix}
+	(R-G)/\sqrt{2}\\
+	(R+G-2B)/\sqrt{6}\\
+	(R+G+B)/\sqrt{3}
+	\end{pmatrix}~, \label{eq:opponent}\\	 
+	H^{\mathcal{O}} & = \arctan\left(\frac{\sqrt{3}(R-G)}{R+G-2B}\right)~,\\
+	\theta_{d}^{\mathcal{O}} & = \arctan\left(\frac{\sqrt{3}(R'_{d}-G'_{d})}{R'_{d}+G'_{d}-2B'_{d}}\right)~,	
+\end{align}
+\label{eq:HueOppAngle}
+\end{subequations}	
+\noindent Where $d$ denotes the spatial coordinates of ($x$,$y$) and $R'_{d}$, $G'_{d}$, $B'_{d}$ denote the first order derivatives of $RGB$ with respect to the coordinates.
+This color descriptor is built by taking a 42 bins histogram for the opponent angle $\theta^{O}_{d}$ and the hue channel $H^{\mathcal{O}}$, for a final descriptor size of 84 dimensions.
+
+\item[Color intensities ($C_{3}$)] represent the color information in a simplest form, their intensities.
+This descriptor concatenates the color intensities $R$, $G$ and $B$ to create the feature descriptor.
+=======
+\input{Chapter3/Table2.tex}
+%\input{Chapter3/Figure4.tex}	
+%\input{Chapter3/Table3.tex}
+\begin{description}
+
+	
+
+	\item[Color intensities ($C_{3}$)] represent the color information in a simplest form---their intensities.
+	This descriptor concatenates color intensities in $R$, $G$ and $B$ to create a feature descriptor.
+>>>>>>> KK_corrections
+
+	\item[\acf{clbp} ($T_{1}$)] is a discriminative rotation invariant feature descriptor proposed by Guo~et al.~\cite{guo2010completed}.
+	\ac{clbp} is a completed version of \ac{lbp}~\cite{ojala2002multiresolution}, especially designed for texture classification.
+<<<<<<< HEAD
+	In both descriptors, a central pixel ($g_c$) in a defined neighborhood by radius $R$ is compared to its neighborhood pixels ($g_{p}$, with distance of $R$ from the central pixel) and their differences are encoded in terms of binary patterns.
+	The binary patterns are calculated for each pixel in the given image and their histogram, defines the final descriptor.
+=======
+	In both descriptors, a central pixel ($g_c$) in a neighborhood defined by radius $R$ is compared to its neighborhood pixels ($g_{p}$, at distance $R$ from the central pixel) and their differences are encoded in terms of binary patterns.
+	The binary patterns are calculated for each pixel in a given image and their histogram defines the final descriptor.
+>>>>>>> KK_corrections
+		\input{Chapter3/Figure8.tex}		
+	The local patterns of the \ac{clbp} descriptor encode the magnitude and sign differences between the central pixel and its neighbors as well as the grey level of the central pixel rather than only the sign differences (general \ac{lbp}).
+	Figure \ref{fig:CLBPFig} represents this process.
+	The sign $CLBP_S$, magnitude $CLBP_M$, and central grey level $CLBP_C$ binary patterns are created by encoding the local distance components and the central grey levels.  
+
+<<<<<<< HEAD
+In the proposed framework, the rotation invariant, uniform, and normalized \ac{clbp} features with radius of 3 and $24$ samples are calculated.
+The radius and number of samples were chosen after testing the algorithm with different neighboring samples such as $\{8, 16, 24\}$ with radius of $\{1,2,3\}$, respectively.
+
+   \item[\acf{glcm} ($T_{2}$)] is one of earliest texture descriptor approaches, proposed by Haralick.~et al.\,\cite{haralick1973textural}.
+   This approach is used widely for texture analysis applications including melanoma detection.
+   In this approach, texture features are extracted based on statistics measurement of co-occurrence probabilities.
+   The co-occurrence distribution represents the occurrence probabilities of all pairwise combinations of the gray levels in a defined window~\cite{clausi2002analysis}.
+   In other words, it counts how often a pixel with gray intensity of $i$ occurs adjacent to a pixel with gray intensity of $j$.
+   The spatial distance and orientation of interests, between the pixels are defined by distance $D$ and angle of $\theta$.
+   The co-occurrence probability between grey level $i$ and $j$ is defined using  the expression in Eq.~\ref{eq:GLCM}, where $P_{ij}$ represents the conditional probability of occurrences of grey value $i$ adjacent to grey value of $j$, given the distance and orientation of $D$ and $\theta$, respectively.
+   Here $G$ is the quantized number of grey levels.    
+   \begin{equation}
+   C_{ij} = \frac{P_{ij}}{\sum_{i,j=1}^{G} P_{ij}}~.
+   \label{eq:GLCM}
+   \end{equation}
+   
+   The images are quantized to 32 grey levels and the co-occurrence probabilities are calculated given the distance ($D$) of 9 pixels and four different orientations of \{$\theta$ = $0^{\circ}$, $45^{\circ}$, $90^{\circ}$, $135^{\circ}$\}.
+   The final texture descriptor is an average of stated four measurements.
+   This approach allows us to have rotation invariant descriptor.
+   For each orientation 22 texture features as a combination of features proposed by \cite{haralick1973textural,clausi2002analysis,soh1999texture} are calculated.
+   These features are listed in Table.~\ref{tab:glcmfeatures}
+   The proposed distance and quantized value were chosen after testing variety of distances $\{1, 3, 7, 9\}$ and quantized grey-levels $\{16, 32, 64\}$.
+      
+   \input{Chapter3/Table3.tex}
+      
+	\item[Gabor Filter ($T_{3}$)] is a linear filter which extracts edges and texture information from the image and was found to perform similar to human visual perception~\cite{marvcelja1980mathematical}.
+	Gabor filter is defined as a modulation of a Gaussian kernel with a sinusoidal wave.
+	The Gabor expression is shown in Eq.~\ref{eq:Gabor}.
+	This function is basically a Gaussian with standard deviations of $\sigma_{x}$ and $\sigma_{y}$ that vary along $x$ and $y$ axes while it is modulated by a complex sinusoidal with a wavelength of $\lambda$.
+	In this equation, $\theta$ represents the orientation of the Gabor filter, $\psi$ is the phase offset, and $s$ is the scale factor.	
+	\begin{subequations}
+	\begin{align}
+	g(x,y) & = \exp \left(-\left(\frac{x'^2}{2\sigma_{x}^{2}}+\frac{y'^{2}}{2\sigma_{y}^{2}}\right)\right) \cos\left(2\pi\frac{x'}{\lambda}+ \psi\right)~, \\
+	x'& = s(x\cos\theta + y\sin\theta)~,\\
+	y' &= s(-x\sin\theta + y\cos\theta)~.	
+=======
+	In the proposed framework, we consider a radius $R=3$ with 24 samples to calculate the rotation invariant, uniform and normalized \ac{clbp} features. 
+	This radius and the number of samples were chosen after testing the algorithm with different neighboring samples $\{8, 16, 24\}$ with radii $\{1,2,3\}$.
+
+	\item[\acf{glcm} ($T_{2}$)] is one of the earliest texture descriptor methods, proposed by Haralick.~et al.~\cite{haralick1973textural}, used widely for texture analysis applications, including melanoma detection.
+	In this approach, texture features are extracted based on the statistical measurement of co-occurrence probabilities.
+	The co-occurrence distribution represents the occurrence probabilities of all the pairwise combinations of the grey levels in a defined window~\cite{clausi2002analysis}.
+	In other words, it counts how often a pixel with the grey intensity $i$ occurs adjacent to a pixel with the grey intensity $j$.
+	The spatial distance and orientation of interests \textcolor{red}{(is this the right word?s)} between the pixels are defined by the distance $D$ and angle $\theta$.
+	The co-occurrence probability between grey levels $i$ and $j$ is defined in Eq.~\ref{eq:GLCM}, where $P_{ij}$ represents the conditional probability of occurrences of the grey value $i$ adjacent to the grey value $j$ given the distance $D$ and orientation $\theta$.
+	Here, $G$ is the quantized number of grey levels:
+	\begin{equation}
+    C_{ij} = \frac{P_{ij}}{\sum_{i,j=1}^{G} P_{ij}}.   
+    \label{eq:GLCM}
+    \end{equation}
+   
+	In this framework, we quantize the images to 32 grey levels and calculate co-occurrence probabilities given the distance ($D$) of 9 pixels and four different orientations of $\theta$ = \{$0^{\circ}$, $45^{\circ}$, $90^{\circ}$, $135^{\circ}$\}.
+    The final texture descriptor is an average of these four measurements allowing us to obtain a rotation invariant descriptor.
+    For each orientation, a set of 22 texture features (proposed in \cite{haralick1973textural, clausi2002analysis, soh1999texture}) are calculated.
+    These features are listed in Table.~\ref{tab:glcmfeatures}
+    The proposed distance and quantization values were chosen after testing a variety of distances $\{1, 3, 7, 9\}$ and quantized grey-levels $\{16, 32, 64\}$.
+    
+    \textcolor{red}{(!)Make sure that Latex puts the table correctly.}
+    \input{Chapter3/Table3.tex}
+
+    \item[Gabor Filter ($T_{3}$)] is a linear filter which extracts edge and texture information from the image, and was found to perform similar to human visual perception~\textcolor{red}{(Reference needed)}.
+	Gabor filter is defined as a modulation of a Gaussian kernel with a sinusoidal wave (see Eq.~\ref{eq:Gabor}).
+	This function is formed by a Gaussian with standard deviations of $\sigma_{x}$ and $\sigma_{y}$ that vary along $x$ and $y$ axes while modulated by a complex sinusoidal with a wavelength of $\lambda$.
+	In this equation, $\theta$ represents the orientation of the Gabor filter, $\psi$ is the phase offset, and $s$ is the scale factor.	
+	\begin{subequations}
+	\begin{align}
+	g(x,y) & = \exp \left(-\left(\frac{x'^2}{2\sigma_{x}^{2}}+\frac{y'^{2}}{2\sigma_{y}^{2}}\right)\right) \cos\left(2\pi\frac{x'}{\lambda}+ \psi\right), \\
+	x'& = s(x\cos\theta + y\sin\theta),\\
+	y' &= s(-x\sin\theta + y\cos\theta).	
+>>>>>>> KK_corrections
+	\end{align}
+	\label{eq:Gabor}
+	\end{subequations}
+<<<<<<< HEAD
+	
+In this work as described by \cite{Manjunath96-45}, the images are convolved with a set of Gabor filters characterized by different orientations and scales.
+The features are created by considering the mean and variance of the resulting filtering.
+We used 6 different orientations (\{$\pi/6$, $\pi/3$, $\pi/2$, $2\pi/3$, $5\pi/6$, $\pi$\}) along 4 scales, downsizing by the factor of two between each scale.
+The first 6 filters are shown in Fig.~\ref{fig:GaborOrientation}.
+=======
+	In this work, as described in \cite{Manjunath96-45}, the images are convolved with a set of Gabor filters characterized by different orientations and scales.
+	The features are created by considering the mean and variance of the filtering result.
+	We used 6 different orientations (\{$\pi/6$, $\pi/3$, $\pi/2$, $2\pi/3$, $5\pi/6$, $\pi$\}) along 4 scales, downsizing \textcolor{red}{(the image?)} by the factor of two between each scale.
+	The first \textcolor{red}{(Are there more?)} 6 filters are shown in Fig.~\ref{fig:GaborOrientation}.
+	\begin{figure}
+	\centering
+	\subfloat[$\pi/6$]{
+	\includegraphics[scale=0.06]{Chapter3/Figures/Gabor-pi-6.png}}
+	\subfloat[$\pi/3$]{
+	\includegraphics[scale=0.06]{Chapter3/Figures/Gabor-pi-3.png}}
+	\subfloat[$\pi/2$]{
+	\includegraphics[scale=0.06]{Chapter3/Figures/Gabor-pi-2.png}}
+	\subfloat[$2\pi/3$]{
+	\includegraphics[scale=0.06]{Chapter3/Figures/Gabor-2pi-3.png}}
+	\subfloat[$5\pi/6$]{
+	\includegraphics[scale=0.06]{Chapter3/Figures/Gabor-5pi-6.png}}
+	\subfloat[$\pi$]{
+	\includegraphics[scale=0.06]{Chapter3/Figures/Gabor-pi.png}}
+	\caption[Six orientations of the Gabor filter]{The 6 orientations of the Gabor filter.}
+	\label{fig:GaborOrientation}
+	\end{figure}
+>>>>>>> KK_corrections
+
+	\item[\acf{hog} ($T_{4}$)] was proposed in \cite{dalal2005histograms}.
+	In simple terms, \ac{hog} counts the occurrences of gradient orientations in localized patches of an image.
+	This descriptor is invariant to geometric and photometric transformations.
+	\ac{hog} calculates the gradient values of the image by applying derivative filters ($[-1,0,1]$, $[-1,0,1]^{T}$) or the Sobel mask to the image and measuring the magnitude and orientations of the gradients.
+	Then, it creates the weighted histograms of gradient orientations in the image patches.
+	The orientations are weighted either by the magnitude of gradients or by a function of gradient magnitudes.
+	In order to account for changes in illumination and contrast, the cells \textcolor{red}{(patches? the word 'cell' didn't occur before.)} are grouped into larger spatially connected blocks, and the final descriptor is formed by a vector of the normalized cell histograms from all of the blocks.
+	
+
+<<<<<<< HEAD
+	\item[\acf{sift} ($T_{5}$)] proposed by Lowe et al.\cite{lowe2004distinctive}, is a rotation, translation and scale invariant feature descriptor, which is used successfully by computer vision society.
+	To identify the key-points, this descriptor, first convolves the original image ($I(x,y)$) with Gaussian kernels ($G(x,y,k\sigma)$) at different scales ($k\sigma$).
+	\begin{equation}
+	L(x,y,k_{i}\sigma) = G(x,y,k_{i}\sigma)*I(x,y)~.
+	\label{eq:GaussianConv}
+	\end{equation}		
+	\noindent Then creates the difference ($D$) of successive Gaussian blurred images (\acf{dog}) and identifies the key-points as the local maxima and minima of \ac{dog} images across the scales.
+	\begin{equation}
+	D(x,y,\sigma) = L(x,x, k_{i}\sigma) - L(x,x, k_{j}\sigma)~.
+=======
+	\item[\acf{sift} ($T_{5}$)] proposed by Lowe et al.\cite{lowe2004distinctive}, is a dense rotation, translation and scale invariant feature descriptor successfully used in the computer vision community.
+	In order to identify the key points, this descriptor, first convolves the original image ($I(x,y)$) with Gaussian kernels ($G(x,y,k\sigma)$) at different scales ($k\sigma$) and creates the difference of successive Gaussian blurred images, $D$, (\acf{dog}).
+	Then it identifies the key points as the local maxima and minima of the \ac{dog} images across the scales.
+	Essentially, each pixel in the \ac{dog} images is compared with its 8 neighborhood pixels at the same scale and 9 corresponding pixels in the \textcolor{red}{(two?)} neighboring scales.
+	This pixel is identified as a key-point if it has the maximum or minimum value among all its neighbors.
+	\begin{subequations}
+	\begin{align}
+	D(x,y,\sigma) &= L(x,x, k_{i}\sigma) - L(x,x, k_{j}\sigma),\\
+	L(x,y,k_{i}\sigma) &= G(x,y,k_{i}\sigma)*I(x,y).
+	\end{align}
+>>>>>>> KK_corrections
+	\label{eq:DoG}
+	\end{equation}
+	%Later it identifies the key-points as the local maxima and minima of \ac{dog} images across the scales.
+	
+	\noindent Essentially each pixel in \ac{dog} images is compared by its 8 neighborhood pixel at the same scale and 9 corresponding neighbor pixels in the neighboring scales.
+	This pixel is identified as key-point if it has the maximum or minimum value among all its neighbors.
+%	\begin{subequations}
+%	\begin{align}
+%		L(x,y,k_{i}\sigma) &= G(x,y,k_{i}\sigma)*I(x,y)~.\\
+%	D(x,y,\sigma) &= L(x,x, k_{i}\sigma) - L(x,x, k_{j}\sigma)~.
+%	\end{align}
+%	\label{eq:DoG}
+%	\end{subequations}
+		   
+	In the next step, the identified key points are filtered to reject the ones with low contrast or those localized along the edges.
+	The remaining key points are then assigned with one or more orientations, based on local image gradient directions.
+	In this step, the gradient magnitude and orientation of each neighboring pixel of the key point in the Gaussian blurred image $L$ is calculated.
+	For the sake of scale invariance, the image $L(x,y)$, is selected at the same or closest scale ($\sigma$) of the key point of interest ($L(x,y,\sigma)$).
+	The gradient magnitude and orientation of all the neighboring pixels in image $L(x,y,\sigma)$ are computed as follows: 
+	\begin{subequations}
+	\begin{align}
+<<<<<<< HEAD
+	m(x,y) & = \sqrt{(L(x+1,y) - L(x-1,y))^{2}+(L(x,y+1)-L(x,y-1))^{2}}~,\\
+	\theta(x,y) & = \tan^{-1}\left(\frac{L(x,y+1) - L(x,y-1)}{L(x+1,y) - L(x-1,y)}\right)~.
+	\end{align}
+	\end{subequations}
+	Then using computed magnitude and orientations of the pixels within a Gaussian circular weighted window $G_{L}$ around the key-point, an orientation histogram is formed.
+	This histogram consists of 36-bins when each bin covers \ang{10}.
+	The orientation of each pixel in the neighborhood is accumulated to the histogram while weighted by its gradient magnitude and $G_{L}$.
+	Finally the key-point is assigned with the dominant orientation corresponding to the highest peak of the histogram as well as local peaks within 80$\%$ of the highest one (up to two peaks in total). In this way they can be several key-points at the same location and scale but with different orientations.
+	The final key-point descriptor is then created by taking a $16\times16$ neighborhood around the key-point.
+	This neighborhood is divided to 16 sub blocks of $4\times4$ and for each sub block an 8-bin orientation histogram is created.
+	Concatenation of these histograms ( i.e. 16 regions) leads to a 128-dimensional feature vector as the final descriptor.  
+
+
+\end{description}
+=======
+	m(x,y) & = \sqrt{(L(x+1,y) - L(x-1,y))^{2}+(L(x,y+1)-L(x,y-1))^{2}},\\
+	\theta(x,y) & = \tan^{-1}\left(\frac{L(x,y+1) - L(x,y-1)}{L(x+1,y) - L(x-1,y)}\right).
+	\end{align}
+	\end{subequations}
+	Then, using the computed magnitude and orientations of the pixels within a Gaussian circular weighted window $G_{L}$ around the key point, an orientation histogram is formed.
+	This histogram consists of 36-bins, each covering \ang{10}.
+	The orientation of each pixel in the neighborhood is added to the histogram while weighted by its gradient magnitude and $G_{L}$.
+	Finally, the key point is assigned with the dominant orientation corresponding to the highest peak of the histogram as well as local peaks within 80$\%$ of the highest one (up to two peaks in total). 
+	In this way, there can be several key points at the same location and scale but with different orientations.
+	
+	The final key point descriptor is then created by taking a $16\times16$ neighborhood around the key point.
+	This neighborhood is divided to 16 sub-blocks of $4\times4$, and for each sub-block, an 8-bin orientation histogram is created.
+	Concatenation of these histograms (i.e. 16 regions) leads to a 128-dimensional feature vector as the final descriptor. 
+\end{description}
+In this research, the features described above are compared individually and in terms of their combinations.~\textcolor{red}{(Not very clear what you mean here.)}
+>>>>>>> KK_corrections

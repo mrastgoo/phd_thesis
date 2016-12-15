@@ -1,0 +1,29 @@
+\section{Feature Extraction} \label{sec:chp2-sec3}
+Feature extraction refers to the process of gathering a set of characteristics from samples that meaningfully and efficiently describe the most important information needed for further data analysis and classification.
+The need for feature generation in the image processing field originated from our inability to use raw data. 
+Even for a small $64 \times 64$ image, having all the pixels as features results in $4096$ feature dimensions which is too much for most classifiers~\cite{Theodoridis2006327}.
+Thus, new features need to be generated from sample images.
+
+Numerous approaches have been proposed for feature extraction in the literature.  
+Based on the characteristics of the desired features, these approaches can be divided into four main categories; shape, color, texture, and edge.
+Furthermore, they can be categorized into two general categories of pixel-wise and region-wise features. 
+The former means that features are extracted at each pixel, and the later refers to a descriptor describing a region (i.e. histogram, percentile and moment are region-based). 
+The edge features created by convolving the image with an operator such as sobel and prewitt, belong to pixel-wise features~\cite{lemaitre2015computer}. 
+Some texture features such as the Gabor filter~\cite{gabor1946theory,daugman1985uncertainty}, wavelet, the \acf{glcm}~\cite{haralick1973textural}, fractal analysis~\cite{benassi1998identifying} and the \ac{lbp}-map extract features for each pixel.
+However, others, such as \acf{hog}~\cite{dalal2005histograms}, histogram of \acf{lbp}-maps~\cite{ojala1996comparative}, the \acf{sift}~\cite{lowe2004distinctive}, and \acf{surf}~\cite{bay2006surf}, generate descriptors which are the most representative of a region.
+Color features, such as statistics and color histograms, and shape features, such as asymmetry and thinness ratio, belong to this category as well.  
+
+Among the aforementioned features, shape and color features have been widely adapted for classification of melanoma using dermoscopy images. 
+These features simulate the most, characteristics of diagnostic rules such as ``ABCD''.
+An extensive review of the feature extraction methods applied, using dermoscopic images is discussed in the following chapter (see Chapt.~\ref{chp:chapter3}, Sect.~\ref{chp3-subsec3}).
+
+%{\color{red} check the pattern recognition book, shape features are region-wise features, thinness ratio, asymmetry, ... } 
+
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../thesis"
+%%% End: 

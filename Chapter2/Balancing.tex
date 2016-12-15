@@ -1,0 +1,100 @@
+\section{Balancing Strategies} \label{sec:chp2-sec5}
+
+While performing classification for real world applications, we usually face a problem in which the number of samples of one class is far less than the samples of another class.
+This problem is frequently referred to as the ``class imbalance'' problem~\cite{prati2009data} and has been encountered in many diverse areas such as telecommunication management~\cite{ezawa1996learning}, bioinformatics~\cite{radivojac2004classification}, fraud detection~\cite{phua2004minority}, and medical diagnosis~\cite{celebi2007methodological}. 
+Imbalanced data substantially compromises the learning process since most of the standard machine learning algorithms expect a balanced class distribution or an equal misclassification cost~\cite{he2009learning}.
+Medical data are prone to such drawbacks due to the fact that the portion of diseased samples or patients is far lower than healthy cases.
+Furthermore, the detection and classification of minority malignant cases is essential, so the \ac{se} of the algorithms developed needs to be maximized.
+Consequently, the problem of imbalanced data is usually addressed by employing different techniques that do not impair the topology of the data.
+This section discusses some of the most used balancing techniques.
+%Despite the fact that classification of malignant melanoma has been extensively studied, up to our knowledge, only few works tackled the issue implied by imbalanced dataset~\cite{barata2013two,celebi2007methodological}.
+%Barata~\emph{et al.} generate new synthetic samples by adding a Gaussian noise with fixed parameters to the samples belonging to the minority class~\cite{barata2013two}.
+%Celebi~\emph{et al.} and Capdehourat~\emph{et al.} over-sampled their dataset using \ac{smote}~\cite{chawla2002smote} to improve the \ac{se} of their algorithm~\cite{celebi2007methodological, capdehourat2009pigmented}.
+
+Considering a binary classification problem, the class with the smallest number of samples is defined as the \textit{minority} class and its counterpart is defined as the \textit{majority} class.
+%The problem of data balancing corresponds to equalize the number of samples of both the minority and majority classes. This task can be achieved in either data or feature space.
+%Balancing strategies in data space refers to elimination of some majority samples or generation of synthetic minority samples.
+%Variation of the mean shapes, using \ac{pca}, in handwritten character recognition is an example of generation of synthetic data samples. 
+%In feature space, three strategies can be employed to overcome the problem of imbalance dataset: (i) \acf{us}, (ii) \acf{os}, and (iii) a combination of both.
+Data balancing corresponds to a sample number equalization in both the minority and majority classes. 
+This task can be achieved either in the data or feature space.
+Balancing strategies in the data space include elimination of some of the majority samples or the generation of synthetic minority samples. 
+An example of synthetic sample generation in handwritten character recognition is the alteration of the mean character shapes using a \ac{pca}. 
+In the feature space, three strategies can be employed to overcome the problem of imbalanced dataset: (i) \acf{us}, (ii) \acf{os}, and (iii) a combination of both.
+The following sections give an overview of the techniques used to tackle this issue.
+
+\subsection{\acl{us}}
+
+The goal of \ac{us} is to reduce the number of samples from the majority class so that it is equal to the number of samples from the minority class.
+The following methods are considered to perform the data balancing.
+
+\begin{description}
+  \item[\Ac{rus}] is performed by randomly removing a subset of samples from the majority class (without replacement) so that the number of samples is then equal in both classes.
+  \item[\Ac{tl}] can be used to under-sample the majority class of the original dataset~\cite{tomek1976two}.
+Let $(x_i, x_j)$ define a pair of \ac{nn} samples so their associated class labels are different $y_i \neq y_j$.
+The pair $(x_i, x_j)$ is defined as a \ac{tl} if, by relaxing the class label differentiation constraint, there is no other $x_k$ sample defined as the \ac{nn} of either $x_i$ or $x_j$.
+\Ac{us} is performed by removing the samples belonging to the majority class and forming a \ac{tl}.
+It must be noted that this \ac{us} strategy does not enforce a strict balance between the majority and the minority classes.
+
+  \item[\Ac{cus}] refers to the use of $k$-means to cluster the feature space so that $k$ is set to be equal to the number of samples composing the minority class.
+Hence, the centroids of these clusters define the new samples from the majority class. 
+ 
+  \item[\Ac{nm}] offers three different methods to under-sample the majority class~\cite{mani2003knn}.
+%In \ac{nm1}, samples from the majority class are selected such that for each sample, the average distance to the $k$ \ac{nn} samples from the minority class is minimum.
+%\ac{nm2} diverges from \ac{nm1} by considering the $k$ farthest neighbours samples from the minority class.
+%In \ac{nm3}, a subset $M$ containing samples from the majority class is generated by finding the $m$ \ac{nn} from each sample of the minority class.
+%Then, samples from the subset $M$ are selected such that for each sample, the average distance to the $k$ \ac{nn} samples from the minority class is maximum.
+%In our experiment, $k$ and $m$ are fixed to 3.
+ % \item[\Ac{enn}] is another \ac{us} approach, which removes any sample whose class label differs, at least, from the labels of two of its three \ac{nn}~\cite{wilson1972asymptotic}.
+%This method removes samples from both majority and minority class both.      
+In \ac{nm1}, for each selected sample in the majority class, the average distance to the $k$ \ac{nn} samples in the minority class is minimum.
+\ac{nm2} diverges from \ac{nm1} by considering the $k$ farthest neighbour samples in the minority class.
+\ac{nm3} generates a subset $M$ of the majority class samples by finding the $m$ \ac{nn}s of each minority class sample.
+The elements in $M$ whose average distance to the $k$ \ac{nn} samples in the minority class is maximum are retained.
+%In our experiment, $k$ and $m$ are fixed to 3. \textcolor{red}{Which experiment?}
+  
+  \item[\Ac{enn}] is another \ac{us} approach which removes any sample whose class label differs from the labels of at least two of its three \ac{nn}s~\cite{wilson1972asymptotic}.
+This method removes samples from both the majority and minority classes.      
+  \item[\Ac{ncr}] consists of applying two rules depending on the class of each sample~\cite{laurikkala2001improving}.
+This is a modification of the (\ac{enn}) method that performs a better data cleaning.
+Let us define $x_i$ as a dataset sample with its associated class label $y_i$, and $y_m$ as the class of the majority vote of the $k$ \ac{nn}s of $x_i$.
+If $y_i$ corresponds to the majority class and $y_i \neq y_m$, $x_i$ is rejected from the final subset.
+If $y_i$ corresponds to the minority class and $y_i \neq y_m$, then the $k$ \ac{nn}s are rejected from the final subset.
+	
+\end{description}
+
+\subsection{\acl{os}}
+Data balancing can also be performed by \ac{os}: new minority class samples are generated to equalize the number of samples in both classes.
+Two different methods are considered.
+
+\begin{description}
+\item[\Ac{ros}] is performed by randomly replicating samples in the minority class so that the number of samples is equal in both the minority and majority classes.
+\item[\Ac{smote}] is a method to generate synthetic samples in the feature space~\cite{chawla2002smote}.
+Let us define $x_i$ as a sample belonging to the minority class, and $x_{nn}$ as a randomly selected sample from the $k$ \ac{nn}s of $x_i$.
+Then \ac{smote} can generate a new $x_j = x_i + \sigma \left( x_{nn} - x_i \right)$ sample, where $\sigma$ is a random number in the interval $\left[0,1\right]$.
+
+\end{description}
+
+\subsection{Combination of \ac{os} and \ac{us}}
+
+\ac{os} methods can be combined with \ac{us} to clean the newly generated over-sampled set of minority class samples.
+In that regard, two different combinations are tested.
+
+\begin{description}
+  \item[\ac{smote} + \ac{tl}] are combined to clean the samples created using \ac{smote}~\cite{batista2003balancing, prati2009data}.
+\Ac{smote} over-sampling may lead to overfitting, which can be avoided by removing the \ac{tl} from both the majority and minority classes.
+%Thus, the \ac{tl} method is applied to the over-sampled training set to perform data cleaning and instead of removing only the majority samples with tomek-links, it removes samples from both classes~\cite{prati2009data}. 
+
+  \item[\ac{smote} + \ac{enn}] ~\cite{batista2004study}.
+The \acl{enn} removes all the misclassified samples with respect to its 3 \ac{nn}s, without any concern for their class, and generally eliminates more samples in comparison with \ac{tl}.
+It is expected to have a more in-depth data cleaning when using \ac{enn}~\cite{prati2009data}.
+\end{description}
+
+Here, to deal with the imbalance problem, the fastest, simplest and least parametric heuristic \ac{os} and \ac{us} methods are discussed.
+However, there are other approaches, such as ensemble and cost-sensitive learning, that are beyond our interest in this thesis.
+A curious reader can refer to the following references~\cite{he2009learning,chawla2005data} for more information on this topic.
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../thesis"

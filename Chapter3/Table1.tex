@@ -1,0 +1,37 @@
+%% Table 1
+\begin{table}[t]
+	
+	\caption[Summary of the features used in the state of the art]{Summary of the features used in the literature. The references highlighted in \textbf{bold} use \ac{bow} to represent features in a high-dimensional space.}
+	\begin{center}
+	\begin{threeparttable}
+	    \small
+	\resizebox{1.0\textwidth}{!}{
+	\begin{tabular}{l l r}
+	\hline
+	\multicolumn{2}{c}{ Feature} & Reference \\
+	\hline \\ [-1.5ex]
+	\multirow{5}{*}{\textit{Shape}} & Irregularity and compactness ratio  & \cite{kreutz2001automated},\cite{dreiseitl2001comparison},\cite{ganster2001automated},\cite{schaefer2014ensemble},\textbf{\cite{ruela2013role}}\\
+	& Fractal geometry & \cite{sboner2003multiple},\cite{kreutz2001automated},\cite{dreiseitl2001comparison},\cite{celebi2007methodological}\\
+	& Fourier features & \color{blue}{\cite{ruela2013role}}\\
+	& Area and perimeter& \cite{sboner2003multiple},\cite{rubegni2002automated},\cite{schaefer2014ensemble},\cite{burroni2005dysplastic},\cite{celebi2007methodological},\cite{tasoulis2010skin},\cite{ganster2001automated},\cite{capdehourat2011toward},\cite{faal2013improving},\textbf{\cite{ruela2013role}}\\ \\		 
+    \multirow{4}{*}{\textit{Color}} &  Alternative color space descriptors  & \cite{capdehourat2009pigmented},\cite{ganster2001automated},\textbf{\cite{barata2013two}}\\
+    & Color opponent angle & \textbf{\cite{barata2013two}}\\
+    & Color variance and ratio & \cite{sboner2003multiple},\cite{Celebi2015},\cite{kreutz2001automated},\cite{schaefer2014ensemble},\cite{dreiseitl2001comparison},\cite{rubegni2002automated},\cite{burroni2005dysplastic},\cite{celebi2007methodological},\cite{iyatomi2008improved},\cite{tasoulis2010skin},\cite{ganster2001automated},\cite{gilmore2010support},\cite{capdehourat2011toward},\cite{faal2013improving},\textbf{\cite{situ2010modeling}}\\
+    & Color quantization & \cite{sboner2003multiple},\cite{celebiautomated},\cite{barata2014color},\textbf{\cite{ruela2013color}},\textbf{\cite{barata2013role}}\\ \\
+    \multirow{9}{*}{\textit{Texture}} & Wavelet based descriptor & \cite{garnavi2012computer},\textbf{\cite{situ2008malignant}},\textbf{\cite{situ2010modeling}}\\
+    & Local binary pattern & \textbf{\cite{zortea2010automatic}}\\
+    & Gabor filter & \cite{kreutz2001automated},\cite{dreiseitl2001comparison},\cite{capdehourat2009pigmented}\\
+    & Gray-level co-occurrence matrices &  \cite{celebi2007methodological},\cite{iyatomi2008improved},\cite{Celebi2015},\cite{tasoulis2010skin},\cite{capdehourat2011toward},\cite{faal2013improving},\cite{schaefer2014ensemble},\textbf{\cite{situ2008malignant}}\\
+    & Contrast and Entropy & \cite{rubegni2002automated}\\ 
+    & Histogram of gradients & \textbf{\cite{barata2013two}}\\
+    & SIFT and Color SIFT & \textbf{\cite{situ2010modeling}}\\
+    & Difference of Gaussian & \textbf{\cite{barata2013role}}\\
+    & Harris / Hessian -Laplace & \textbf{\cite{barata2013role}}\\ 
+    [+1.5ex] 
+    \hline %\\   
+  \end{tabular}
+  }
+  \end{threeparttable}
+\end{center}
+\label{tab:dermoscopy_Feature}
+\end{table}

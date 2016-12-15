@@ -1,0 +1,99 @@
+%% Table 9
+\begin{table}[t]
+	\caption[Results of Experiment~\#3]{Classification results of the \ac{rf} and weighted combination (\ac{rf}, \ac{lda}, and \ac{svm}) ensemble approaches with the PH$^{2}$ dataset. %Two ensemble, \ac{rf} and weighted combination (\ac{rf}, \ac{lda}, and \ac{svm}) are used.
+	The results are presented in terms of the \ac{se} and \ac{sp} percentages.}
+	\label{tab:globalmapExp3}
+	\medskip
+		
+	\footnotesize{
+%\resizebox{0.8\textwidth}{!}{
+	\begin{center}
+	\begin{tabularx}{0.74\textwidth}{@{}l	lllr	 ll	lllr	 @{}}
+	\toprule
+	Features & \multicolumn{4}{l}{\ac{rf}} & & & \multicolumn{4}{l}{$\{$\ac{svm},\ac{lda},\ac{rf}$\}$} \\
+	\cmidrule{2-5} \cmidrule{8-11} 
+	& \ac{se} & & & \ac{sp} & & &  \ac{se} & & & \ac{sp} \\
+	\cmidrule{2-11}
+	Individual Features\\
+	\multicolumn{11}{l}{}\\[-1ex]
+ $T_1$ & 62.39	& & & 82.47 & & &  54.78 & & & 75.97\\
+ $T_2$ & 72.65	& & & 88.39 & & &  64.10	 & & & 82.47\\
+ $T_3$ & 82.05	& & & 85.71	& & &  63.38	 & & & 77.92\\
+ $T_4$ & 88.03	& & & 90.91 & & &  62.07	 & & & 85.71\\
+ $C_1$ & 88.89	& & & 94.16 	& & &  59.83	 & & & 93.51\\
+ $C_2$ & 89.74	& & & 90.91	& & &  75.21	 & & & 90.26\\
+  $S$  & 76.92	& & & 90.26	& & &  62.39	 & & & 86.36\\	
+	\multicolumn{11}{l}{}\\
+	Combined Features\\
+	\multicolumn{11}{l}{}\\[-1ex]
+$C_1,C_2	$					& \cellcolor[gray]{0.8}93.16 &\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}94.16 & & & 76.07 & & & 94.16\\
+$C_1,C_2,S$					& 90.06 	& & & 94.81	& & & 81.74 & & & 92.21\\
+$T_1,C_2$					& \cellcolor[gray]{0.8}94.02	&\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}92.21	& & & 70.94	& & & 90.91\\
+$T_1,C_1,C_2$				& \cellcolor[gray]{0.8}93.16	&\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}93.51	& & & 75.21	& & & 94.81\\
+$T_3,C_1,C_2$				& 89.74 & & & 95.45	& & & 86.32	& & & 94.81\\
+$T_4,C_1,C_2$				& 89.74 & & & 92.86	& & & 88.03	& & & 92.21\\
+$T_1,T_2,T_3,T_4$			& 90.06	& & & 92.21	& & & 86.32	& & & 92.16\\
+$T_1,T_3,C_1,C_2$			& \cellcolor[gray]{0.8}92.31	&\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}93.51	& & & 67.54	& & & 93.51\\
+$T_1,T_2,T_3,T_4,C_1,C_2$	& 91.45	& & & 94.16	& & & 89.74	& & & 93.51\\
+$T_1,T_2,T_3,T_4,C_1,C_2 $  & 91.45	& & & 94.16	& & & \cellcolor[gray]{0.8}92.31 &\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}92.86\\
+$T_1,T_2,T_3,T_4,C_1,C_2,S$ & 91.45	& & & 93.51	& & & 88.89	& & & 94.16\\	
+ 	\multicolumn{11}{l}{}\\
+ 	\bottomrule
+  \end{tabularx}  
+  \end{center}
+	}
+	
+\end{table}
+	
+
+
+
+	
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

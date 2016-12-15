@@ -1,0 +1,74 @@
+    \tikzstyle{block} = [rectangle, draw, fill=blue!30,text = black,
+    text width=6em, text centered, rounded corners, minimum height=4em , minimum width = 6em]
+    \tikzstyle{myarrow}=[->, thick]
+    \tikzstyle{line}=[-, thick]
+	\tikzstyle{block2} = [rectangle, draw, fill=white!20,
+    text width=6em, text centered, rounded corners, minimum height=4em, minimum width = 6em]
+    \tikzstyle{block3} = [rectangle, draw, fill=blue!30, text = black,
+    text width=7em, text centered, rounded corners, minimum height=4em , minimum width = 7em]
+\def\blockdist{1}
+\def\edgedist{1.5}
+  %%%% The Framework Sparse Coding 
+  \begin{figure}[H]
+  
+	\begin{tikzpicture}[node distance = 1cm,scale=0.7, every node/.style={scale=0.7}]
+%(FEx.east|- FEx.south)
+    \node [block2] (input) {Training image};
+    \node [block, right of=input,node distance = 2.8cm](PEx){Patch detection};
+    \node [block, right of=PEx,node distance = 2.8cm](FEx){Feature extraction};
+    	\path (FEx.east)+(+0.8,0) node (g) {};
+    	
+    	%%% Sparse Coding Block
+    \node [block3, right of=g,node distance = 1.7cm](DL){Dictionary learning /KSVD};
+    \node [block3, below of=DL,node distance = 2.5cm](PR){Projection};
+	%%% 
+	\node [block, right of=PR, node distance = 3.6cm](Pool){Pooling};
+	\path (Pool.east) + (0.3,0) node (f){}; 
+	\path (Pool.east) + (0.2,-0.1) node (f1){};     
+    
+    \begin{pgfonlayer}{background}
+	\path (DL.west |- DL.north)+(-0.4,-0.1+\blockdist) node (a) {};
+    \path (PR.east |- PR.south)+(+3.7,-0.7) node (b) {};          
+    \path[fill=blue!10,rounded corners, draw=blue!20, dashed] (a) rectangle (b);
+\end{pgfonlayer}
+	\path (DL.west |- DL.north)+(+2.9,-0.5+\blockdist) node (SP) {\textbf{Sparse Coding}};
+	\path (PR.east |- PR.south)+(-1.3,-0.4+\blockdist) node (c){};
+	\path (PR.east)+(-3.15,0) node (d) {};
+	
+	%%% Testing 
+	\node [block, below of=FEx, node distance = 2.5cm](FE2){Feature extraction};
+	\node [block, below of=PEx, node distance = 2.5cm](PE2){Patch detection};
+	\node [block2, below of=input, node distance = 2.5cm](TestImg){Testing image};
+	
+
+	
+	%%% Classification
+	\node [block, right of = Pool, node distance = 3.5cm] (Pre){Prediction}; 
+    \node [block, above of = Pre, node distance = 2.5cm] (Learn){Learning}; 
+    \begin{pgfonlayer}{background}
+	\path (Learn.west |- Learn.north)+(-0.4,-0.1+\blockdist) node (h) {};
+    \path (Pre.east |- Pre.south)+(+0.4,-0.7) node (i) {};          
+    \path[fill=blue!10,rounded corners, draw=blue!20, dashed] (h) rectangle (i);
+\end{pgfonlayer}
+	\path (Learn.west |- Learn.north)+(+1.23,-0.5+\blockdist) node (Clas) {\textbf{Classification}};
+	\path (Pre.east |- Pre.south)+(-1.3,-0.4+\blockdist) node (j){};
+	\path (f1.north)+(0, 2.5) node (k) {};
+	\path (Pre.east) + (1.2,0) node (k1) {P(..)}; 
+	
+    % Draw edges
+    \draw [line] (input) -- (PEx) -- (FEx); 
+    \draw [myarrow] (FEx)-- (DL);
+    \draw [myarrow] (DL) -- (PR) ; 
+    \draw [line] (TestImg) -- (PE2) -- (FE2); 
+    \draw [myarrow] (FE2) -- (PR) ;
+    \draw [line] (PR) -- (Pool); 
+    \draw [myarrow] (Pool) -- (Pre); 
+    \draw [line] (f1.north) -- + (0,2.5)(k.south); 
+    \draw [myarrow] (k.south)+ (0,0.1)  -- (Learn.west); 
+    \draw [myarrow] (Pre) -- (k1);
+
+	\end{tikzpicture}
+
+  \caption{Proposed framework for an automated classification using sparse coded features.}
+  \label{fig:SparseCodedFramework}	 	
+  \end{figure}

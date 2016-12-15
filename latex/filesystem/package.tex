@@ -1,0 +1,150 @@
+%  The following command loads a graphics package to include images
+%  in the document. It may be necessary to specify a DVI driver option,
+%  e.g., [dvips], but that may be inappropriate for some LaTeX
+%  installations.
+\usepackage[]{graphicx}
+
+% In order to include files without having a clear page using \include*,
+% the newclude package is required
+%\usepackage{newclude}
+
+% Required for acronyms
+% use \acresetall to reset the acroyms counter
+% macros=True, allows for calling \myTriger rather than \ac{myTriger}
+\usepackage[single=true, macros=false, xspace=true]{acro}
+
+% In SPIE template, biblatex can NOT be used to manage the referencing
+%
+%\usepackage[style=spiebib, backend=biber]{biblatex}
+
+% Clever cross referencing. Using cleverref, instead of writting
+% figure~\ref{...} or equation~\ref{...}, only \cref{...} is required.
+% The package interprates the references and introduces the figure, fig.,
+% equation, eq., etc keywords. \Cref forces first letter capital.
+% >> WARNING: This package needs to be loaded after hyperref, math packages,
+%             etc. if used.
+
+%             Cleveref is recomended to load late
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{cleveref}
+% To create random text use lipsum
+\usepackage{lipsum}
+\usepackage{siunitx}
+\usepackage[doublespacing]{setspace}
+\usepackage{scalefnt,lmodern}
+\DeclareSIUnit\px{px}
+\usepackage{epsf,graphicx,subfig}
+\usepackage{epsfig}
+\usepackage{epstopdf}
+\usepackage{latexsym,amssymb}
+\usepackage{lipsum}
+\usepackage{xcolor}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{afterpage}
+\usepackage{booktabs}
+\usepackage{courier}
+\usepackage{array,multirow}
+\usepackage{pbox}
+\usepackage{colortbl,bigdelim}
+\usepackage{arydshln}
+\usepackage{enumerate}
+\usepackage{threeparttable}
+\usepackage{lscape}
+\usepackage{pdflscape}
+\usepackage{emptypage}
+%\usepackage{xepersian}
+%\usepackage{bidi}% this should be the last package to load.
+
+%\usepackage{wrapfig} 
+%\usepackage{setspace,cite}
+%\usepackage{moreverb} % Verbatim-Umgebung
+%\usepackage{cite}	  %Zitate
+%\usepackage{xcolor}		%colors
+%\usepackage{pxfonts}
+\usepackage{tikz,xifthen}
+\usetikzlibrary{shadows,arrows,calc,positioning,backgrounds,snakes,decorations.text,decorations.markings,shapes,patterns,fit,chains,decorations.pathreplacing}
+\usepackage{url}
+\hypersetup{
+   colorlinks,%
+   citecolor=black,%
+   %figurecolor = green,%
+   filecolor=black,%
+   linkcolor=black,%
+   urlcolor=black
+}
+
+% for margins left, right top bottom
+\usepackage{anysize}
+\marginsize{4cm}{2.5cm}{4cm}{4cm}
+
+%\usepackage{draft} %draft option - doesn't put full figures in - useful when editing
+%does the headers on the pages - keep in
+\usepackage{fancyhdr}
+
+%\urldef{\mailsa}\path|{alfred.hofmann, ursula.barth, ingrid.haas, frank.holzwarth,|
+%\urldef{\mailsb}\path|anna.kramer, leonie.kunz, christine.reiss, nicole.sator,|
+%\urldef{\mailsc}\path|erika.siebert-cole, peter.strasser, lncs}@springer.com|    
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\definecolor{dgreen}{rgb}{ 0    0.52    0.25}
+%\newcommand{\fullyGuidedColor}{(dark-green)}
+
+\let\origdoublepage\cleardoublepage
+\newcommand{\clearemptydoublepage}{%
+  \clearpage
+  {\pagestyle{empty}\origdoublepage}%
+}
+
+%\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}
+\usepackage[catalan, english]{babel}
+%\usepackage{lmodern}
+
+%%Definició de la ela geminada per tal que accepti el punt volat del teclat
+%\def·#1{%
+%  \ifmmode
+%    \cdot #1
+%    %\csname normal@char\string"\endcsname l%
+%  \else%
+%    \def\argument{#1}%
+%    \if\argument l%
+%      \leftllkern=0pt\rightllkern=0pt\raiselldim=0pt%
+%      \setbox0\hbox{l}\setbox1\hbox{l\/}\setbox2\hbox{.}%
+%      \advance\raiselldim by \the\fontdimen5\the\font
+%      \advance\raiselldim by -\ht2%
+%      \leftllkern=-.25\wd0%
+%      \advance\leftllkern by \wd1%
+%      \advance\leftllkern by -\wd0%
+%      \rightllkern=-.25\wd0%
+%      \advance\rightllkern by -\wd1%
+%      \advance\rightllkern by \wd0%
+%      \allowhyphens\discretionary{-}{l}%
+%      {\hbox{}\kern\leftllkern\raise\raiselldim\hbox{.}%
+%        \kern\rightllkern\hbox{l}}\allowhyphens%
+%    \else
+%      \if\argument L%
+%        \leftllkern=0pt\rightllkern=0pt\raiselldim=0pt%
+%        \setbox0\hbox{L}\setbox1\hbox{L\/}\setbox2\hbox{.}%
+%        \advance\raiselldim by .5\ht0%
+%        \advance\raiselldim by -.5\ht2%
+%        \leftllkern=-.125\wd0%
+%        \advance\leftllkern by \wd1%
+%        \advance\leftllkern by -\wd0%
+%        \rightllkern=-\wd0%
+%        \divide\rightllkern by 6%
+%        \advance\rightllkern by -\wd1%
+%        \advance\rightllkern by \wd0%
+%        \allowhyphens\discretionary{-}{L}%
+%        {\hbox{}\kern\leftllkern\raise\raiselldim\hbox{.}%
+%           \kern\rightllkern\hbox{L}}\allowhyphens%
+%      \else
+%        #1
+%      \fi
+%    \fi
+%  \fi
+%  }

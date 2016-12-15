@@ -1,0 +1,62 @@
+% Experiment tables 
+\begin{landscape}
+\begin{table}
+\caption[Outline of experiments]{The outline and summary of the experiments performed. (seg) indicates segmentation and (\{\}) indicates the weighted combination ensemble. (tra., tes., val.) indicate the training, testing and validation percentage of the data, respectively.}
+\begin{center}
+\resizebox{1\linewidth}{!}{
+\begin{tabular}{l  c	 c  c c  c  c  c  c   c  }
+\toprule
+\\
+&  Dataset &  Task & Pre-processing & Features & Mapping & Representation & Balancing & Classification & Evaluation \\
+& & & & & & & & &  tra.,tes.,val.\\
+\cmidrule(l){2-10}
+\\
+%Note  &  &  & segmentation (seg) &  &  &  &  & Weighted (\{\}) & Train,Test,Validation \\ 
+%& & & & & & & & combination & \\
+%\\
+%\midrule
+%\\
+\textbf{Experiment\#1:}  \\
+%\hdashline \noalign{\vskip 3pt}
+\multirow{3}{4cm}{Goal: Evaluation of shape, color and texture features, mapping and representation} & Vienna & M~vs~D  & pdf-seg & $S$, $C_{1}$, $C_{2}$ & global & High: &  & \ac{rf} & 10 round \\
+& & & & $T_{1}$, $T_{2}$, $T_{3}$ & local & \ac{bow}, & & \ac{gb} & \ac{se},\ac{sp}\\
+& & & & $T_{4}$, $T_{5}$ & &\ac{pca}\ & & \ac{svm} & 70\%,15\%,15\%\\\\ 
+\midrule
+\\
+\textbf{Experiment\#2:}  \\
+%\hdashline \noalign{\vskip 3pt}
+\multirow{3}{4cm}{Goal: Effect of balance training and \ac{dos} balance strategy} & Vienna &  M~vs~D & Fusion-seg & $S$, $C_{1}$, $C_{2}$ & global & Low  & \ac{dos} & \ac{rf} & 10 round \\
+& & & & $T_{1}$, $T_{2}$, $T_{3}$ & & & & \ac{svm} & \ac{se},\ac{sp}\\
+& & & & $T_{4}$, $T_{5}$ & & & & & 60\%,20\%,20\%\\\\ % 
+\midrule
+\\
+\textbf{Experiment\#3:}  \\
+%\hdashline \noalign{\vskip 3pt}
+\multirow{3}{4cm}{Goal: Evaluate the effects of ensembles and our selected features on new dataset} &  PH$^{2}$ & M~vs~D,B & seg  & $S$, $C_{1}$, $C_{2}$ & global & Low & \ac{dos} & \ac{rf} & \ac{loocv} \\
+& & & & $T_{1}$, $T_{2}$, $T_{3}$ & & & & \{\ac{rf},\ac{svm},\ac{lda}\} & \ac{se},\ac{sp}\\
+& & & & $T_{4}$, $T_{5}$ & & & & & \\\\
+\midrule
+\\
+\textbf{Experiment\#4:}  \\
+%\hdashline \noalign{\vskip 3pt}
+\multirow{3}{4cm}{Goal: Evaluate the effects of balancing strategies} & PH$^{2}$ & M~vs~D,B  & seg  & $C_{1}$, $C_{2}$ & global & Low & \ac{dos}, \ac{ros}, \ac{tl} & \ac{rf} & 10-cv \\
+& & & & $T_{1}$, $T_{3}$ & & & \ac{smote}, \ac{rus} &  & \ac{se},\ac{sp}, $C$\\
+& & & & & & &  \ac{ncr}, \ac{nm} (1-3) & & 80\%,20\%\\
+& & & & & & & \ac{smote}+\ac{enn} & & \\
+& & & & & & & \ac{smote}+\ac{tl} & & \\
+\midrule
+\\
+\textbf{Experiment\#5:}  \\
+%\hdashline \noalign{\vskip 3pt}
+\multirow{3}{4cm}{Goal: Evaluate the effects of Sparse coding} & PH$^{2}$ & M~vs~D,B &   & $C_{1}$, $C_{2}$ & local & High: & \ac{ros} & \ac{rf} & 10-cv \\
+& & & & $C_{3}$, $T_{5}$ & &\ac{scf}&  &  & \ac{se},\ac{sp}\\
+& & & & & & & & & 80\%,20\%\\\\
+\midrule
+\\
+
+
+\end{tabular}}
+\end{center}
+\label{tab:experimentstable}
+\end{table}
+\end{landscape}

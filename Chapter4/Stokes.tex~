@@ -1,0 +1,125 @@
+%\section{Stokes Parameters}\label{sec:chp4-sec3}
+%Characteristics of the polarized light are explained with different formulations, such as Stokes parameters, Mueller matrix, Jones matrix, and Pincor\'e sphere.
+%The full explanation of all these formulations are beyond our scope and we limited our explanations to Stokes and Mueller characteristics.
+
+
+\section{Stokes Parameters}\label{sec:chp4-sec3}
+In 1852, Sir George Gabriel Stokes discovered that polarization behavior could be represented in terms of observables.
+Sir.~Stokes in an attempt to mathematically characterize un-polarized light, defined un-polarized light as light whose intensity is unaffected when a polarizer is rotated or while a retarder of any retardance value is present. 
+In this characterization Sir~Stokes defined four measurable quantities known as  the Stokes polarization parameters. (See Eq.\ref{Eq:Stokeseq}).
+\begin{equation}\label{Eq:Stokeseq}
+\small
+	(E_{0x}^{2}+ E_{0y}^{2})^{2} - (E_{0x}^{2}- E_{0y}^{2})^{2}- (2E_{0x}E_{0y}\cos\delta)^{2} =  (2E_{0x}E_{0y}\sin\delta)^{2}~,
+\end{equation}
+The first parameter expresses the total intensity of the optical field in terms of the total amount of horizontal and vertical linear polarization.
+The second and third parameters describe the amount of linearly polarized light and the fourth parameter describes the amount of left or right circularly polarized light.
+The total \acf{dop}, the \acf{dolp} and the \acf{docp} are calculated using Stokes parameters.
+Equation.~\ref{Eq:stokevector} represents the Stokes vector with the parameters represented first in terms of amplitudes of the transverse components ($E_{0x}, E_{0y}$) and  $\delta$ angle, then using different states of polarization.
+Here $I_{H}$ and $I_{V}$ stand for linear horizontal and vertical polarized, respectively and $I_{P}$, $I_{M}$, $I_{L}$, $I_{R}$ represent linear $+45^{\circ}$, linear $-45^{\circ}$, left circular and right circular polarized light, respectively. 
+
+\begin{equation}\label{Eq:stokevector}
+\small
+S = 
+	\begin{bmatrix}
+	S_{0}\\
+	S_{1}\\
+	S_{2}\\	
+	S_{3}\\
+	\end{bmatrix} 
+	= 
+	\begin{bmatrix}
+	I\\
+	Q\\
+	U\\	
+	V\\
+	\end{bmatrix} 
+	= 1/2
+	\begin{bmatrix}
+	E_{0x}^{2} + E_{0y}^{2} \\
+	E_{0x}^{2} - E_{0y}^{2}\\
+	2E_{0x}E_{0y}\cos\delta\\	
+	2E_{0x}E_{0y}\sin\delta\\
+	\end{bmatrix} 
+	= 
+	\begin{bmatrix}
+	I_{H}+ I_{V}\\
+	I_{H}- I_{V}\\
+	I_{P}- I_{M}\\
+	I_{L}- I_{R}\\
+	\end{bmatrix}~.	
+\end{equation}
+
+The four Stokes parameters are real quantities in terms of intensities and, for any state of polarized light, they always satisfy the relation shown in Eq.~\ref{Eq:Stokesineq}.
+The equality sign applies when completely polarized light exists and inequality applies when partially polarized light or un-polarized light exists.
+\begin{equation}\label{Eq:Stokesineq}
+\small
+	S_{0}^{2}\geqslant S_{1}^{2}+ S_{2}^{2}+S_{3}^{2}~.
+\end{equation}
+
+As mentioned above, the first element of the Stokes vector represents the total intensity of light.
+The \ac{dop} of light is defined as the ratio of polarized intensity per total intensity.
+In a similar manner, \ac{dolp} and \ac{docp} are calculated.
+\begin{subequations}\label{Eq:DP}
+\small
+	\begin{align}
+	\ac{dop}  & =  \rho =\frac{I_{pol}}{I_{tot}} = \frac{(Q^2 + U^2 + V^2)^{1/2}}{I}~, \\
+	\ac{dolp} & = \rho_{l}= \frac{(Q^2 + U^2 )^{1/2}}{I}~, \\
+	\ac{docp} & = \rho_{c} = \frac{V}{I}~.
+	\end{align}
+\end{subequations}
+
+With respect to Eq.~\ref{Eq:rotationandellipticity}, the relation between rotation and the ellipticity angle of the polarized ellipse and Stokes parameters are defined by: 
+
+\begin{equation}\label{Eq:ellipparStokes}
+\small
+	\sin 2\chi = S_{3}/S_{0}   \hspace{1.5cm} \tan 2\psi = S_{2}/S_{1}~.
+\end{equation} 
+\noindent With regard to Eq.~\ref{Eq:ellipparStokes}, the Stokes representation in terms of rotation, the ellipticity angle and $\alpha$ is given by: 
+
+\begin{equation}\label{Eq:nrStokesvec}
+\small
+S = 	 S_{0}
+	\begin{bmatrix}
+	1 \\
+	\cos 2\chi \cos 2\psi\\
+	\cos 2\chi \sin 2\psi\\	
+	\sin 2\chi
+	\end{bmatrix} 
+	= I_{0}
+	\begin{bmatrix}
+	1\\
+	\cos 2\alpha \\
+	\cos 2\alpha \cos\delta\\	
+	\sin 2\alpha \sin\delta
+	\end{bmatrix}~.
+\end{equation}
+
+Table~\ref{tab:chp4T1} illustrates polarization states and their relative Stokes vector.
+\input{Chapter4/Table1.tex}
+There are different ways of measuring Stokes parameters. 
+A classic way of measuring these parameters is by passing an optical beam through two optical elements, known as the retarder and the polarizer.
+The retarder is an element that changes the phase between two transverse components of the light, and the polarizer is an element that changes the amplitude of the transverse components.
+The incident light passes through the retarder which then advances the phase of the $x$ component ($E_{x}$) by  $\phi/2$ and retards the phase of the $y$ component by $\phi/2$. 
+The beam merging from the retarder (the phase shifting element) passes through the polarizer next.
+The polarizer has the ability to transmit the optical field through only one axes called the transmission axis. 
+For instance, if the transmission axis of the polarizer is at $\theta$, only the $E'_{x}$ and $E'_{y}$ components in this direction pass through.
+
+Using this set-up, the first three Stokes parameters are measured by removing the retarder and rotating the transmission axis of the polarizer to the angles $\theta = 0^{\circ}, \theta = +45^{\circ}$ and $\theta = +90^{\circ}$, respectively.
+For measuring the final parameter, a retarder is added to the set-up with the angle of $\phi = 90^{\circ}$ (quarter-wave retarder), while the transmission axis of the polarizer is set to $\theta = +45^{\circ}$.
+Equation.~\ref{Eq:cStokesmeas} represents how this set-up can be used to measure the Stokes parameters.
+$I(\theta, \phi)$ shows the intensity produced by the retarder with a $\phi$ phase shift angle and the polarizer with its transmission axis at $\theta$.
+
+ \begin{subequations}\label{Eq:cStokesmeas}
+ \small
+% \begin{center} 
+ 	\begin{align}
+ 	S_{0} & =  I(0, 0) + I(90,0)~, \\
+ 	S_{1} & =  I(0,0) - I(90,0)~, \\
+ 	S_{2} & = 2I(45,0)-I(0,0)-I(90,0)~,\\
+ 	S_{3} & = 2I(45,90) - I(0,0) -I(90,0)~. 
+	\end{align} 
+ %\end{center}
+ \end{subequations}
+
+
+

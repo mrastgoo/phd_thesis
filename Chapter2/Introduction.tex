@@ -1,0 +1,26 @@
+\section{Introduction} \label{sec:chp2-sec1}
+Machine learning is refers to a set of methods that can automatically detect patterns in data and use them in decision making and future data prediction~\cite{murphy2012machine}. 
+Machine learning techniques are usually divided into two groups: descriptive (or unsupervised) and predictive (or supervised) learning.
+
+Unsupervised learning intends to find ``interesting structures'' in a given data without any additional information about the expected output. 
+These techniques formulate their problems as unconditional density estimation and multivariate probability models. 
+Clustering approaches and dimension reduction methods, \acf{pca}, and graph structures are two examples of unsupervised learning.   
+
+Supervised learning intends to find a mapping $f(.)$ which relates a set of inputs $x$ to a set of outputs $y$. 
+The learning is comprehended using a set of $N$ samples and their labels $D = \{(x_{i}, y_{i})\}^{N}_{i = 1}$, called the training set.
+The samples $x_{i}$ can vary from 2-D points in Cartesian coordinates to more complex forms such as images, sentences, time series, graphs, etc.
+Similarly, the labels $y_{i}$ can be represented by any structure, however, in most methods they are considered to be either categorical or numerical. 
+Supervised learning is known as a classification problem when $y_{i}$ is categorical; and when $y_{i}$ is a real value the problem is referred to as regression~\cite{murphy2012machine}. 
+
+In this research, we are interested in supervised learning, and the classification problem in particular. 
+Classification aims to map a set of inputs to a set of outputs, where the outputs are divided into different classes, $y \in \{1,...,C\}$.
+%{\color{green}As previously mentioned classification aims to maps a set of input $x$ to a set of output $y$, where $y \in \{1,...,C\}$ and C is the number of classes.} 
+If $C = 2$, it is a binary classification problem, while $C > 2$ makes it a multiclass classification. 
+This project aims to separate melanoma from all other pigmented skin lesions, thus addressing a binary classification problem. 
+
+Classification has numerous applications in real life.
+Some of the most common and challenging areas include email spam filtering, data mining, face detection and recognition, document classification, and the problem of cancer detection among others.
+In order to solve a classification problem, a framework consisting of several generic steps is required.
+Figure~\ref{fig:GCF} shows such a general framework whose steps are described in the following sections of this chapter. 
+Due to the broad studies of \ac{cad} systems of melanoma using dermoscopic images, in comparison to Stokes polarimetry, each step covers the state of the art related to conventional dermoscopic approaches.
+\input{Chapter2/GeneralClassificationFramework.tex} 

@@ -1,0 +1,129 @@
+%\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+%    text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill= blue!30, text = black, 
+   text width=7em, text centered, rounded corners, minimum height=4em , minimum width = 7em]
+\tikzstyle{block2} = [rectangle, draw, fill=white!20,
+    text width=7em, text centered, rounded corners, minimum height=4em, minimum width = 7em]
+\tikzstyle{block3} = [rectangle, draw, fill=blue!30,
+    text width=7em, text centered, rounded corners, minimum height=3em , minimum width = 7em]
+\tikzstyle{myarrow}=[->, thick]
+\tikzstyle{myarrow2}=[dashed, ->, thick]
+\tikzstyle{line}=[-, thick]
+\def\blockdist{1}
+\def\edgedist{1.5}
+ 
+\begin{figure}
+\begin{center}   
+\begin{tikzpicture}[node distance = 1cm,scale=0.7, every node/.style={scale=0.7}]
+    % Place nodes
+    %\node [block] (init) {initialize model};
+    \node [block2] (input) {$I_{0}$, $I_{45}$, $I_{90}$};
+    	\path (input.east|- input.south)+(+0.1,1.5) node (a) {};
+	\path (input.west)+(0.04,0) node (b) {}; 
+	%\node[block, right of=a , node distance =2.35cm](Reg){Registration};
+	\node[block, right of=a, node distance = 2.3cm] (S3){I,Q,U}; 
+	\node[block, above of = S3, node distance = 1.7 cm](Reg){Registration}; 
+	%\node[block, below of = Reg, node distance = 1.7 cm](S3){I,Q,U}; 
+    \node[block, below of = S3, node distance = 1.7cm ](HR){Hair removal};
+    \node[block, below of = HR, node distance = 1.7 cm] (Seg){Segmentation}; 
+    	\path (Reg.south|- S3.north)+(2,0) node (c) {};
+	\path (HR.south|- Seg.north)+(2,0) node (m) {}; 
+	\node[block, right of = input, node distance = 7.3cm](Map){Global Mapping}; 
+	\node[block, right of = c, node distance = 5.1cm](PF){Polarized features}; 
+	\node[block, below of = PF, node distance = 2.8cm](SF){Spatial features};
+	\node[block, right of = Map, node distance = 7.5cm](LR){Low representation}; 
+	
+	
+	\node[block, below of = LR, node distance = 5cm](US){Under-sampling};  
+	\node[block, below of = US, node distance = 2.8cm](OS){Over-sampling}; 
+	\path(US.south|- OS.north)+(-1.6,0.4) node (l){}; 
+	\node[block, left of = l, node distance = 2.5cm](Cls) {Classification}; 
+	    
+    %\node[block, right of = input, node distance = 15.5cm](Cls){Ensemble}; 
+    
+    \begin{pgfonlayer}{background}
+	\path (Reg.west |- Reg.north)+(-0.4,\blockdist) node (d) {};
+    \path (Seg.east |- Seg.south)+(+0.4,-0.5) node (e) {};          
+    \path[fill=blue!10,rounded corners, draw=blue!20, dashed] (d) rectangle (e);
+	\end{pgfonlayer}
+	\path (Reg.west |- Reg.north) +(+1.4,-0.5+\blockdist) node (PRE) {\textbf{Pre-processing}};
+	
+ 	\begin{pgfonlayer}{background}
+	\path (Reg.west |- Reg.north)+(6.7,\blockdist) node (d) {};
+    \path (Seg.east |- Seg.south)+(+7.5,-0.5) node (e) {};          
+    \path[fill=blue!10,rounded corners, draw=blue!20, dashed] (d) rectangle (e);
+	\end{pgfonlayer}
+	\path (Reg.west |- Reg.north) +(+8.5,-0.5+\blockdist) node (FE) {\textbf{Feature extraction}};
+	
+    \begin{pgfonlayer}{background}
+	\path (US.west |- US.north)+(-0.4,0.8+\blockdist) node (d) {};
+    \path (OS.east |- OS.south)+(+0.4,-1.9) node (e) {};          
+    \path[fill=blue!10,rounded corners, draw=blue!20, dashed] (d) rectangle (e);
+	\end{pgfonlayer}
+	\path (US.west |- US.north) +(+1.4,+0.3+\blockdist) node (Bal) {\textbf{Balancing}};
+	
+	
+	
+% 	\begin{pgfonlayer}{background}
+%	\path (Reg.west |- Reg.north)+(7.5,\blockdist) node (d) {};
+%    \path (HR.east |- HR.south)+(+8.3,-0.5) node (e) {};          
+%    \path[fill=blue!10,rounded corners, draw=blue!20, dashed] (d) rectangle (e);
+%	\end{pgfonlayer}
+%	\path (Reg.west |- Reg.north) +(+9.2,-0.5+\blockdist) node (Bal) {\textbf{Balancing}};
+%	
+%	\begin{pgfonlayer}{background}
+%	\path (Reg.west |- Reg.north)+(11.4,\blockdist) node (d) {};
+%    \path (HR.east |- HR.south)+(+12.2,-0.5) node (e) {};          
+%    \path[fill=blue!10,rounded corners, draw=blue!20, dashed] (d) rectangle (e);
+%	\end{pgfonlayer}
+%	\path (Reg.west |- Reg.north) +(+13.0,-0.5+\blockdist) node (Bal) {\textbf{Classification}};
+%	
+
+%    \begin{pgfonlayer}{background}
+%	\path (PF.west |- PF.north)+(-0.4,+1.0\blockdist) node (d) {};
+%    \path (SF.east |- SF.south)+(+0.4,-2.0) node (e) {};          
+%    \path[fill=blue!10,rounded corners, draw=blue!20, dashed] (d) rectangle (e);
+%	\end{pgfonlayer}
+%	\path (PF.west |- PF.north) +(+1.4,-0.5+\blockdist) node (FE) {\textbf{Feature extraction}};
+	
+%	\begin{pgfonlayer}{background}
+%	\path (PF.west |- PF.north)+(3.5,\blockdist) node (d) {};
+%    \path (SF.east |- SF.south)+(4.3,-0.5) node (e) {};          
+%    \path[fill=blue!10,rounded corners, draw=blue!20, dashed] (d) rectangle (e);
+%	\end{pgfonlayer}
+%	\path (PF.west |- PF.north) +(+5.3,-0.5+\blockdist) node (FEs) {\textbf{Balancing}};
+	
+%	\begin{pgfonlayer}{background}
+%	\path (PF.west |- PF.north)+(7.4,\blockdist) node (d) {};
+%    \path (SF.east |- SF.south)+(8.2,-0.5) node (e) {};          
+%    \path[fill=blue!10,rounded corners, draw=blue!20, dashed] (d) rectangle (e);
+%	\end{pgfonlayer}
+%	\path (PF.west |- PF.north) +(9.2,-0.5+\blockdist) node (cls1) {\textbf{Classification}};
+
+	\path (input.east) + (0.8,0) node (f) {}; 
+	\path (input.east) + (4.0,0) node (g) {};
+	\path (input.east) + (4.8,0) node (h) {};
+        \path (input.east) + (7.9,0) node (i) {};
+	\path (input.east) + (11.2,0)node (j) {};
+	\path (LR.south)   + (0,-1.9) node (k) {}; 
+	
+	
+%	\path (input.east) + (11.9,0) node (k) {};
+%	\path (input.east) + (12.6,0) node (l) {};
+
+	
+	\draw [myarrow] (input) -- (f); 
+	\draw [myarrow] (g) -- (Map); 
+	\draw [myarrow] (Map) --(i); 
+    \draw [myarrow] (j) -- (LR); 
+    \draw [myarrow] (LR) --(k) ; 
+    \draw [myarrow] (l) --(Cls); 
+    %\draw [myarrow] (k) -- (l); 
+
+
+
+\end{tikzpicture}
+\end{center}
+\caption{Proposed framework for automatic classification of melanoma lesions based on polarimetric images.}
+\label{fig:PD-Framework}
+\end{figure}

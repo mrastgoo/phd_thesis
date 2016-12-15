@@ -1,0 +1,30 @@
+\section{Automated Diagnosis of Melanoma}
+\Ac{cad} or \ac{cds} systems are proposed to provide automated diagnosis of melanoma lesions. 
+These systems are intended to reproduce the decision of the dermatologists when observing images of \ac{psls}. 
+Automated diagnosis of melanoma was proposed to assist dermatologists and increase the sensitivity and specificity of melanoma recognition in their early stages as well as to reduce unnecessary excisions.
+From a computer vision and pattern recognition point of view, \ac{cad} systems for melanoma intend to classify and differentiate melanoma lesions from others.
+In general, image processing techniques are used to locate and delineate the lesions and extract the image parameters (features) which coincide with the dermatologist's point of view and dermatological features. 
+The extracted parameters are further used with machine learning tools to perform a diagnosis (classification). 
+Such systems are being developed for various imaging modalities~\cite{Marchesini2002,Vestergaard2008,korotkov2012computerized}. 
+However, dermoscopy being the most conventional imaging technique, most \ac{cad} systems are dedicated to this modality. 
+%This research is aimed to provide an automate classification framework of melanoma lesions based on conventional dermoscopy and non-conventional \ac{pi}.
+
+This research is aimed at analyzing the effects of polarized illumination beyond that of usual dermoscopes, for the detection of melanoma lesions and providing a \ac{cad} system for an automated classification of melanoma lesions based on conventional dermpscopes and image polarimetry.
+%In our research, we considered automated classification of melanoma based on conventional dermoscopy, and non-conventional \ac{msi} and \ac{pi} imaging.  
+The general steps of a \ac{cad} system are extensively discussed in Chap.\,\ref{chp:chapter2}.
+
+\subsubsection{Clinical impact}
+Numerous research projects have been dedicated to the development of a \ac{cad} or \ac{cds} system and studies show that their performance is sufficient under experimental conditions~\cite{Fruhauf2012}. 
+The proposed systems can assist dermatologists, however, their practical value is still unclear and they cannot be recommended as a sole determinant of malignancy of a lesion.
+Even though most patients would accept a computerized analysis of a melanoma, the \ac{cad} systems proposed cannot function alone due to their tendency to over diagnose benign melanocytic and non-melanocytic lesions~\cite{Fruhauf2012}.
+Day and Barbour~\cite{Day2001} listed two main shortcomings for general approaches which are adapted to develop a \ac{cad} system for recognition of a melanoma:
+\begin{enumerate}
+\item A \ac{cad} system is expected to reproduce the decision of pathologists (a binary result like ``melanoma/non-melanoma lesion'') with only the input used by dermatologists: clinical or dermoscopic images;
+\item Histopathological data are not available for all lesions, only for those considered suspicious by dermatologists.
+\end{enumerate}
+\noindent
+The items listed refer to the lack of sufficient information and interaction with dermatologists used in the proposed method.
+These items refer to the fact that the proposed methods lack sufficient information and interaction with dermatologists.
+This fact was highlighted by Dreiseitl~et al.\,\cite{Dreiseitl2005} as well. 
+The authors mentioned that current systems are designed to work ``in parallel with and not in support of'' physicians, thus only a few systems have been used in clinical routines.
+In this regard, an ideal \ac{cad} or \ac{cds} system for melanoma recognition should be able to reproduce the dematologists's decision with extensive information regarding the reason and ground for that decisions~\cite{Dreiseitl2005}.

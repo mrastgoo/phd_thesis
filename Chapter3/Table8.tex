@@ -1,0 +1,126 @@
+%% Table 8
+\begin{table}
+	\caption[Results of Experiment~\#2 - comparison of the three cases]{Comparison of the classification results on the \ac{dos}-balanced, balanced, and imbalanced training cases.
+	Each case was tested with the \ac{rf} and \ac{svm} classifiers. 
+	The first part of the table shows the results obtained with \ac{rf}, while the second part lists the results achieved with \ac{svm}.
+	The results are indicated in terms of the \acf{se} and \acf{sp} percentages.}
+	\label{tab:threecasecomExp2}
+	\medskip		
+	\footnotesize{
+%\resizebox{0.8\textwidth}{!}{
+	\begin{center}
+	\begin{tabularx}{0.95\textwidth}{@{}l	lllr	 ll	lllr	 ll lllr @{}}
+	\toprule
+	\multicolumn{17}{c}{ \ac{rf} classifier}\\
+	\midrule
+	Features & \multicolumn{4}{l}{\ac{dos}-balanced training} & & & \multicolumn{4}{l}{balanced training} & & & \multicolumn{4}{l}{imbalanced training} \\
+	\cmidrule{2-5} \cmidrule{8-11} \cmidrule{14-17}
+	& \ac{se} & & & \ac{sp} & & &  \ac{se} & & & \ac{sp} & & & \ac{se} & & & \ac{sp} \\
+	\cmidrule{2-17}
+	Individual Features\\
+	\multicolumn{11}{l}{}\\[-2ex]
+ $T_3$ & \cellcolor[gray]{0.8}74.17	&\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}82.96	 & & & 63.50	 & & & 64.82 & & & 23.00	& & & 94.35 \\
+ $T_4$ & \cellcolor[gray]{0.8}74.67	&\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}90.54 & & & 59.50	 & & & 62.48 & & & 20.00	& & & 93.64 \\
+ $C_1$ & \cellcolor[gray]{0.8}80.33	&\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}92.20 & & & 74.00 & & & 71.39 & & & 39.50 & & & 92.96 \\
+ $C_2$ & \cellcolor[gray]{0.8}80.17	&\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}92.05	 & & & 71.00 & & & 58.44 & & & 38.00 & & & 92.84 \\
+ 	\multicolumn{17}{l}{}\\
+	Combined Features\\
+	\multicolumn{17}{l}{}\\[-2ex]
+$C_1,C_2	$					& \cellcolor[gray]{0.8}81.17 &\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}92.49 & & & 74.50 & & & 64.58 & & & 43.00	 & & & 93.72\\
+$T_1,T_2,C_1,C_2$			& \cellcolor[gray]{0.8}82.00	&\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}94.23	& & & 73.50 & & & 72.91 & & & 46.50 & & & 95.06\\
+$T_1,T_3,C_1,C_2$			& \cellcolor[gray]{0.8}81.33	&\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}94.47	& & & 76.00 & & & 73.28 & & & 44.00 & & & 95.57\\
+$T_1,C_1,C_2$				& \cellcolor[gray]{0.8}82.00	&\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}94.13	& & & 76.00	& & & 72.78 & & & 44.50 & & & 95.21\\
+$T_1,T_2,C_1,C_2,S$			& \cellcolor[gray]{0.8}82.33	&\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}94.47	& & & 75.50	 & & & 72.42& & & 43.50 & & & 95.33\\
+$T_1,T_2,T_3,T_4,C_1,C_2$	& \cellcolor[gray]{0.8}80.83	&\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}95.11	& & & 75.00	& & & 72.59 & & & 43.00 & & & 95.84\\
+$T_1,T_2,T_3,C_1,C_2,S$		& \cellcolor[gray]{0.8}81.67	&\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}94.74	& & & 74.50 & & & 72.96 & & & 44.00 & & & 95.45\\
+ 	\multicolumn{17}{l}{}\\
+% 	\bottomrule
+  \end{tabularx}  
+  \bigskip
+	\begin{tabularx}{0.95\textwidth}{@{}l	lllr	 ll	lllr	 ll lllr @{}}
+	\toprule
+	\multicolumn{17}{c}{ \ac{svm} classifier}\\
+	\midrule
+	Features & \multicolumn{4}{l}{\ac{dos}-balanced training} & & & \multicolumn{4}{l}{balanced training} & & & \multicolumn{4}{l}{imbalanced training} \\
+	\cmidrule{2-5} \cmidrule{8-11} \cmidrule{14-17}
+	& \ac{se} & & & \ac{sp} & & &  \ac{se} & & & \ac{sp} & & & \ac{se} & & & \ac{sp} \\
+	\cmidrule{2-17}
+	Individual Features\\
+	\multicolumn{17}{l}{}\\[-2ex]
+ $T_3$ & \cellcolor[gray]{0.8}65.83 &\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}74.65 & & & 71.00 & & & 58.89 & & & 4.50 & & & 99.00\\
+ $T_4$ & \cellcolor[gray]{0.8}78.00 &\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}78.78 & & & 47.50 & & & 62.33 & & & 5.00 & & & 97.53 \\
+ $C_1$ & \cellcolor[gray]{0.8}61.67 &\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}74.40 & & & 45.00 & & & 85.76 & & & 3.00	 & & & 99.49\\
+ $C_2$ & \cellcolor[gray]{0.8}73.50 &\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}76.60 & & & 66.50 & & & 65.20 & & & 4.00 & & & 99.63\\
+	\multicolumn{17}{l}{}\\
+	Combined Features\\
+	\multicolumn{17}{l}{}\\[-2ex]
+$C_1,C_2	$					& \cellcolor[gray]{0.8}67.17 &\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}81.42 & & & 52.00 & & & 80.26 & & & 0.00 & & & 100.00 \\
+$T_1,T_2,C_1,C_2$			& \cellcolor[gray]{0.8}73.50	&\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}82.76 & & & 56.50 & & & 78.29 & & & 0.00 & & & 100.00\\
+$T_1,T_3,C_1,C_2$			& \cellcolor[gray]{0.8}67.00	&\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}80.81 & & & 65.50 & & & 74.99 & & & 0.00 & & & 99.98\\
+$T_1,C_1,C_2$				& \cellcolor[gray]{0.8}66.50	&\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}80.88 & & & 68.50 & & & 76.60 & & & 0.50 & & & 99.95\\
+$T_1,T_2,C_1,C_2,S$			& \cellcolor[gray]{0.8}66.50	&\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}81.05 & & & 56.00 & & & 81.48 & & & 0.00 & & & 100.00\\
+$T_1,T_2,T_3,T_4,C_1,C_2$	& \cellcolor[gray]{0.8}69.67	&\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}84.82 & & & 63.50 & & & 75.87 & & & 13.00 & & & 97.33\\
+$T_1,T_2,T_3,C_1,C_2,S$		& \cellcolor[gray]{0.8}70.83	&\cellcolor[gray]{0.8} &\cellcolor[gray]{0.8} & \cellcolor[gray]{0.8}82.08 & & & 63.00 & & & 76.70 & & & 6.00 & & & 98.73\\
+ 	\multicolumn{17}{l}{}\\
+ 	\bottomrule
+  \end{tabularx}  
+	
+	
+	
+	
+\end{center}
+ }
+\end{table}
+	
+
+
+
+	
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
