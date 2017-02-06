@@ -42,13 +42,11 @@
 \onehalfspacing
 \input{Chapter1/chapter1.tex}
 
-%%\input{Chapter1/SkinDataAnalysis.tex}
 \input{Chapter4/chapter4.tex}
 \input{Chapter2/chapter2.tex}
 \input{Chapter3/chapter3.tex}
 \input{Chapter5/chapter5.tex}
 \input{Chapter6/Conclusion.tex}
-%\input{Chapter7/FW.tex}
 
 
 
@@ -56,10 +54,9 @@
 
 %   this is for BibTeX.  remove if you plan to write the references in the document
 \bibliographystyle{plain}
-\clearemptydoublepage
+% \clearemptydoublepage
+\renewcommand{\bibname}{References} % changes the header; default: Bibliography
 \bibliography{titresfull,references}
-%\bibliography{references}
-
 
 %adds the bibliography to the table of contents
 \addcontentsline{toc}{chapter}

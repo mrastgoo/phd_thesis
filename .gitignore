@@ -12,10 +12,6 @@
 *.fls
 *.out
 *.toc
-*.cb
-*.cb2
-*.soc
-*.spl
 
 ## Intermediate documents:
 *.dvi
@@ -53,6 +49,11 @@
 *.nav
 *.snm
 *.vrb
+
+# other
+*.cb
+*.cb2
+*.soc
 
 #(e)ledmac/(e)ledpar
 *.end
@@ -118,5 +119,7 @@ sympy-plots-for-*.tex/
 # xindy
 *.xdy
 
+*.docx
 
-
+*~
+*auto/
